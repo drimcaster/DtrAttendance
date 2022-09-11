@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PublishUrlHistory>ftp://172.28.48.57/downloads.sportscity.com.ph/installers/Freemeal/Biometrics Downloader/|publish\</PublishUrlHistory>
+    <InstallUrlHistory>http://downloads.sportscity.com.ph/installers/Freemeal/Biometrics%2520Downloader/</InstallUrlHistory>
+    <SupportUrlHistory>https://freemeal.sportscity.com.ph</SupportUrlHistory>
+    <UpdateUrlHistory />
+    <BootstrapperUrlHistory />
+    <ErrorReportUrlHistory>https://freemeal.sportscity.com.ph</ErrorReportUrlHistory>
+    <FallbackCulture>en-US</FallbackCulture>
+    <VerifyUploadedFiles>false</VerifyUploadedFiles>
+  </PropertyGroup>
+</Project>
