@@ -67,7 +67,7 @@
     <StartupObject>BiometricDownloader.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>FC99C15C0165A9A6935D25C87083A257AF4B9026</ManifestCertificateThumbprint>
@@ -79,6 +79,10 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Interop.zkemkeeper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ZKemkeeper.1.0.2\lib\Interop.zkemkeeper.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -92,21 +96,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Download.cs">
+    <Content Include="Download.cs">
       <SubType>Form</SubType>
-    </Compile>
+    </Content>
     <Compile Include="Download.Designer.cs">
       <DependentUpon>Download.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login.cs">
+    <Content Include="Login.cs">
       <SubType>Form</SubType>
-    </Compile>
+    </Content>
     <Compile Include="Login.designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="MessageBoxShowing.cs">
+    <Content Include="MessageBoxShowing.cs">
       <SubType>Form</SubType>
-    </Compile>
+    </Content>
     <Compile Include="MessageBoxShowing.Designer.cs">
       <DependentUpon>MessageBoxShowing.cs</DependentUpon>
     </Compile>
@@ -131,8 +135,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="BiometricDownloader_1_TemporaryKey.pfx" />
-    <None Include="BiometricDownloader_TemporaryKey.pfx" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -147,29 +150,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <COMReference Include="zkemkeeper">
-      <Guid>{FE9DED34-E159-408E-8490-B720A5E632C7}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="favicon.ico" />
     <Content Include="newcanteenicon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MealApi\MealApi.csproj">
-      <Project>{b1ebc05f-11f1-42d0-bb45-8795c36816e1}</Project>
-      <Name>MealApi</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SintexApiLibrary\SintexApiLibrary.csproj">
-      <Project>{9730e7d2-0c88-4539-b5a5-55b5b6042519}</Project>
-      <Name>SintexApiLibrary</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">

@@ -43,3 +43,14 @@ C:\Users\joseph.aguilar\Desktop\NEW DEVELOPMENT\WINDOWS APPLICATION\FreemealSyst
 C:\Users\joseph.aguilar\Desktop\NEW DEVELOPMENT\WINDOWS APPLICATION\FreemealSystem\BiometricDownloader\bin\Debug\Newtonsoft.Json.xml
 C:\Users\joseph.aguilar\Desktop\NEW DEVELOPMENT\WINDOWS APPLICATION\FreemealSystem\BiometricDownloader\obj\Debug\Biometric Downloader.exe.manifest
 C:\Users\joseph.aguilar\Desktop\NEW DEVELOPMENT\WINDOWS APPLICATION\FreemealSystem\BiometricDownloader\obj\Debug\Biometric Downloader.application
+D:\Repo\WinApp\ZKDtrAttendance-\BiometricDownloader\obj\Debug\BiometricDownloader.csproj.AssemblyReference.cache
+D:\Repo\WinApp\ZKDtrAttendance-\BiometricDownloader\obj\Debug\BiometricDownloader.csproj.SuggestedBindingRedirects.cache
+D:\Repo\WinApp\ZKDtrAttendance-\BiometricDownloader\obj\Debug\Biometric Downloader.exe
+D:\Repo\WinApp\ZKDtrAttendance-\BiometricDownloader\obj\Debug\Biometric Downloader.pdb
+D:\Repo\WinApp\ZKDtrAttendance-\BiometricDownloader\obj\Debug\BiometricDownloader.csproj.ResolveComReference.cache
+D:\Repo\WinApp\ZKDtrAttendance-\BiometricDownloader\obj\Debug\BiometricDownloader.Download.resources
+D:\Repo\WinApp\ZKDtrAttendance-\BiometricDownloader\obj\Debug\BiometricDownloader.Login.resources
+D:\Repo\WinApp\ZKDtrAttendance-\BiometricDownloader\obj\Debug\BiometricDownloader.MessageBoxShowing.resources
+D:\Repo\WinApp\ZKDtrAttendance-\BiometricDownloader\obj\Debug\BiometricDownloader.Properties.Resources.resources
+D:\Repo\WinApp\ZKDtrAttendance-\BiometricDownloader\obj\Debug\BiometricDownloader.csproj.GenerateResource.cache
+D:\Repo\WinApp\ZKDtrAttendance-\BiometricDownloader\obj\Debug\BiometricDownloader.csproj.CoreCompileInputs.cache
