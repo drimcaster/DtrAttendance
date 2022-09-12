@@ -33,18 +33,18 @@ namespace DTRAttendance.Helpers
 
             using (MySqlConnection con = new MySqlConnection(connectionString()))
             {
-                using (MySqlCommand cmd = new MySqlCommand(q, con))
+                con.Open();
+                using (MySqlDataAdapter da = new MySqlDataAdapter(q, con))
                 {
                     if (pars != null)
-                        cmd.Parameters.AddRange(pars);
-                    con.Open();
-                    MySqlDataAdapter da = new MySqlDataAdapter(q, con);
+                        da.SelectCommand.Parameters.AddRange(pars);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
                     string json = JsonConvert.SerializeObject(dt, Formatting.None);
+                    dt.Dispose();
                     return JsonConvert.DeserializeObject<T>(json);
-
                 }
+
             }
         }
         public static T Query<T>(string q, List<MySqlParameter> pars = null)
@@ -80,6 +80,52 @@ namespace DTRAttendance.Helpers
         }
 
 
+        public static void createScript(string script)
+        {
+
+            using (MySqlConnection con = new MySqlConnection(connectionString()))
+            {
+                con.Open();
+                MySqlScript my_sc = new MySqlScript(con);
+                my_sc.Query = script;
+                my_sc.Delimiter = "|";
+                my_sc.Execute();
+            }
+        }
+
+        public static bool MySQLScheduleStart()
+        {
+
+            ExecuteNonQuery("SET GLOBAL event_scheduler = ON");
+            ExecuteNonQuery("DROP EVENT IF EXISTS EVT_ATT_RAW_PROCESS;");
+            //return Query<int>("SELECT count(*) as count FROM information_schema.PROCESSLIST WHERE User='event_scheduler'") > 0 ;
+            return true;
+        }
+
+        public static void CreateAttendanceProcessSchedule()
+        {
+            createScript(@"
+CREATE EVENT IF NOT EXISTS EVT_ATT_RAW_PROCESS
+    ON SCHEDULE
+      EVERY 1 SECOND 
+    DO
+      BEGIN
+		/*
+        DECLARE v INTEGER;
+        DECLARE CONTINUE HANDLER FOR SQLEXCEPTION BEGIN END;
+
+        SET v = 0;
+
+        WHILE v < 5 DO
+          INSERT INTO t1 VALUES (0);
+          UPDATE t2 SET s1 = s1 + 1;
+          SET v = v + 1;
+        END WHILE;
+        */
+        #INSERT INTO dtr_attendance.attendance_raws(bio_id,date_time, is_processed) VALUES(1, NOW(),0);
+END         ");
+
+        }
 
 
     }

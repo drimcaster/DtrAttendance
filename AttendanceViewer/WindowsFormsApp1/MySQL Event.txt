@@ -1,0 +1,27 @@
+﻿MYSQL EVENT
+SET GLOBAL event_scheduler = ON;
+=============================================================================================================
+
+delimiter |
+
+CREATE EVENT insert_attendance_every1sec
+    ON SCHEDULE
+      EVERY 1 SECOND 
+    DO
+      BEGIN
+		/*
+        DECLARE v INTEGER;
+        DECLARE CONTINUE HANDLER FOR SQLEXCEPTION BEGIN END;
+
+        SET v = 0;
+
+        WHILE v < 5 DO
+          INSERT INTO t1 VALUES (0);
+          UPDATE t2 SET s1 = s1 + 1;
+          SET v = v + 1;
+        END WHILE;
+        */
+        #INSERT INTO dtr_attendance.attendance_raws(bio_id,date_time, is_processed) VALUES(1, NOW(),0);
+    END |
+
+===================================================================================================================

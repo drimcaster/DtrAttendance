@@ -28,5 +28,11 @@ namespace DTRAttendance.Models
         public DateTime? created_at { get; set; }
         public DateTime? updated_at { get; set; }
         public DateTime? deleted_at { get; set; }
+
+
+        public string getFullName()
+        {
+            return (this.last_name ?? "") + ", " + (this.first_name ?? "") + " " + (this.middle_name ?? "");
+        }
     }
 }
