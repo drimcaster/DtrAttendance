@@ -28,9 +28,16 @@ namespace DTRAttendance.Helpers
 
 
         }
+
+        public static int countRowQuery(string q)
+        {
+           return SSH_MySQL_Lib.MySqlQuery.QueryResult(q).Rows.Count;
+           // return 0;
+        }
         public static T Query<T>(string q, MySqlParameter[] pars)
         {
-
+            return SSH_MySQL_Lib.MySqlQuery.Query<T>(q, pars);
+            /*
             using (MySqlConnection con = new MySqlConnection(connectionString()))
             {
                 con.Open();
@@ -46,6 +53,7 @@ namespace DTRAttendance.Helpers
                 }
 
             }
+            */
         }
         public static T Query<T>(string q, List<MySqlParameter> pars = null)
         {
@@ -56,7 +64,8 @@ namespace DTRAttendance.Helpers
 
         public static long ExecuteNonQuery(string q, MySqlParameter[] pars)
         {
-
+           return  SSH_MySQL_Lib.MySqlQuery.ExecuteNonQuery(q, pars);
+            /*
             using (MySqlConnection con = new MySqlConnection(connectionString()))
             {
                 using (MySqlCommand cmd = new MySqlCommand(q, con))
@@ -71,6 +80,7 @@ namespace DTRAttendance.Helpers
 
                 }
             }
+            */
         }
         public static long ExecuteNonQuery(string q, List<MySqlParameter> pars=null)
         {
@@ -82,7 +92,8 @@ namespace DTRAttendance.Helpers
 
         public static void createScript(string script)
         {
-
+            SSH_MySQL_Lib.MySqlQuery.createScript(script);
+            /*
             using (MySqlConnection con = new MySqlConnection(connectionString()))
             {
                 con.Open();
@@ -91,19 +102,12 @@ namespace DTRAttendance.Helpers
                 my_sc.Delimiter = "|";
                 my_sc.Execute();
             }
+            */
         }
-
-        public static bool MySQLScheduleStart()
+ 
+        public static void CreateRawAnalysisSchedule()
         {
-
-            ExecuteNonQuery("SET GLOBAL event_scheduler = ON");
             ExecuteNonQuery("DROP EVENT IF EXISTS EVT_ATT_RAW_PROCESS;");
-            //return Query<int>("SELECT count(*) as count FROM information_schema.PROCESSLIST WHERE User='event_scheduler'") > 0 ;
-            return true;
-        }
-
-        public static void CreateAttendanceProcessSchedule()
-        {
             createScript(@"
 CREATE EVENT IF NOT EXISTS EVT_ATT_RAW_PROCESS
     ON SCHEDULE

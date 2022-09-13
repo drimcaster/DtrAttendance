@@ -94,3 +94,13 @@ D:\Repo\WinApp\ZKDtrAttendance-\AttendanceViewer\WindowsFormsApp1\obj\Debug\DTRA
 D:\Repo\WinApp\ZKDtrAttendance-\AttendanceViewer\WindowsFormsApp1\obj\Debug\DTRAttendance.csproj.CopyComplete
 D:\Repo\WinApp\ZKDtrAttendance-\AttendanceViewer\WindowsFormsApp1\obj\Debug\DTRAttendance.exe
 D:\Repo\WinApp\ZKDtrAttendance-\AttendanceViewer\WindowsFormsApp1\obj\Debug\DTRAttendance.pdb
+D:\Repo\WinApp\ZKDtrAttendance-\AttendanceViewer\WindowsFormsApp1\bin\Debug\Microsoft.Build.Tasks.Core.dll
+D:\Repo\WinApp\ZKDtrAttendance-\AttendanceViewer\WindowsFormsApp1\bin\Debug\Microsoft.Build.Utilities.Core.dll
+D:\Repo\WinApp\ZKDtrAttendance-\AttendanceViewer\WindowsFormsApp1\bin\Debug\Microsoft.Build.Framework.dll
+D:\Repo\WinApp\ZKDtrAttendance-\AttendanceViewer\WindowsFormsApp1\bin\Debug\SSH MySQL Lib.dll
+D:\Repo\WinApp\ZKDtrAttendance-\AttendanceViewer\WindowsFormsApp1\bin\Debug\Renci.SshNet.dll
+D:\Repo\WinApp\ZKDtrAttendance-\AttendanceViewer\WindowsFormsApp1\bin\Debug\SSH MySQL Lib.pdb
+D:\Repo\WinApp\ZKDtrAttendance-\AttendanceViewer\WindowsFormsApp1\bin\Debug\SSH MySQL Lib.dll.config
+D:\Repo\WinApp\ZKDtrAttendance-\AttendanceViewer\WindowsFormsApp1\bin\Debug\Renci.SshNet.xml
+D:\Repo\WinApp\ZKDtrAttendance-\AttendanceViewer\WindowsFormsApp1\obj\Debug\DTRAttendance.Security.resources
+D:\Repo\WinApp\ZKDtrAttendance-\AttendanceViewer\WindowsFormsApp1\bin\Debug\MySql.Data.xml

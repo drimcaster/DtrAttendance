@@ -12,6 +12,8 @@ namespace DTRAttendance
 {
     public partial class Form1 : Form
     {
+
+        public bool isAnalyze = false;
         public Form1()
         {
             InitializeComponent();
@@ -21,6 +23,8 @@ namespace DTRAttendance
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
+            StaticClasses.DtrAnalysis.checkSystemDefaults();
 
             this.reportViewer1.RefreshReport();
 
@@ -75,8 +79,55 @@ namespace DTRAttendance
 
         private void analyzeRecordsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Helpers.MySQLHelper.MySQLScheduleStart();
-            Helpers.MySQLHelper.CreateAttendanceProcessSchedule();
+            if (isAnalyze == false)
+            {
+                //Helpers.MySQLHelper.MySQLScheduleStart();
+                StaticClasses.DtrAnalysis.MySQLScheduleStart();
+                Helpers.MySQLHelper.CreateRawAnalysisSchedule();
+
+                //Timer to check if records analysis completed.
+                analyzeRawToolStripMenuItem.Text = "Analysing raw..";
+                isAnalyze = true;
+            }
+            else
+            {
+                StaticClasses.DtrAnalysis.disableRawAnalysis();
+                analyzeRawToolStripMenuItem.Text = "Analyze DTR Raw";
+                isAnalyze = false;
+            }
+        }
+
+        private void analysis_checker_Tick(object sender, EventArgs e)
+        {
+            if (isAnalyze == false)
+            {
+                //Check if there are Raw to analyzes
+                if (StaticClasses.DtrAnalysis.hasRawtoAnalyze())
+                {
+                    analyzeRawToolStripMenuItem.Visible = true;
+                    if (StaticClasses.DtrAnalysis.isScheduleRunning())
+                    {
+                        if (StaticClasses.DtrAnalysis.isRawAnalysisRunning())
+                        {
+                            isAnalyze = true;
+                            analyzeRawToolStripMenuItem.Text = "Analysing raw..";
+                        }
+                    }
+                }
+
+            }
+            else
+            {
+                if (!StaticClasses.DtrAnalysis.hasRawtoAnalyze())
+                {
+                    StaticClasses.DtrAnalysis.disableRawAnalysis();
+                    analyzeRawToolStripMenuItem.Text = "Analyze DTR Raw";
+                    analyzeRawToolStripMenuItem.Visible = false;
+                    isAnalyze = false;
+
+
+                }
+            }
         }
     }
 }

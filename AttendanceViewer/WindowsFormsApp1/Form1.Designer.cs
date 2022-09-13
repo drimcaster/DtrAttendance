@@ -28,20 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.employeesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addNewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.devicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.downloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.analyzeRawToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.analyzeRecordsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.analysis_checker = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -52,7 +54,7 @@
             this.employeesToolStripMenuItem,
             this.devicesToolStripMenuItem,
             this.downloadToolStripMenuItem,
-            this.analyzeRecordsToolStripMenuItem});
+            this.analyzeRawToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1026, 24);
@@ -88,6 +90,14 @@
             this.downloadToolStripMenuItem.Text = "Download";
             this.downloadToolStripMenuItem.Click += new System.EventHandler(this.downloadToolStripMenuItem_Click);
             // 
+            // analyzeRawToolStripMenuItem
+            // 
+            this.analyzeRawToolStripMenuItem.Name = "analyzeRawToolStripMenuItem";
+            this.analyzeRawToolStripMenuItem.Size = new System.Drawing.Size(113, 20);
+            this.analyzeRawToolStripMenuItem.Text = "Analyze DTR Raws";
+            this.analyzeRawToolStripMenuItem.Visible = false;
+            this.analyzeRawToolStripMenuItem.Click += new System.EventHandler(this.analyzeRecordsToolStripMenuItem_Click);
+            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
@@ -108,37 +118,6 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(417, 488);
             this.dataGridView1.TabIndex = 1;
-            // 
-            // reportViewer1
-            // 
-            this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.reportViewer1.Location = new System.Drawing.Point(435, 36);
-            this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(579, 513);
-            this.reportViewer1.TabIndex = 2;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(12, 38);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(70, 17);
-            this.checkBox1.TabIndex = 3;
-            this.checkBox1.Text = "All Active";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(88, 36);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(341, 20);
-            this.textBox1.TabIndex = 4;
-            this.textBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyUp);
             // 
             // Column1
             // 
@@ -173,12 +152,42 @@
             this.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Column3.Width = 62;
             // 
-            // analyzeRecordsToolStripMenuItem
+            // reportViewer1
             // 
-            this.analyzeRecordsToolStripMenuItem.Name = "analyzeRecordsToolStripMenuItem";
-            this.analyzeRecordsToolStripMenuItem.Size = new System.Drawing.Size(105, 20);
-            this.analyzeRecordsToolStripMenuItem.Text = "Analyze Records";
-            this.analyzeRecordsToolStripMenuItem.Click += new System.EventHandler(this.analyzeRecordsToolStripMenuItem_Click);
+            this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.reportViewer1.Location = new System.Drawing.Point(435, 36);
+            this.reportViewer1.Name = "reportViewer1";
+            this.reportViewer1.ServerReport.BearerToken = null;
+            this.reportViewer1.Size = new System.Drawing.Size(579, 513);
+            this.reportViewer1.TabIndex = 2;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(12, 38);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(70, 17);
+            this.checkBox1.TabIndex = 3;
+            this.checkBox1.Text = "All Active";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(88, 36);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(341, 20);
+            this.textBox1.TabIndex = 4;
+            this.textBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyUp);
+            // 
+            // analysis_checker
+            // 
+            this.analysis_checker.Enabled = true;
+            this.analysis_checker.Interval = 1000;
+            this.analysis_checker.Tick += new System.EventHandler(this.analysis_checker_Tick);
             // 
             // Form1
             // 
@@ -218,7 +227,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Column3;
-        private System.Windows.Forms.ToolStripMenuItem analyzeRecordsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem analyzeRawToolStripMenuItem;
+        private System.Windows.Forms.Timer analysis_checker;
     }
 }
 

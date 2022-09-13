@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiometricDownloader", "Biom
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTRAttendance", "AttendanceViewer\WindowsFormsApp1\DTRAttendance.csproj", "{6DCFFF11-C819-482E-BDD3-3C2711B700CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSH MySQL Lib", "..\WinLib-MySQL-SSH\SSH MySQL Lib\SSH MySQL Lib.csproj", "{E3251AEC-DE5D-4191-9EA1-D0E477BA83AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6DCFFF11-C819-482E-BDD3-3C2711B700CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DCFFF11-C819-482E-BDD3-3C2711B700CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DCFFF11-C819-482E-BDD3-3C2711B700CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3251AEC-DE5D-4191-9EA1-D0E477BA83AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3251AEC-DE5D-4191-9EA1-D0E477BA83AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3251AEC-DE5D-4191-9EA1-D0E477BA83AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3251AEC-DE5D-4191-9EA1-D0E477BA83AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
