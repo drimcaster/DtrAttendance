@@ -120,7 +120,7 @@ namespace DTRAttendance
             {
                 if (!StaticClasses.DtrAnalysis.hasRawtoAnalyze())
                 {
-                    StaticClasses.DtrAnalysis.disableRawAnalysis();
+                    ///StaticClasses.DtrAnalysis.disableRawAnalysis(); -optional due to added to background
                     analyzeRawToolStripMenuItem.Text = "Analyze DTR Raw";
                     analyzeRawToolStripMenuItem.Visible = false;
                     isAnalyze = false;
