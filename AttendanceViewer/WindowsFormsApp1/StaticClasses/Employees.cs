@@ -31,14 +31,14 @@ namespace DTRAttendance.StaticClasses
             List<MySqlParameter> pars = new List<MySqlParameter>();
             pars.Add(new MySqlParameter("@search", search));
 
-            return Helpers.MySQLHelper.Query<List<Models.Employee>>(" select * from employees where deleted_at IS NULL AND is_active=1 AND CONCAT(first_name, middle_name, last_name) like CONCAT('%', @search ,'%')", pars);
+            return Helpers.MySQLHelper.Query<List<Models.Employee>>(" select * from employees where deleted_at IS NULL AND is_active=1 AND CONCAT(IFNULL(employee_id,''), bio_id, first_name, middle_name, last_name) like CONCAT('%', @search ,'%')", pars);
         }
 
         public static List<Models.Employee> get_all_employees(string search="")
         {
             List<MySqlParameter> pars = new List<MySqlParameter>();
             pars.Add(new MySqlParameter("@search", search));
-            return Helpers.MySQLHelper.Query<List<Models.Employee>>(" select * from employees where deleted_at IS NULL AND CONCAT(first_name, middle_name, last_name) like CONCAT('%', @search ,'%')", pars);
+            return Helpers.MySQLHelper.Query<List<Models.Employee>>(" select * from employees where deleted_at IS NULL AND CONCAT(IFNULL(employee_id,''), bio_id, first_name, middle_name, last_name) like CONCAT('%', @search ,'%')", pars);
         }
     }
     

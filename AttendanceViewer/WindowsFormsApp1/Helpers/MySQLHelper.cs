@@ -114,19 +114,7 @@ CREATE EVENT IF NOT EXISTS EVT_ATT_RAW_PROCESS
       EVERY 1 SECOND 
     DO
       BEGIN
-		/*
-        DECLARE v INTEGER;
-        DECLARE CONTINUE HANDLER FOR SQLEXCEPTION BEGIN END;
-
-        SET v = 0;
-
-        WHILE v < 5 DO
-          INSERT INTO t1 VALUES (0);
-          UPDATE t2 SET s1 = s1 + 1;
-          SET v = v + 1;
-        END WHILE;
-        */
-        #INSERT INTO dtr_attendance.attendance_raws(bio_id,date_time, is_processed) VALUES(1, NOW(),0);
+     CALL spEVT_ATT_RAW_PROCESS();
 END         ");
 
         }
