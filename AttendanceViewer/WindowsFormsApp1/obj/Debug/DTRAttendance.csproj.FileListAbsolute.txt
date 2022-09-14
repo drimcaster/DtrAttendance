@@ -104,3 +104,4 @@ D:\Repo\WinApp\ZKDtrAttendance-\AttendanceViewer\WindowsFormsApp1\bin\Debug\SSH 
 D:\Repo\WinApp\ZKDtrAttendance-\AttendanceViewer\WindowsFormsApp1\bin\Debug\Renci.SshNet.xml
 D:\Repo\WinApp\ZKDtrAttendance-\AttendanceViewer\WindowsFormsApp1\obj\Debug\DTRAttendance.Security.resources
 D:\Repo\WinApp\ZKDtrAttendance-\AttendanceViewer\WindowsFormsApp1\bin\Debug\MySql.Data.xml
+D:\Repo\WinApp\ZKDtrAttendance-\AttendanceViewer\WindowsFormsApp1\obj\Debug\DTRAttendance.ViewLogsForm.resources

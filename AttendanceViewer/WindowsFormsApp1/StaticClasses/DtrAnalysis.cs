@@ -63,7 +63,7 @@ namespace DTRAttendance.StaticClasses
             //SHOULD BE FIXED ATTENDANCE SCHEDS
              if(MySQLHelper.countRowQuery("SELECT * FROM attendance_scheds WHERE id=1") == 0)
             {
-                long id = MySQLHelper.ExecuteNonQuery("INSERT INTO attendance_scheds( `name`, am_in, am_out, pm_in, pm_out) VALUES( 'default', '08:00:00', '12:00:00', '13:00:00', '05:00:00')");
+                long id = MySQLHelper.ExecuteNonQuery("INSERT INTO attendance_scheds( `name`, am_in, am_out, pm_in, pm_out) VALUES( 'default', '08:00:00', '12:00:00', '13:00:00', '17:00:00')");
                 MySQLHelper.ExecuteNonQuery("UPDATE attendance_scheds SET id = 1 WHERE id=" + id);
             };
 

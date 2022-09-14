@@ -129,5 +129,12 @@ namespace DTRAttendance
                 }
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Models.Employee sel = dataGridView1.SelectedRows[0]?.Tag as Models.Employee;
+            if (sel != null)
+                new ViewLogsForm(sel).ShowDialog();
+        }
     }
 }
