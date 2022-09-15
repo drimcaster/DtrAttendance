@@ -12,9 +12,16 @@ namespace DTRAttendance
 {
     public partial class AddLog : Form
     {
-        public AddLog()
+        public AddLog(int month, int year)
         {
             InitializeComponent();
+            
+            int maxday = DateTime.DaysInMonth(year, month);
+            dateTimePicker1.Value = DateTime.Parse(year + "-" + month + "-1");
+            dateTimePicker1.MinDate = DateTime.Parse(year + "-" + month + "-1");//.MinValue;
+            dateTimePicker1.MaxDate = DateTime.Parse(year + "-" + month + "-" + maxday);
+
+
         }
     }
 }

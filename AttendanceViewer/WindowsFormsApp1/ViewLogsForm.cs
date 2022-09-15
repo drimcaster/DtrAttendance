@@ -13,15 +13,42 @@ namespace DTRAttendance
     public partial class ViewLogsForm : Form
     {
         public Models.Employee _Employee;
-        public ViewLogsForm(Models.Employee employee)
+        public DateTime _focusDate;
+        public ViewLogsForm(Models.Employee employee, DateTime date_time)
         {
             InitializeComponent();
             _Employee = employee;
+            _focusDate = date_time;
+
+            load_data(date_time);
+        }
+
+        public void load_data(DateTime date_time)
+        {
+            dataGridView1.Rows.Clear();
+            List<Models.Attendance_Log> att_logs = StaticClasses.AttLogs.get_logs(_Employee.id, date_time.Month, date_time.Year);
+            foreach(var i in att_logs)
+            {
+                DataGridViewRow dgvr = new DataGridViewRow();
+                dgvr.Tag = i;
+                dgvr.ContextMenuStrip = contextMenuStrip1;
+                dataGridView1.Rows.Add(dgvr);               
+            }
+            
+
+            for(int i = 0; i<dataGridView1.Rows.Count; i++)
+            {
+                DataGridViewRow dgvr = dataGridView1.Rows[i];
+                var log = dgvr.Tag as Models.Attendance_Log;
+                string chk_type = "";
+                dgvr.SetValues(i+1, log.date_time, chk_type, log.att_sched_id, log.device_id, log.is_manual == 1 ? "Manual": "Log");
+            }
+
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            new AddLog().ShowDialog();
+            new AddLog(_focusDate.Month, _focusDate.Year).ShowDialog();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -32,6 +59,16 @@ namespace DTRAttendance
         private void modifyCheckInToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new Modify_Check_In().ShowDialog();
+        }
+
+        private void dataGridView1_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+           var log =  e.Row.Tag as Models.Attendance_Log;
+            if(log.is_manual != 1)
+            {
+                if (MessageBox.Show("Would you like to delete this log", "Deleting log", MessageBoxButtons.YesNo) != DialogResult.Yes)
+                    e.Cancel = true;
+            }
         }
     }
 }

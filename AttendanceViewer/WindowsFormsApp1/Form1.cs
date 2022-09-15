@@ -134,7 +134,7 @@ namespace DTRAttendance
         {
             Models.Employee sel = dataGridView1.SelectedRows[0]?.Tag as Models.Employee;
             if (sel != null)
-                new ViewLogsForm(sel).ShowDialog();
+                new ViewLogsForm(sel, dateTimePicker1.Value).ShowDialog();
         }
     }
 }

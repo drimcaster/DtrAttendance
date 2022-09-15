@@ -121,6 +121,7 @@
     </Compile>
     <Compile Include="Helpers\MySQLHelper.cs" />
     <Compile Include="Models\Attendance.cs" />
+    <Compile Include="Models\Attendance_Log.cs" />
     <Compile Include="Models\Device.cs" />
     <Compile Include="Models\DtrDay.cs" />
     <Compile Include="Models\Employee.cs" />
@@ -142,6 +143,7 @@
       <DependentUpon>Security.cs</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="StaticClasses\AttLogs.cs" />
     <Compile Include="StaticClasses\Devices.cs" />
     <Compile Include="StaticClasses\DtrAnalysis.cs" />
     <Compile Include="StaticClasses\Employees.cs" />
@@ -151,6 +153,12 @@
     <Compile Include="ViewLogsForm.Designer.cs">
       <DependentUpon>ViewLogsForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddLog.resx">
+      <DependentUpon>AddLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Change Schedule in Logs.resx">
+      <DependentUpon>Change Schedule in Logs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Devices\DeviceList.resx">
       <DependentUpon>DeviceList.cs</DependentUpon>
     </EmbeddedResource>

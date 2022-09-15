@@ -105,3 +105,5 @@ D:\Repo\WinApp\ZKDtrAttendance-\AttendanceViewer\WindowsFormsApp1\bin\Debug\Renc
 D:\Repo\WinApp\ZKDtrAttendance-\AttendanceViewer\WindowsFormsApp1\obj\Debug\DTRAttendance.Security.resources
 D:\Repo\WinApp\ZKDtrAttendance-\AttendanceViewer\WindowsFormsApp1\bin\Debug\MySql.Data.xml
 D:\Repo\WinApp\ZKDtrAttendance-\AttendanceViewer\WindowsFormsApp1\obj\Debug\DTRAttendance.ViewLogsForm.resources
+D:\Repo\WinApp\ZKDtrAttendance-\AttendanceViewer\WindowsFormsApp1\obj\Debug\DTRAttendance.AddLog.resources
+D:\Repo\WinApp\ZKDtrAttendance-\AttendanceViewer\WindowsFormsApp1\obj\Debug\DTRAttendance.Change_Schedule_in_Logs.resources
