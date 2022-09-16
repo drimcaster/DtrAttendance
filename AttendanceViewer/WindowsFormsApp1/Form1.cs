@@ -66,7 +66,7 @@ namespace DTRAttendance
 
         private void downloadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new DTRAttendance.Devices.Download().ShowDialog();
+            new DTRAttendance.Devices.Download(dateTimePicker1.Value).ShowDialog();
         }
 
         private void textBox1_KeyUp(object sender, KeyEventArgs e)

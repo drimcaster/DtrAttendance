@@ -15,10 +15,11 @@ namespace DTRAttendance.Devices
 {
     public partial class Download : Form
     {
-        public Download()
+        public Download(DateTime dt)
         {
             InitializeComponent();
-
+            dateTimePicker1.Value = DateTime.Parse(dt.Year + "-" + dt.Month + "-" + 1);
+            dateTimePicker2.Value = DateTime.Parse(dt.Year + "-" + dt.Month + "-" + DateTime.DaysInMonth(dt.Year, dt.Month));
 
 
         }
@@ -122,7 +123,8 @@ namespace DTRAttendance.Devices
                                 attendance.logs.Add(new Log()
                                 {
                                     bio_id = enrollStr.ToString(),
-                                    sign_time = DateTime.Parse(strTime).ToString("yyyy-MM-dd HH:mm:ss")
+                                    sign_time = DateTime.Parse(strTime).ToString("yyyy-MM-dd HH:mm:ss"),
+                                    device_id = device.id
                                 });
 
                             }
@@ -157,7 +159,8 @@ namespace DTRAttendance.Devices
                                 attendance.logs.Add(new Log()
                                 {
                                     bio_id = enrollStr.ToString(),
-                                    sign_time = DateTime.Parse(strTime).ToString("yyyy-MM-dd HH:mm:ss")
+                                    sign_time = DateTime.Parse(strTime).ToString("yyyy-MM-dd HH:mm:ss"),
+                                    device_id = device.id
                                 });
 
                             }
@@ -214,7 +217,7 @@ namespace DTRAttendance.Devices
 
                 }));
 
-
+                //Updaitng here
 
             }
 
@@ -244,6 +247,7 @@ namespace DTRAttendance.Devices
             {
                 Models.Device device = row.Tag as Models.Device;
                 row.SetValues(true, device.name, 0, 0, "Pending");
+                device.bindRow = row;
             }
         }
 
@@ -253,8 +257,15 @@ namespace DTRAttendance.Devices
             {
                 Models.Device device = row.Tag as Models.Device;
                 if (device != null)
-                    download_bio(device);
+                {
+                    BackgroundWorker bgw = new BackgroundWorker();
+                    bgw.DoWork += (b, g) => { 
+                            download_bio(device);
+                    };
+                    bgw.RunWorkerAsync();
+                }
             }
         }
+
     }
 }

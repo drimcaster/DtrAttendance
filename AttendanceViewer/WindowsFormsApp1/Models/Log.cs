@@ -12,6 +12,8 @@ namespace DTRAttendance.Models
         public int in_out { get; set; } // 1 -  AM IN, 2- AM OUT, 3-PM IN, 4-PM OUT
         public string sign_time { get; set; }
 
+        public long device_id { get; set; }
+
 
 
 
