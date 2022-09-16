@@ -33,12 +33,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
             this.Col_Is_Download = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Col_Device_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Col_LogsCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Col_Added = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Col_Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -96,16 +96,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(685, 239);
             this.dataGridView1.TabIndex = 4;
             // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Location = new System.Drawing.Point(15, 302);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(172, 29);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Download Now";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // Col_Is_Download
             // 
             this.Col_Is_Download.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
@@ -144,6 +134,17 @@
             this.Col_Status.HeaderText = "Status";
             this.Col_Status.Name = "Col_Status";
             this.Col_Status.ReadOnly = true;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button1.Location = new System.Drawing.Point(15, 302);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(172, 29);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Download Now";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Download
             // 

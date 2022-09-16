@@ -27,7 +27,7 @@ namespace DTRAttendance.Devices
 
 
 
-        public void download_bio(int device_id)
+        public void download_bio(Models.Device device)
         {
             zkemkeeper.CZKEM zk;
 
@@ -47,7 +47,7 @@ namespace DTRAttendance.Devices
             // Attendance2 attendance2 = new Attendance2();
             Models.Attendance attendance = new Models.Attendance();
 
-            var device = DeviceList.Where(a => a.id == device_id).FirstOrDefault();
+            //var device = DeviceList.Where(a => a.id == device_id).FirstOrDefault();
             attendance.device = device;
 
             try
@@ -97,7 +97,7 @@ namespace DTRAttendance.Devices
                     Invoke(new Action(() =>
                     {
                         _from = DateTime.Parse(dateTimePicker1.Value.Year + "-" + dateTimePicker1.Value.Month + "-" + dateTimePicker1.Value.Day + " 00:00:00");
-                        _to = DateTime.Parse(dateTimePicker2.Value.Year + "-" + dateTimePicker2.Value.Month + "-" + dateTimePicker2.Value.Day + " 00:00:00");
+                        _to = DateTime.Parse(dateTimePicker2.Value.Year + "-" + dateTimePicker2.Value.Month + "-" + dateTimePicker2.Value.Day + " 23:59:59");
                     }));
                     if (zk.IsTFTMachine(machineNumber))
                     {
@@ -244,6 +244,16 @@ namespace DTRAttendance.Devices
             {
                 Models.Device device = row.Tag as Models.Device;
                 row.SetValues(true, device.name, 0, 0, "Pending");
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            foreach(DataGridViewRow row in dataGridView1.Rows)
+            {
+                Models.Device device = row.Tag as Models.Device;
+                if (device != null)
+                    download_bio(device);
             }
         }
     }

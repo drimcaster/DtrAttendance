@@ -7,26 +7,54 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiometricDownloader", "Biom
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTRAttendance", "AttendanceViewer\WindowsFormsApp1\DTRAttendance.csproj", "{6DCFFF11-C819-482E-BDD3-3C2711B700CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSH MySQL Lib", "..\WinLib-MySQL-SSH\SSH MySQL Lib\SSH MySQL Lib.csproj", "{E3251AEC-DE5D-4191-9EA1-D0E477BA83AD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSH MySQL Lib", "..\MySQL SSH\SSH MySQL Lib\SSH MySQL Lib.csproj", "{E3251AEC-DE5D-4191-9EA1-D0E477BA83AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{EE4D1A01-B2C7-4943-A46D-2F371620F24E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EE4D1A01-B2C7-4943-A46D-2F371620F24E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE4D1A01-B2C7-4943-A46D-2F371620F24E}.Debug|x64.ActiveCfg = Debug|x64
+		{EE4D1A01-B2C7-4943-A46D-2F371620F24E}.Debug|x64.Build.0 = Debug|x64
+		{EE4D1A01-B2C7-4943-A46D-2F371620F24E}.Debug|x86.ActiveCfg = Debug|x86
+		{EE4D1A01-B2C7-4943-A46D-2F371620F24E}.Debug|x86.Build.0 = Debug|x86
 		{EE4D1A01-B2C7-4943-A46D-2F371620F24E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE4D1A01-B2C7-4943-A46D-2F371620F24E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE4D1A01-B2C7-4943-A46D-2F371620F24E}.Release|x64.ActiveCfg = Release|x64
+		{EE4D1A01-B2C7-4943-A46D-2F371620F24E}.Release|x64.Build.0 = Release|x64
+		{EE4D1A01-B2C7-4943-A46D-2F371620F24E}.Release|x86.ActiveCfg = Release|x86
+		{EE4D1A01-B2C7-4943-A46D-2F371620F24E}.Release|x86.Build.0 = Release|x86
 		{6DCFFF11-C819-482E-BDD3-3C2711B700CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6DCFFF11-C819-482E-BDD3-3C2711B700CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DCFFF11-C819-482E-BDD3-3C2711B700CE}.Debug|x64.ActiveCfg = Debug|x64
+		{6DCFFF11-C819-482E-BDD3-3C2711B700CE}.Debug|x64.Build.0 = Debug|x64
+		{6DCFFF11-C819-482E-BDD3-3C2711B700CE}.Debug|x86.ActiveCfg = Debug|x86
+		{6DCFFF11-C819-482E-BDD3-3C2711B700CE}.Debug|x86.Build.0 = Debug|x86
 		{6DCFFF11-C819-482E-BDD3-3C2711B700CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DCFFF11-C819-482E-BDD3-3C2711B700CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DCFFF11-C819-482E-BDD3-3C2711B700CE}.Release|x64.ActiveCfg = Release|x64
+		{6DCFFF11-C819-482E-BDD3-3C2711B700CE}.Release|x64.Build.0 = Release|x64
+		{6DCFFF11-C819-482E-BDD3-3C2711B700CE}.Release|x86.ActiveCfg = Release|x86
+		{6DCFFF11-C819-482E-BDD3-3C2711B700CE}.Release|x86.Build.0 = Release|x86
 		{E3251AEC-DE5D-4191-9EA1-D0E477BA83AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E3251AEC-DE5D-4191-9EA1-D0E477BA83AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3251AEC-DE5D-4191-9EA1-D0E477BA83AD}.Debug|x64.ActiveCfg = Debug|x64
+		{E3251AEC-DE5D-4191-9EA1-D0E477BA83AD}.Debug|x64.Build.0 = Debug|x64
+		{E3251AEC-DE5D-4191-9EA1-D0E477BA83AD}.Debug|x86.ActiveCfg = Debug|x86
+		{E3251AEC-DE5D-4191-9EA1-D0E477BA83AD}.Debug|x86.Build.0 = Debug|x86
 		{E3251AEC-DE5D-4191-9EA1-D0E477BA83AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3251AEC-DE5D-4191-9EA1-D0E477BA83AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3251AEC-DE5D-4191-9EA1-D0E477BA83AD}.Release|x64.ActiveCfg = Release|x64
+		{E3251AEC-DE5D-4191-9EA1-D0E477BA83AD}.Release|x64.Build.0 = Release|x64
+		{E3251AEC-DE5D-4191-9EA1-D0E477BA83AD}.Release|x86.ActiveCfg = Release|x86
+		{E3251AEC-DE5D-4191-9EA1-D0E477BA83AD}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
