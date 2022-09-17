@@ -256,5 +256,11 @@
     </Content>
     <Content Include="MySQL Event.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\MySQL SSH\SSH MySQL Lib\SSH MySQL Lib.csproj">
+      <Project>{e3251aec-de5d-4191-9ea1-d0e477ba83ad}</Project>
+      <Name>SSH MySQL Lib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
