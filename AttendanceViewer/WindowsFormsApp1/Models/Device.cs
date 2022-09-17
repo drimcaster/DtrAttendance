@@ -1,5 +1,9 @@
-﻿using System;
+﻿using DTRAttendance.Helpers;
+using MySql.Data.MySqlClient;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +13,10 @@ namespace DTRAttendance.Models
 {
     public class Device : ICloneable
     {
+
+        public delegate void SavingResultDelegate(Device device, bool is_completed, bool is_error, int added, int existed);
+
+        public event SavingResultDelegate SavingResult;
         public object Clone()
         {
             return this.MemberwiseClone();
@@ -29,7 +37,7 @@ namespace DTRAttendance.Models
         public DataGridViewRow bindRow = null;
         public int download_status = 0;//0-pending, 1-downloading, 2-completed, 3-failed
 
-
+        public List<Models.Log> device_logs;
         public long Save()
         {
 
@@ -45,5 +53,82 @@ namespace DTRAttendance.Models
             return StaticClasses.Devices.delete_device(this);
         }
 
+        public bool SaveDataCompleted = false;
+        public bool ErrorResult = false;
+        public int Existed = 0;
+        public int Added = 0;
+        public void SaveDataLogs()
+        {
+            if (device_logs != null && device_logs.Count > 0)
+            {
+                BackgroundWorker bgworker = new BackgroundWorker();
+                bgworker.DoWork += Bgworker_DoWork;
+                bgworker.RunWorkerAsync();
+
+
+
+            }
+            else
+            {
+                SaveDataCompleted = true;
+                if (SavingResult != null)
+                    SavingResult(this, SaveDataCompleted, ErrorResult, Added, Existed);
+
+            }
+        }
+
+        public void ResetSavingData()
+        {
+            SaveDataCompleted = false;
+            ErrorResult = false;
+            Existed = 0;
+            Added = 0;
+        }
+        private void Bgworker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            //throw new NotImplementedException();
+
+            try
+            {
+                var list_5 = device_logs.Where(x => x.IsSaved == false).Take(5);
+                if (list_5.Count() >= 1)
+                {
+                    MySqlParameter[] pars = new MySqlParameter[4];
+                    pars[0] = new MySqlParameter("@name", "AttendanceRaws");
+                    pars[1] = new MySqlParameter("@login_id", 0);
+                    pars[2] = new MySqlParameter("@json", JsonConvert.SerializeObject(list_5));
+                    pars[3] = new MySqlParameter("@command", "Update Attendance");
+                    var list = MySQLHelper.Query<List<Newtonsoft.Json.Linq.JObject>>("CALL spAttendanceRawsCommand(@name, @login_id, @json, @command)", pars).First();
+                    Added += list.Value<int>("Added");
+                    Existed += list.Value<int>("Existed");
+
+                    foreach (var l in list_5)
+                    {
+                        l.IsSaved = true;
+                    }
+
+                    if (SavingResult != null)
+                        SavingResult(this, SaveDataCompleted, ErrorResult, Added, Existed);
+
+                    //Recursive after 1 background instance
+                    SaveDataLogs();
+                }
+                else
+                {
+                    SaveDataCompleted = true;
+                    if (SavingResult != null)
+                        SavingResult(this, SaveDataCompleted, ErrorResult, Added, Existed);
+                }
+            }
+            catch
+            {
+
+                ErrorResult = true;
+
+                if (SavingResult != null)
+                    SavingResult(this, SaveDataCompleted, ErrorResult, Added, Existed);
+
+            }
+        }
     }
 }

@@ -32,8 +32,9 @@ CREATE TABLE `attendance_raws` (
   `check_dtr_id` int(11) DEFAULT NULL,
   `device_id` int(11) DEFAULT NULL,
   `is_manual` int(11) DEFAULT NULL,
+  `in_out` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=56 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=57 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +43,7 @@ CREATE TABLE `attendance_raws` (
 
 LOCK TABLES `attendance_raws` WRITE;
 /*!40000 ALTER TABLE `attendance_raws` DISABLE KEYS */;
-INSERT INTO `attendance_raws` VALUES (1,'500038','2022-09-12 23:14:32',1,1,1,NULL,NULL,NULL),(52,'500038','2022-09-12 23:14:35',1,1,3,1,NULL,NULL),(51,'2215','2022-09-12 23:14:32',4,1,1,NULL,NULL,NULL),(50,'2215','2022-09-12 23:14:32',4,1,1,NULL,NULL,NULL),(49,'2214','2022-09-12 23:14:32',3,1,1,NULL,NULL,NULL),(48,'2213','2022-09-12 23:14:32',2,1,1,3,NULL,NULL),(53,'500038','2022-09-13 12:45:00',1,1,3,0,NULL,NULL),(54,'2213','2022-09-13 12:45:00',2,1,1,3,NULL,NULL),(55,'2213','2022-09-13 16:45:00',2,1,1,4,NULL,NULL);
+INSERT INTO `attendance_raws` VALUES (1,'500038','2022-09-12 23:14:32',1,1,1,NULL,NULL,NULL,NULL),(52,'500038','2022-09-12 23:14:35',1,1,3,1,NULL,NULL,NULL),(51,'2215','2022-09-12 23:14:32',4,1,1,NULL,NULL,NULL,NULL),(50,'2215','2022-09-12 23:14:32',4,1,1,NULL,NULL,NULL,NULL),(49,'2214','2022-09-12 23:14:32',3,1,1,NULL,NULL,NULL,NULL),(48,'2213','2022-09-12 23:14:32',2,1,1,3,NULL,NULL,NULL),(53,'500038','2022-09-13 12:45:00',1,1,3,0,NULL,NULL,NULL),(54,'2213','2022-09-13 12:45:00',2,1,1,3,NULL,NULL,NULL),(55,'2213','2022-09-13 16:45:00',2,1,1,4,NULL,NULL,NULL),(56,'1','2022-01-01 10:11:12',5,1,1,0,2,NULL,1);
 /*!40000 ALTER TABLE `attendance_raws` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -104,7 +105,7 @@ CREATE TABLE `devices` (
 
 LOCK TABLES `devices` WRITE;
 /*!40000 ALTER TABLE `devices` DISABLE KEYS */;
-INSERT INTO `devices` VALUES (1,'Ground','Ground Floor','10.1.1.1',3306,1,'2022-09-11 19:39:27','2022-09-13 19:27:08',NULL),(2,'NewDevide','SecondFloor','1234',4370,1,'2022-09-12 00:27:19','2022-09-12 01:07:58',NULL),(3,'Ground2','Near CR','10110101',4370,1,'2022-09-12 00:28:34',NULL,'2022-09-12 01:07:41');
+INSERT INTO `devices` VALUES (1,'Ground','Ground Floor','10.1.1.1',3306,0,'2022-09-11 19:39:27','2022-09-18 01:59:44',NULL),(2,'NewDevide','SecondFloor','1234',4370,1,'2022-09-12 00:27:19','2022-09-12 01:07:58',NULL),(3,'Ground2','Near CR','10110101',4370,1,'2022-09-12 00:28:34',NULL,'2022-09-12 01:07:41');
 /*!40000 ALTER TABLE `devices` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -148,7 +149,7 @@ CREATE TABLE `dtr_records` (
   `pm_out` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `Unique_emp_date` (`employee_id`,`date`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -157,7 +158,7 @@ CREATE TABLE `dtr_records` (
 
 LOCK TABLES `dtr_records` WRITE;
 /*!40000 ALTER TABLE `dtr_records` DISABLE KEYS */;
-INSERT INTO `dtr_records` VALUES (2,1,'2022-09-12','23:14:35',NULL,NULL,NULL),(3,2,'2022-09-12','23:14:32',NULL,'23:14:32',NULL),(4,3,'2022-09-12','23:14:32',NULL,NULL,NULL),(5,4,'2022-09-12','23:14:32',NULL,NULL,NULL),(6,0,'2022-09-12','23:14:32',NULL,NULL,NULL),(7,1,'2022-09-13',NULL,NULL,NULL,NULL),(8,2,'2022-09-13',NULL,NULL,'12:45:00','16:45:00');
+INSERT INTO `dtr_records` VALUES (2,1,'2022-09-12','23:14:35',NULL,NULL,NULL),(3,2,'2022-09-12','23:14:32',NULL,'23:14:32',NULL),(4,3,'2022-09-12','23:14:32',NULL,NULL,NULL),(5,4,'2022-09-12','23:14:32',NULL,NULL,NULL),(6,0,'2022-09-12','23:14:32',NULL,NULL,NULL),(7,1,'2022-09-13',NULL,NULL,NULL,NULL),(8,2,'2022-09-13',NULL,NULL,'12:45:00','16:45:00'),(9,5,'2022-01-01',NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `dtr_records` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -209,7 +210,7 @@ CREATE TABLE `employees` (
   `att_sched_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `bio_id_UNIQUE` (`bio_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -218,36 +219,13 @@ CREATE TABLE `employees` (
 
 LOCK TABLES `employees` WRITE;
 /*!40000 ALTER TABLE `employees` DISABLE KEYS */;
-INSERT INTO `employees` VALUES (1,'p1000168','500038','JOSEPH','DINOY','AGUILAR','',1,'2022-09-11 21:28:17',NULL,NULL,3),(2,' ','2213','','','','',1,'2022-09-13 23:32:19',NULL,NULL,1),(3,' ','2214','','','','',1,'2022-09-13 23:34:16',NULL,NULL,1),(4,'','2215','','','','',1,'2022-09-13 23:42:31',NULL,NULL,1);
+INSERT INTO `employees` VALUES (1,'p1000168','500038','JOSEPH','DINOY','AGUILAR','',1,'2022-09-11 21:28:17',NULL,NULL,3),(2,' ','2213','','','','',1,'2022-09-13 23:32:19',NULL,NULL,1),(3,' ','2214','','','','',1,'2022-09-13 23:34:16',NULL,NULL,1),(4,'','2215','','','','',1,'2022-09-13 23:42:31',NULL,NULL,1),(5,'','1','','','','',1,'2022-09-18 02:37:22',NULL,NULL,1);
 /*!40000 ALTER TABLE `employees` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
 -- Dumping events for database 'dtr_attendance'
 --
-/*!50106 SET @save_time_zone= @@TIME_ZONE */ ;
-/*!50106 DROP EVENT IF EXISTS `EVT_ATT_RAW_PROCESS` */;
-DELIMITER ;;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;;
-/*!50003 SET character_set_client  = utf8mb4 */ ;;
-/*!50003 SET character_set_results = utf8mb4 */ ;;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;;
-/*!50003 SET sql_mode              = 'STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER' */ ;;
-/*!50003 SET @saved_time_zone      = @@time_zone */ ;;
-/*!50003 SET time_zone             = 'SYSTEM' */ ;;
-/*!50106 CREATE*/ /*!50117 DEFINER=`root`@`localhost`*/ /*!50106 EVENT `EVT_ATT_RAW_PROCESS` ON SCHEDULE EVERY 1 SECOND STARTS '2022-09-14 06:09:48' ON COMPLETION NOT PRESERVE DISABLE DO BEGIN
-     CALL spEVT_ATT_RAW_PROCESS();
-END */ ;;
-/*!50003 SET time_zone             = @saved_time_zone */ ;;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;;
-/*!50003 SET character_set_results = @saved_cs_results */ ;;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;;
-DELIMITER ;
-/*!50106 SET TIME_ZONE= @save_time_zone */ ;
 
 --
 -- Dumping routines for database 'dtr_attendance'
@@ -300,6 +278,25 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP FUNCTION IF EXISTS `fnJSON_VALUE` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `fnJSON_VALUE`(`_JsonSrc` LONGTEXT,`_JsonPoint` TEXT) RETURNS text CHARSET latin1
+BEGIN
+            RETURN JSON_UNQUOTE(JSON_EXTRACT(`_JsonSrc`,`_JsonPoint`));
+        END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `spAttendanceRawsCommand` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -310,18 +307,45 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spAttendanceRawsCommand`(_ControllerName VARCHAR(255), _LoginID INT, _Json LONGTEXT, _CommandType VARCHAR(20))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spAttendanceRawsCommand`(_ControllerName VARCHAR(50), _LoginID INT, _Json TEXT, _CommandType VARCHAR(20))
 BEGIN
 	
+    DECLARE _Added INT;
+    DECLARE _Existed INT;
+    DECLARE _Count INT;
+    DECLARE _Length INT;
+    
+    #TABLE 
+    DECLARE _BioID VARCHAR(50);
+    DECLARE _DateTime DATETIME;
+    DECLARE _DeviceID INT;
+    DECLARE _InOut INT;
+    
+    SET _Added = 0;
+    SET _Existed = 0;
     
     DROP EVENT IF EXISTS EVT_ATT_RAW_PROCESS;
-
-
-	#LOOP HERE
-	#INSERT INTO attendance_raws if not exists
+	SET _Length = JSON_LENGTH(_Json);
+    SET _Count = 0;
+    WHILE( _Count < _Length)DO
+		SET _BioID = fnJSON_VALUE( _Json, CONCAT('$[', _Count, '].bio_id'));
+        SET _DateTime = fnJSON_VALUE( _Json, CONCAT('$[', _Count, '].sign_time'));
+        SET _InOut = fnJSON_VALUE( _Json, CONCAT('$[', _Count, '].in_out'));
+        SET _DeviceID = fnJSON_VALUE( _Json, CONCAT('$[', _Count, '].device_id'));
+        IF EXISTS( SELECT * FROM attendance_raws WHERE bio_id = _BioID AND date_time = _DateTime AND device_id =  _DeviceID )THEN
+			SET _Existed = _Existed + 1;
+		ELSE
+			INSERT INTO attendance_raws( bio_id, date_time, is_processed, device_id, in_out) VALUES( _BioID, _DateTime, 0, _DeviceID, _InOut);
+			SET _Added = _Added + 1;
+        END IF;       
+        
+        
+        SET _Count = _Count + 1;
+    END WHILE;
     
     
     
+    SELECT _Added as Added, _Existed as Existed;
     
 END ;;
 DELIMITER ;
@@ -448,4 +472,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-09-16 22:26:36
+-- Dump completed on 2022-09-18  2:52:24

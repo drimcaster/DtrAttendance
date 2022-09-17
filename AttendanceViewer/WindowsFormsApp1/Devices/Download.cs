@@ -46,10 +46,10 @@ namespace DTRAttendance.Devices
             int enrollNo = 0;
             string strTime = string.Empty;
             // Attendance2 attendance2 = new Attendance2();
-            Models.Attendance attendance = new Models.Attendance();
+            //Models.Attendance attendance = new Models.Attendance();
 
             //var device = DeviceList.Where(a => a.id == device_id).FirstOrDefault();
-            attendance.device = device;
+            //attendance.device = device;
 
             try
             {
@@ -70,12 +70,20 @@ namespace DTRAttendance.Devices
             }
 
 
+
             Invoke(new Action(() =>
             {
                 device.bindRow.Cells[Col_Status.Index].Value = "Connecting....";
                 //this.dataGridView1.Rows[_CurrentMachine].Cells[5].Value = "Connecting....";
             }));
 
+
+            //TESTING PURPOSE TO return;
+            device.device_logs = new List<Log>();
+            device.device_logs.Add(new Log() { bio_id = "1", device_id = device.id, in_out = 1, IsSaved = false, sign_time = "2022-01-01 10:11:12" });
+            device.SaveDataLogs();
+
+            return;
             if (zk.Connect_Net(device.ip_address, device.port))//4370
             {
                 Invoke(new Action(() =>
@@ -92,7 +100,7 @@ namespace DTRAttendance.Devices
                 {
                     //attendance2.ip_address = this.machines[_CurrentMachine].ip_address;
                     //attendance2.items = new List<Attendance2Logs>();
-                    attendance.logs = new List<Models.Log>();
+                    device.device_logs = new List<Models.Log>();
                     int log_counts = 0;
                     int log_reads = 0;
                     Invoke(new Action(() =>
@@ -120,11 +128,13 @@ namespace DTRAttendance.Devices
                                     state = inOutMode
                                 });
                                 */
-                                attendance.logs.Add(new Log()
+                                device.device_logs.Add(new Log()
                                 {
                                     bio_id = enrollStr.ToString(),
                                     sign_time = DateTime.Parse(strTime).ToString("yyyy-MM-dd HH:mm:ss"),
-                                    device_id = device.id
+                                    device_id = device.id,
+                                    in_out = inOutMode
+                                   
                                 });
 
                             }
@@ -156,11 +166,12 @@ namespace DTRAttendance.Devices
                                     state = inOutMode
                                 });
                                 */
-                                attendance.logs.Add(new Log()
+                                device.device_logs.Add(new Log()
                                 {
                                     bio_id = enrollStr.ToString(),
                                     sign_time = DateTime.Parse(strTime).ToString("yyyy-MM-dd HH:mm:ss"),
-                                    device_id = device.id
+                                    device_id = device.id,
+                                    in_out = inOutMode
                                 });
 
                             }
@@ -185,7 +196,7 @@ namespace DTRAttendance.Devices
                     return;
                 }
 
-                if (attendance.logs == null || attendance.logs.Count <= 0)
+                if (device.device_logs  == null || device.device_logs.Count <= 0)
                 {
                     Invoke(new Action(() =>
                     {
@@ -210,15 +221,14 @@ namespace DTRAttendance.Devices
 
                 Invoke(new Action(() =>
                 {
-                    device.bindRow.Cells[Col_Status.Index].Value = "Updating Data.( " + attendance.logs.Count + " )";
+                    device.bindRow.Cells[Col_Status.Index].Value = "Updating Data.( " + device.device_logs.Count + " )";
                     device.bindRow.Cells[Col_Status.Index].Style.ForeColor = Color.Green;
                     //this.dataGridView1.Rows[_CurrentMachine].Cells[5].Value = "Updating Data.( " + attendance2.items.Count + " )";
                     //this.dataGridView1.Rows[_CurrentMachine].Cells[5].Style.ForeColor = Color.Green;
 
                 }));
-
                 //Updaitng here
-
+                device.SaveDataLogs();
             }
 
 
@@ -238,6 +248,7 @@ namespace DTRAttendance.Devices
 
             foreach(Models.Device device in DeviceList)
             {
+                device.SavingResult += Device_SavingResult;
                 DataGridViewRow row = new DataGridViewRow();
                 row.Tag = device;
                 device.bindRow = row;
@@ -251,6 +262,19 @@ namespace DTRAttendance.Devices
             }
         }
 
+        private void Device_SavingResult(Device device, bool is_completed, bool is_error, int added, int existed)
+        {
+            //throw new NotImplementedException();
+            Invoke(new Action(() =>
+            {
+                int logsCount = 0;
+                if (device.device_logs != null)
+                    logsCount = device.device_logs.Count;
+
+                device.bindRow.Cells[Col_Status.Index].Value = (is_completed ? "Completed: " : "") + "Added(" + added + "), Existed(" + existed + ") from Data(" + logsCount + ")";
+            }));
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             foreach(DataGridViewRow row in dataGridView1.Rows)
@@ -258,6 +282,7 @@ namespace DTRAttendance.Devices
                 Models.Device device = row.Tag as Models.Device;
                 if (device != null)
                 {
+                    device.ResetSavingData();
                     BackgroundWorker bgw = new BackgroundWorker();
                     bgw.DoWork += (b, g) => { 
                             download_bio(device);

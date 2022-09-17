@@ -14,6 +14,7 @@ namespace DTRAttendance.Models
 
         public long device_id { get; set; }
 
+        public bool IsSaved = false;
 
 
 
