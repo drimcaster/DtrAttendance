@@ -257,7 +257,7 @@
     <Content Include="MySQL Event.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\WinLib-MySQL-SSH\SSH MySQL Lib\SSH MySQL Lib.csproj">
+    <ProjectReference Include="..\..\..\MySQL SSH\SSH MySQL Lib\SSH MySQL Lib.csproj">
       <Project>{e3251aec-de5d-4191-9ea1-d0e477ba83ad}</Project>
       <Name>SSH MySQL Lib</Name>
     </ProjectReference>
