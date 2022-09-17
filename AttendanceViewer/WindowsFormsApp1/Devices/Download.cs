@@ -58,6 +58,7 @@ namespace DTRAttendance.Devices
             }
             catch (System.Runtime.InteropServices.COMException ex)
             {
+
                 //throw new Exception(ex.Message);
                 Invoke(new Action(() =>
                 {
