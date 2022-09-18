@@ -48,9 +48,10 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.analysis_checker = new System.Windows.Forms.Timer(this.components);
             this.employee_details = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.modifyEmployeeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button2 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.modifyEmployeeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.employee_details.SuspendLayout();
@@ -151,6 +152,7 @@
             this.dataGridView1.Size = new System.Drawing.Size(370, 488);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseUp);
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // Column1
             // 
@@ -229,6 +231,13 @@
             this.employee_details.Name = "employee_details";
             this.employee_details.Size = new System.Drawing.Size(168, 26);
             // 
+            // modifyEmployeeToolStripMenuItem
+            // 
+            this.modifyEmployeeToolStripMenuItem.Name = "modifyEmployeeToolStripMenuItem";
+            this.modifyEmployeeToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.modifyEmployeeToolStripMenuItem.Text = "Modify Employee";
+            this.modifyEmployeeToolStripMenuItem.Click += new System.EventHandler(this.modifyEmployeeToolStripMenuItem_Click);
+            // 
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -250,18 +259,22 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(90, 20);
             this.dateTimePicker1.TabIndex = 8;
             // 
-            // modifyEmployeeToolStripMenuItem
+            // checkBox2
             // 
-            this.modifyEmployeeToolStripMenuItem.Name = "modifyEmployeeToolStripMenuItem";
-            this.modifyEmployeeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.modifyEmployeeToolStripMenuItem.Text = "Modify Employee";
-            this.modifyEmployeeToolStripMenuItem.Click += new System.EventHandler(this.modifyEmployeeToolStripMenuItem_Click);
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(388, 39);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(100, 17);
+            this.checkBox2.TabIndex = 9;
+            this.checkBox2.Text = "View Dual DTR";
+            this.checkBox2.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1057, 561);
+            this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.textBox1);
@@ -307,6 +320,7 @@
         private System.Windows.Forms.ToolStripMenuItem logSchedulesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reloadDataAndServicesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modifyEmployeeToolStripMenuItem;
+        private System.Windows.Forms.CheckBox checkBox2;
     }
 }
 

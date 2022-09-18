@@ -176,5 +176,13 @@ namespace DTRAttendance
         {
             new Management.ScheduleListForm().ShowDialog();
         }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count <= 0) return;
+            var employee = dataGridView1.SelectedRows[0].Tag as Models.Employee;
+
+
+        }
     }
 }
