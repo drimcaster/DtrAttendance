@@ -1,4 +1,5 @@
-﻿using DTRAttendance.StaticClasses;
+﻿using DTRAttendance.Models;
+using DTRAttendance.StaticClasses;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -41,20 +42,36 @@ namespace DTRAttendance
             {
                 DataGridViewRow dgvr = dataGridView1.Rows[i];
                 var log = dgvr.Tag as Models.Attendance_Log;
-                string chk_type = "";
-                dgvr.SetValues(i+1, log.date_time.ToString("MM/dd/yyyy hh:mm:ss tt"), chk_type, log.att_sched_id, log.device_id, log.is_manual == 1 ? "Manual": "Log");
+                log.row = dgvr;
+                dgvr.SetValues(i+1, log.date_time.ToString("MM/dd/yyyy hh:mm:ss tt"), getCheckType(log.check_dtr_id ?? 0), log.sched_name, log.device_id, log.is_manual == 1 ? "Manual": "Log");
             }
+
+        }
+        public string getCheckType(int id)
+        {
+            if (id == 1)
+                return "AM IN";
+            else if (id == 2)
+                return "AM OUT";
+            else if (id == 3)
+                return "PM IN";
+            else if (id == 4)
+                return "PM OUT";
+            return "";
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            new AddLog(_focusDate.Month, _focusDate.Year).ShowDialog();
+            if (new AddLog(_Employee, _focusDate.Month, _focusDate.Year).ShowDialog() == DialogResult.OK)
+                load_data(_focusDate);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new Change_Schedule_in_Logs(_focusDate.Month, _focusDate.Year).ShowDialog();
+            if (new Change_Schedule_in_Logs(_Employee, _focusDate.Month, _focusDate.Year).ShowDialog() == DialogResult.OK)
+                load_data(_focusDate);
+
         }
 
         private void modifyCheckInToolStripMenuItem_Click(object sender, EventArgs e)
@@ -80,8 +97,47 @@ namespace DTRAttendance
 
         private void dataGridView1_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
+            if (e.RowIndex < 0) return;
+            
             dataGridView1.Rows[e.RowIndex].Selected = true;
             contextMenuStrip1.Tag = dataGridView1.Rows[e.RowIndex].Tag;
+        }
+
+        private void sETAMINToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var log = contextMenuStrip1.Tag as Models.Attendance_Log;
+            StaticClasses.AttLogs.SetTimeCheck(log, 1);
+            log.check_dtr_id = 1;
+            log.row.Cells[2].Value = getCheckType(1);
+        }
+
+        private void sETAMOUTToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var log = contextMenuStrip1.Tag as Models.Attendance_Log;
+            StaticClasses.AttLogs.SetTimeCheck(log, 2);
+            log.check_dtr_id = 2;
+            log.row.Cells[2].Value = getCheckType(2);
+        }
+
+        private void sETPMINToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var log = contextMenuStrip1.Tag as Models.Attendance_Log;
+            StaticClasses.AttLogs.SetTimeCheck(log, 3);
+
+            log.check_dtr_id = 3;
+            log.row.Cells[2].Value = getCheckType(3);
+
+        }
+
+        private void sETPMOUTToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var log = contextMenuStrip1.Tag as Models.Attendance_Log;
+            StaticClasses.AttLogs.SetTimeCheck(log, 4);
+
+            log.check_dtr_id = 4;
+            log.row.Cells[2].Value = getCheckType(4);
+            //log.row.SetValues(i + 1, log.date_time.ToString("MM/dd/yyyy hh:mm:ss tt"), chk_type, log.att_sched_id, log.device_id, log.is_manual == 1 ? "Manual" : "Log");
+
         }
     }
 }

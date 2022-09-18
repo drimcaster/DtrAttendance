@@ -146,6 +146,8 @@ namespace DTRAttendance
 
         private void dataGridView1_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
+            if (e.RowIndex < 0) return;
+
             dataGridView1.Rows[e.RowIndex].Selected = true;
             var employee = dataGridView1.Rows[e.RowIndex].Tag as Models.Employee;
             modifyEmployeeToolStripMenuItem.Tag = employee;

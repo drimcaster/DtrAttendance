@@ -30,12 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -44,6 +38,12 @@
             this.sETAMOUTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sETPMINToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sETPMOUTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -72,53 +72,6 @@
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseUp);
             this.dataGridView1.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridView1_UserDeletingRow);
-            // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column1.HeaderText = "#";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 39;
-            // 
-            // Column2
-            // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column2.HeaderText = "DateTime";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 78;
-            // 
-            // Column3
-            // 
-            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column3.HeaderText = "Check";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 63;
-            // 
-            // Column4
-            // 
-            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column4.HeaderText = "Schedule";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 77;
-            // 
-            // Column5
-            // 
-            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column5.HeaderText = "Device";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column6.HeaderText = "Action";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Width = 62;
             // 
             // button1
             // 
@@ -157,33 +110,84 @@
             // 
             this.modifyCheckInToolStripMenuItem.Enabled = false;
             this.modifyCheckInToolStripMenuItem.Name = "modifyCheckInToolStripMenuItem";
-            this.modifyCheckInToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.modifyCheckInToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.modifyCheckInToolStripMenuItem.Text = "Modify Check In";
             this.modifyCheckInToolStripMenuItem.Click += new System.EventHandler(this.modifyCheckInToolStripMenuItem_Click);
             // 
             // sETAMINToolStripMenuItem
             // 
             this.sETAMINToolStripMenuItem.Name = "sETAMINToolStripMenuItem";
-            this.sETAMINToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.sETAMINToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.sETAMINToolStripMenuItem.Text = "SET AM IN";
+            this.sETAMINToolStripMenuItem.Click += new System.EventHandler(this.sETAMINToolStripMenuItem_Click);
             // 
             // sETAMOUTToolStripMenuItem
             // 
             this.sETAMOUTToolStripMenuItem.Name = "sETAMOUTToolStripMenuItem";
-            this.sETAMOUTToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.sETAMOUTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.sETAMOUTToolStripMenuItem.Text = "SET AM OUT";
+            this.sETAMOUTToolStripMenuItem.Click += new System.EventHandler(this.sETAMOUTToolStripMenuItem_Click);
             // 
             // sETPMINToolStripMenuItem
             // 
             this.sETPMINToolStripMenuItem.Name = "sETPMINToolStripMenuItem";
-            this.sETPMINToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.sETPMINToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.sETPMINToolStripMenuItem.Text = "SET PM IN";
+            this.sETPMINToolStripMenuItem.Click += new System.EventHandler(this.sETPMINToolStripMenuItem_Click);
             // 
             // sETPMOUTToolStripMenuItem
             // 
             this.sETPMOUTToolStripMenuItem.Name = "sETPMOUTToolStripMenuItem";
-            this.sETPMOUTToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.sETPMOUTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.sETPMOUTToolStripMenuItem.Text = "SET PM OUT";
+            this.sETPMOUTToolStripMenuItem.Click += new System.EventHandler(this.sETPMOUTToolStripMenuItem_Click);
+            // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column1.HeaderText = "#";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 39;
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column2.HeaderText = "DateTime";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 78;
+            // 
+            // Column3
+            // 
+            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column3.HeaderText = "Check";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 63;
+            // 
+            // Column4
+            // 
+            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column4.HeaderText = "Schedule";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 77;
+            // 
+            // Column5
+            // 
+            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column5.HeaderText = "Device ID";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column6.HeaderText = "Action";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Width = 62;
             // 
             // ViewLogsForm
             // 
@@ -209,15 +213,15 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem modifyCheckInToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sETAMINToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sETAMOUTToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sETPMINToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sETPMOUTToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.ToolStripMenuItem sETAMINToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sETAMOUTToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sETPMINToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sETPMOUTToolStripMenuItem;
     }
 }

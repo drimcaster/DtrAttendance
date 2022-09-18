@@ -25,21 +25,24 @@ namespace DTRAttendance.Schedule
                 return;
             }
 
-            Models.Schedule sched = new Models.Schedule();
-            sched.name = txt_schedule_name.Text.Trim();
-            sched.am_in = time_am_in.Value.Hour + ":" + time_am_in.Value.Minute + ":00";
-            sched.am_out = time_am_out.Value.Hour + ":" + time_am_out.Value.Minute + ":00";
-            sched.pm_in = time_pm_in.Value.Hour + ":" + time_pm_in.Value.Minute + ":00";
-            sched.pm_out = time_pm_out.Value.Hour + ":" + time_pm_out.Value.Minute + ":00";
-            if(sched.Save() > 0)
+            if (MessageBox.Show("This action is irreversable.\nHave you reviewed adding schedule?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
-                MessageBox.Show("Successfully Added");
-                this.DialogResult = DialogResult.OK;
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Name already exists");
+                Models.Schedule sched = new Models.Schedule();
+                sched.name = txt_schedule_name.Text.Trim();
+                sched.am_in = time_am_in.Value.Hour + ":" + time_am_in.Value.Minute + ":00";
+                sched.am_out = time_am_out.Value.Hour + ":" + time_am_out.Value.Minute + ":00";
+                sched.pm_in = time_pm_in.Value.Hour + ":" + time_pm_in.Value.Minute + ":00";
+                sched.pm_out = time_pm_out.Value.Hour + ":" + time_pm_out.Value.Minute + ":00";
+                if (sched.Save() > 0)
+                {
+                    MessageBox.Show("Successfully Added");
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Name already exists");
+                }
             }
 
         }

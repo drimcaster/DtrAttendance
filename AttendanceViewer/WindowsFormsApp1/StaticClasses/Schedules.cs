@@ -1,4 +1,5 @@
 ﻿using DTRAttendance.Helpers;
+using DTRAttendance.Models;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,19 @@ namespace DTRAttendance.StaticClasses
             return Helpers.MySQLHelper.ExecuteNonQuery("INSERT INTO attendance_scheds(`name`, am_in, am_out, pm_in, pm_out) VALUES(@name, @am_in, @am_out, @pm_in, @pm_out)", pars);
 
             
+        }
+
+
+        public static void UpdateScheduleChanges(Models.Employee employee, DateTime _from, DateTime _to, long schedule_id)
+        {
+            MySqlParameter[] pars = new MySqlParameter[4];
+            pars[0] = new MySqlParameter("@employee_id", employee.id);
+            pars[1] = new MySqlParameter("@from", _from);
+            pars[2] = new MySqlParameter("@to", _to);
+            pars[3] = new MySqlParameter("@schedule_id", schedule_id);
+
+            MySQLHelper.ExecuteNonQuery("CALL spChangeSchedule(@employee_id, @from, @to, @schedule_id)", pars);
+
         }
 
 
