@@ -46,6 +46,9 @@ namespace DTRAttendance.Employees
             chk_is_active.DataBindings.Add("Checked", Emp, "is_active");
             txt_hired_date.DataBindings.Add("Text", Emp, "hired_date");
 
+            comboBox2.SelectedItem  = Helpers.ServiceHelper.global_schedules.Where(a => a.id == Emp.att_sched_id).FirstOrDefault();
+            
+
 
         }
 
@@ -54,18 +57,36 @@ namespace DTRAttendance.Employees
         private void button1_Click(object sender, EventArgs e)
         {
             //button1.Text = Emp.employee_id;
+            Emp.att_sched_id = (comboBox2.SelectedItem as Models.Schedule).id;
             if (Emp.id == 0)
             {
+
+
                 long i = StaticClasses.Employees.AddEmployee(Emp);
                 if (i > 0)
                 {
                     MessageBox.Show("Successfully Added");
+                    this.DialogResult = DialogResult.OK;
                     this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Bio ID already taken.");
                 }
             }
             else
             {
-
+               long i =  StaticClasses.Employees.UpdateEmployee(Emp);
+                if(i != -1)
+                {
+                    MessageBox.Show("Successfully updated");
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Bio ID already taken.");
+                }
             }
         }
     }

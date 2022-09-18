@@ -32,6 +32,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.managementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logSchedulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reloadDataAndServicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.employeesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addNewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.devicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,9 +50,10 @@
             this.employee_details = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.button2 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.reloadDataAndServicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modifyEmployeeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.employee_details.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -80,8 +82,16 @@
             // logSchedulesToolStripMenuItem
             // 
             this.logSchedulesToolStripMenuItem.Name = "logSchedulesToolStripMenuItem";
-            this.logSchedulesToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.logSchedulesToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
             this.logSchedulesToolStripMenuItem.Text = "Log Schedules";
+            this.logSchedulesToolStripMenuItem.Click += new System.EventHandler(this.logSchedulesToolStripMenuItem_Click);
+            // 
+            // reloadDataAndServicesToolStripMenuItem
+            // 
+            this.reloadDataAndServicesToolStripMenuItem.Name = "reloadDataAndServicesToolStripMenuItem";
+            this.reloadDataAndServicesToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.reloadDataAndServicesToolStripMenuItem.Text = "Reload Data and Services";
+            this.reloadDataAndServicesToolStripMenuItem.Click += new System.EventHandler(this.reloadDataAndServicesToolStripMenuItem_Click);
             // 
             // employeesToolStripMenuItem
             // 
@@ -140,6 +150,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(370, 488);
             this.dataGridView1.TabIndex = 1;
+            this.dataGridView1.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseUp);
             // 
             // Column1
             // 
@@ -213,8 +224,10 @@
             // 
             // employee_details
             // 
+            this.employee_details.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.modifyEmployeeToolStripMenuItem});
             this.employee_details.Name = "employee_details";
-            this.employee_details.Size = new System.Drawing.Size(61, 4);
+            this.employee_details.Size = new System.Drawing.Size(168, 26);
             // 
             // button2
             // 
@@ -237,12 +250,12 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(90, 20);
             this.dateTimePicker1.TabIndex = 8;
             // 
-            // reloadDataAndServicesToolStripMenuItem
+            // modifyEmployeeToolStripMenuItem
             // 
-            this.reloadDataAndServicesToolStripMenuItem.Name = "reloadDataAndServicesToolStripMenuItem";
-            this.reloadDataAndServicesToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
-            this.reloadDataAndServicesToolStripMenuItem.Text = "Reload Data and Services";
-            this.reloadDataAndServicesToolStripMenuItem.Click += new System.EventHandler(this.reloadDataAndServicesToolStripMenuItem_Click);
+            this.modifyEmployeeToolStripMenuItem.Name = "modifyEmployeeToolStripMenuItem";
+            this.modifyEmployeeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.modifyEmployeeToolStripMenuItem.Text = "Modify Employee";
+            this.modifyEmployeeToolStripMenuItem.Click += new System.EventHandler(this.modifyEmployeeToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -264,6 +277,7 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.employee_details.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -292,6 +306,7 @@
         private System.Windows.Forms.ToolStripMenuItem managementToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logSchedulesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reloadDataAndServicesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem modifyEmployeeToolStripMenuItem;
     }
 }
 

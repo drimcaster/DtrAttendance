@@ -43,12 +43,14 @@ namespace DTRAttendance
             {
                 DataGridViewRow row = new DataGridViewRow();
                 row.Tag = employee;
+                row.ContextMenuStrip = employee_details;
                 dataGridView1.Rows.Add(row);
             }
 
             foreach(DataGridViewRow row in dataGridView1.Rows)
             {
                 var emp = row.Tag as Models.Employee;
+                emp.row = row;
                 row.SetValues(emp.employee_id, emp.bio_id, emp.getFullName(), emp.is_active);
             }
 
@@ -140,6 +142,37 @@ namespace DTRAttendance
         private void reloadDataAndServicesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Helpers.ServiceHelper.LoadDataAndServices();
+        }
+
+        private void dataGridView1_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            dataGridView1.Rows[e.RowIndex].Selected = true;
+            var employee = dataGridView1.Rows[e.RowIndex].Tag as Models.Employee;
+            modifyEmployeeToolStripMenuItem.Tag = employee;
+        }
+
+        private void modifyEmployeeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+          var emp =   modifyEmployeeToolStripMenuItem.Tag as Models.Employee;
+           
+            if(emp != null)
+            {
+                var empform = new Employees.AddEditEmployee(emp);
+                if (empform.ShowDialog() == DialogResult.OK)
+                {     //load_table();
+                    empform.Emp.row = emp.row;
+                    emp = empform.Emp;
+
+                    emp.row.SetValues(emp.employee_id, emp.bio_id, emp.getFullName(), emp.is_active);
+                    emp.row.Tag = emp;
+
+                }
+            }
+        }
+
+        private void logSchedulesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new Management.ScheduleListForm().ShowDialog();
         }
     }
 }
