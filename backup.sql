@@ -34,7 +34,7 @@ CREATE TABLE `attendance_raws` (
   `is_manual` int(11) DEFAULT NULL,
   `in_out` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=57 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=76 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE `attendance_raws` (
 
 LOCK TABLES `attendance_raws` WRITE;
 /*!40000 ALTER TABLE `attendance_raws` DISABLE KEYS */;
-INSERT INTO `attendance_raws` VALUES (1,'500038','2022-09-12 23:14:32',1,1,1,NULL,NULL,NULL,NULL),(52,'500038','2022-09-12 23:14:35',1,1,3,1,NULL,NULL,NULL),(51,'2215','2022-09-12 23:14:32',4,1,1,NULL,NULL,NULL,NULL),(50,'2215','2022-09-12 23:14:32',4,1,1,NULL,NULL,NULL,NULL),(49,'2214','2022-09-12 23:14:32',3,1,1,NULL,NULL,NULL,NULL),(48,'2213','2022-09-12 23:14:32',2,1,1,3,NULL,NULL,NULL),(53,'500038','2022-09-13 12:45:00',1,1,3,0,NULL,NULL,NULL),(54,'2213','2022-09-13 12:45:00',2,1,1,3,NULL,NULL,NULL),(55,'2213','2022-09-13 16:45:00',2,1,1,4,NULL,NULL,NULL),(56,'1','2022-01-01 10:11:12',5,1,1,0,2,NULL,1);
+INSERT INTO `attendance_raws` VALUES (1,'500038','2022-09-12 23:14:32',1,1,1,3,NULL,NULL,NULL),(52,'500038','2022-09-12 23:14:35',1,1,1,4,NULL,NULL,NULL),(51,'2215','2022-09-12 23:14:32',4,1,1,1,NULL,NULL,NULL),(50,'2215','2022-09-12 23:14:32',4,1,1,2,NULL,NULL,NULL),(49,'2214','2022-09-12 23:14:32',3,1,1,NULL,NULL,NULL,NULL),(48,'2213','2022-09-12 23:14:32',2,1,1,3,NULL,NULL,NULL),(53,'500038','2022-09-13 12:45:00',1,1,1,3,NULL,NULL,NULL),(54,'2213','2022-09-13 12:45:00',2,1,1,3,NULL,NULL,NULL),(55,'2213','2022-09-13 16:45:00',2,1,1,4,NULL,NULL,NULL),(56,'1','2022-01-01 10:11:12',5,1,1,0,2,NULL,1),(57,'1','2022-01-01 10:11:12',5,1,1,0,1,NULL,1),(58,'1','2022-01-01 10:11:11',6,1,1,0,2,NULL,1),(59,'1','2022-01-01 10:11:11',6,1,1,0,1,NULL,1),(60,'1','2022-01-01 10:11:13',6,1,1,0,2,NULL,1),(61,'1','2022-01-01 10:11:14',6,1,1,0,2,NULL,1),(62,'1','2022-01-01 10:11:13',6,1,1,0,1,NULL,1),(63,'1','2022-01-01 10:11:15',6,1,1,0,2,NULL,1),(64,'1','2022-01-01 10:11:14',6,1,1,0,1,NULL,1),(65,'1','2022-01-01 10:11:16',6,1,1,0,2,NULL,1),(66,'1','2022-01-01 10:11:15',6,1,1,0,1,NULL,1),(67,'1','2022-01-01 10:11:17',6,1,1,0,2,NULL,1),(68,'1','2022-01-01 10:11:16',6,1,1,0,1,NULL,1),(69,'1','2022-01-01 10:11:17',6,1,1,0,1,NULL,1),(70,'1','2022-01-01 10:11:18',6,1,1,0,2,NULL,1),(71,'1','2022-01-01 10:11:18',6,1,1,0,1,NULL,1),(72,'1','2022-01-01 10:11:10',6,1,1,0,1,NULL,1),(73,'1','2022-01-01 10:11:10',6,1,1,0,2,NULL,1),(75,'500038','2022-09-01 00:00:00',1,1,2,1,NULL,1,NULL);
 /*!40000 ALTER TABLE `attendance_raws` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -65,7 +65,7 @@ CREATE TABLE `attendance_scheds` (
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,7 +74,7 @@ CREATE TABLE `attendance_scheds` (
 
 LOCK TABLES `attendance_scheds` WRITE;
 /*!40000 ALTER TABLE `attendance_scheds` DISABLE KEYS */;
-INSERT INTO `attendance_scheds` VALUES (1,'default','08:00:00','12:00:00','13:00:00','17:00:00',NULL,NULL,NULL),(2,'0817','08:00:00','12:00:00','13:00:00','17:00:00',NULL,NULL,NULL),(3,'2005','01:00:00','05:00:00','20:00:00','23:30:00',NULL,NULL,NULL);
+INSERT INTO `attendance_scheds` VALUES (1,'default','08:00:00','12:00:00','13:00:00','17:00:00',NULL,NULL,NULL),(2,'0817','08:00:00','12:00:00','13:00:00','17:00:00',NULL,NULL,NULL),(3,'2005','01:00:00','05:00:00','20:00:00','23:30:00',NULL,NULL,NULL),(5,'test','08:00:00','12:00:00','13:00:00','17:00:00',NULL,NULL,NULL),(6,'test2','09:00:00','23:00:00','14:00:00','15:00:00',NULL,NULL,NULL),(7,'test3','08:00:00','12:00:00','13:00:00','17:00:00',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `attendance_scheds` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -105,7 +105,7 @@ CREATE TABLE `devices` (
 
 LOCK TABLES `devices` WRITE;
 /*!40000 ALTER TABLE `devices` DISABLE KEYS */;
-INSERT INTO `devices` VALUES (1,'Ground','Ground Floor','10.1.1.1',3306,0,'2022-09-11 19:39:27','2022-09-18 01:59:44',NULL),(2,'NewDevide','SecondFloor','1234',4370,1,'2022-09-12 00:27:19','2022-09-12 01:07:58',NULL),(3,'Ground2','Near CR','10110101',4370,1,'2022-09-12 00:28:34',NULL,'2022-09-12 01:07:41');
+INSERT INTO `devices` VALUES (1,'Ground','Ground Floor','10.1.1.1',3306,1,'2022-09-11 19:39:27','2022-09-18 13:05:38',NULL),(2,'NewDevide','SecondFloor','1234',4370,1,'2022-09-12 00:27:19','2022-09-12 01:07:58',NULL),(3,'Ground2','Near CR','10110101',4370,1,'2022-09-12 00:28:34',NULL,'2022-09-12 01:07:41');
 /*!40000 ALTER TABLE `devices` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -149,7 +149,7 @@ CREATE TABLE `dtr_records` (
   `pm_out` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `Unique_emp_date` (`employee_id`,`date`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -158,7 +158,7 @@ CREATE TABLE `dtr_records` (
 
 LOCK TABLES `dtr_records` WRITE;
 /*!40000 ALTER TABLE `dtr_records` DISABLE KEYS */;
-INSERT INTO `dtr_records` VALUES (2,1,'2022-09-12','23:14:35',NULL,NULL,NULL),(3,2,'2022-09-12','23:14:32',NULL,'23:14:32',NULL),(4,3,'2022-09-12','23:14:32',NULL,NULL,NULL),(5,4,'2022-09-12','23:14:32',NULL,NULL,NULL),(6,0,'2022-09-12','23:14:32',NULL,NULL,NULL),(7,1,'2022-09-13',NULL,NULL,NULL,NULL),(8,2,'2022-09-13',NULL,NULL,'12:45:00','16:45:00'),(9,5,'2022-01-01',NULL,NULL,NULL,NULL);
+INSERT INTO `dtr_records` VALUES (2,1,'2022-09-12',NULL,NULL,'23:14:32','23:14:35'),(3,2,'2022-09-12','23:14:32',NULL,'23:14:32',NULL),(4,3,'2022-09-12','23:14:32',NULL,NULL,NULL),(5,4,'2022-09-12','23:14:32','23:14:32',NULL,NULL),(6,0,'2022-09-12','23:14:32',NULL,NULL,NULL),(7,1,'2022-09-13',NULL,NULL,'12:45:00',NULL),(8,2,'2022-09-13',NULL,NULL,'12:45:00','16:45:00'),(9,5,'2022-01-01',NULL,NULL,NULL,NULL),(10,6,'2022-01-01',NULL,NULL,NULL,NULL),(11,1,'2022-09-01','00:00:00',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `dtr_records` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -210,7 +210,7 @@ CREATE TABLE `employees` (
   `att_sched_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `bio_id_UNIQUE` (`bio_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -219,13 +219,36 @@ CREATE TABLE `employees` (
 
 LOCK TABLES `employees` WRITE;
 /*!40000 ALTER TABLE `employees` DISABLE KEYS */;
-INSERT INTO `employees` VALUES (1,'p1000168','500038','JOSEPH','DINOY','AGUILAR','',1,'2022-09-11 21:28:17',NULL,NULL,3),(2,' ','2213','','','','',1,'2022-09-13 23:32:19',NULL,NULL,1),(3,' ','2214','','','','',1,'2022-09-13 23:34:16',NULL,NULL,1),(4,'','2215','','','','',1,'2022-09-13 23:42:31',NULL,NULL,1),(5,'','1','','','','',1,'2022-09-18 02:37:22',NULL,NULL,1);
+INSERT INTO `employees` VALUES (1,'p1000168','500038','JOSEPH','DINOY','AGUILAR','',1,'2022-09-11 21:28:17','2022-09-18 22:13:43',NULL,2),(2,'P1000052','2213','Aike','Sabang','Jamero','',1,'2022-09-13 23:32:19','2022-09-18 17:50:48',NULL,1),(3,'P1000','2214','Mari','G','Fel','',0,'2022-09-13 23:34:16','2022-09-18 18:16:51',NULL,1),(4,'P1000153','2215','Mariglice','Correa','Felicilda','',1,'2022-09-13 23:42:31','2022-09-18 18:12:08',NULL,1),(5,'GGG','1234','GGG','GGG','GGG','',1,'2022-09-18 02:37:22','2022-09-18 21:19:46',NULL,2),(6,'','1','','','','',1,'2022-09-18 21:40:07',NULL,NULL,1);
 /*!40000 ALTER TABLE `employees` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
 -- Dumping events for database 'dtr_attendance'
 --
+/*!50106 SET @save_time_zone= @@TIME_ZONE */ ;
+/*!50106 DROP EVENT IF EXISTS `EVT_ATT_RAW_PROCESS` */;
+DELIMITER ;;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;;
+/*!50003 SET character_set_client  = utf8mb4 */ ;;
+/*!50003 SET character_set_results = utf8mb4 */ ;;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;;
+/*!50003 SET sql_mode              = 'STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER' */ ;;
+/*!50003 SET @saved_time_zone      = @@time_zone */ ;;
+/*!50003 SET time_zone             = 'SYSTEM' */ ;;
+/*!50106 CREATE*/ /*!50117 DEFINER=`root`@`localhost`*/ /*!50106 EVENT `EVT_ATT_RAW_PROCESS` ON SCHEDULE EVERY 1 SECOND STARTS '2022-09-18 21:45:14' ON COMPLETION NOT PRESERVE DISABLE DO BEGIN
+     CALL spEVT_ATT_RAW_PROCESS();
+END */ ;;
+/*!50003 SET time_zone             = @saved_time_zone */ ;;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;;
+/*!50003 SET character_set_results = @saved_cs_results */ ;;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;;
+DELIMITER ;
+/*!50106 SET TIME_ZONE= @save_time_zone */ ;
 
 --
 -- Dumping routines for database 'dtr_attendance'
@@ -297,6 +320,55 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spAddManualLog` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spAddManualLog`(_EmployeeID INT, _DateTime DATE, _ScheduleID INT, _CheckID INT)
+BEGIN
+
+	DECLARE _BioID VARCHAR(50);
+    DECLARE _DtrID INT;
+
+	SELECT bio_id INTO _BioID FROM employees WHERE id = _EmployeeID;
+    IF(_BioID IS NOT NULL) THEN
+		INSERT INTO attendance_raws( is_manual, bio_id, date_time, employee_id, is_processed, check_dtr_id, att_sched_id)
+					VALUES(1, _BioID, _DateTime, _EmployeeID, 1, _CheckID, _ScheduleID);
+		
+        SELECT id INTO _DtrID FROM dtr_records WHERE DATE(_DateTime) = `date` AND employee_id = _EmployeeID;
+        
+        #ADDING DTR RECORD IF NOT EXISTS
+        IF(_DtrID IS NULL)THEN
+			INSERT INTO dtr_records(employee_id, `date`) VALUES( _EmployeeID, DATE(_DateTime));
+            SET _DtrID = last_insert_id();
+        END IF;
+		IF( _CheckID = 1 )THEN
+			UPDATE dtr_records SET am_in = TIME(_DateTime) WHERE id = _DtrID;
+        ELSEIF( _CheckID = 2 )THEN
+			UPDATE dtr_records SET am_out = TIME(_DateTime) WHERE id = _DtrID;
+        ELSEIF( _CheckID =3 )THEN
+			UPDATE dtr_records SET pm_in = TIME(_DateTime) WHERE id = _DtrID;
+        ELSEIF(_CheckID = 4)THEN			
+			UPDATE dtr_records SET pm_out = TIME(_DateTime) WHERE id = _DtrID;
+        END IF;
+    END IF;
+
+
+
+	#insert into attendance_raw
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `spAttendanceRawsCommand` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -353,6 +425,35 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spChangeSchedule` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spChangeSchedule`(_EmployeeID INT, _From DATETIME, _To DATETIME, _AttSchedID INT)
+BEGIN
+	DECLARE _FromDate DATE;
+    DECLARE _ToDate DATE;
+    SET _FromDate = DATE(_From);
+    SET _ToDate = DATE(_To);
+	#CLEAR DTR ATTENDANCE OF THE EMPLOYEE
+    UPDATE dtr_records SET am_in = null, am_out = null, pm_in = null, pm_out = null WHERE employee_id = _EmployeeID AND (`date` BETWEEN _FromDate AND _ToDate ) AND id > 0;
+    
+    #RESET RAW LOGS OF THE EMPLOYEE
+    UPDATE attendance_raws SET is_processed = 0, att_sched_id = _AttSchedID, check_dtr_id = null WHERE employee_id = _EmployeeID AND (DATE(date_time) BETWEEN _FromDate AND _ToDate ) AND id > 0;
+
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `spEVT_ATT_RAW_PROCESS` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -383,7 +484,9 @@ BEGIN
         DECLARE _DtrDateID INT;
         
         
-        SELECT  id, bio_id, date_time, employee_id, check_dtr_id,is_manual INTO  _RawID, _BioID, _DateTime, _EmpID, _CheckDtrID,_IsManual FROM attendance_raws WHERE is_processed = 0 order by date_time ASC;
+        SELECT 
+			id, bio_id, date_time, employee_id, check_dtr_id,is_manual INTO  _RawID, _BioID, _DateTime, _EmpID, _CheckDtrID,_IsManual 
+		FROM attendance_raws WHERE is_processed = 0  order by date_time ASC LIMIT 1;
 		IF(_RawID IS NULL)THEN
 			IF EXISTS(SELECT * FROM information_schema.EVENTS WHERE EVENT_NAME='EVT_ATT_RAW_PROCESS' AND EVENT_SCHEMA='dtr_attendance')THEN
 				ALTER EVENT EVT_ATT_RAW_PROCESS DISABLE;
@@ -406,7 +509,7 @@ BEGIN
         END IF;
         
         #ADDING LOGIN DATE IF NOT EXISTS
-        SELECT id INTO _DtrDateID FROM dtr_records WHERE employee_id = _EmpID AND DATE(`date`) = DATE(_DateTime);
+        SELECT id INTO _DtrDateID FROM dtr_records WHERE employee_id = _EmpID AND DATE(`date`) = DATE(_DateTime) LIMIT 1;
         IF(_DtrDateID IS NULL)THEN
 			INSERT INTO dtr_records(employee_id, `date`) VALUES(_EmpID, DATE(_DateTime));
             SET _DtrDateID = last_insert_id();
@@ -462,6 +565,77 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spSetAttRawCheck` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spSetAttRawCheck`( _AttendanceRawID INT, _CheckID INT )
+_PROCLEAVE:
+BEGIN
+	#DECLARE _DateTime DATETIME;
+    DECLARE _Date DATE;
+    DECLARE _Time TIME;
+    DECLARE _EmployeeID INT;
+    DECLARE _DtrRecordID INT;
+	DECLARE _PrevCheckID INT;
+
+	#
+	#UPDATE attendance_raws SET check_dtr_id = _CheckID WHERE id = _AttendanceRawID;
+    
+    SELECT  check_dtr_id, employee_id, DATE(date_time), TIME(date_time)  INTO  _PrevCheckID, _EmployeeID, _Date, _Time FROM attendance_raws WHERE id = _AttendanceRawID;
+    UPDATE attendance_raws SET check_dtr_id = _CheckID WHERE id = _AttendanceRawID;
+    IF(_Date IS NOT NULL)THEN
+		SELECT id INTO _DtrRecordID FROM dtr_records WHERE employee_id = _EmployeeID AND _Date = `date` LIMIT 0,1;
+	    
+		IF( _DtrRecordID IS NULL)THEN
+			IF(_CheckID = 1)THEN
+				INSERT INTO dtr_records(employee_id, `date`, am_in) VALUES( _EmployeeID, _Date, _Time);
+            ELSEIF( _CheckID = 2)THEN
+				INSERT INTO dtr_records(employee_id, `date`, am_out) VALUES( _EmployeeID, _Date, _Time);
+			ELSEIF( _CheckID = 3)THEN
+				INSERT INTO dtr_records(employee_id, `date`, pm_in) VALUES( _EmployeeID, _Date, _Time);
+            ELSEIF( _CheckID = 4)THEN
+				INSERT INTO dtr_records(employee_id, `date`, pm_out) VALUES( _EmployeeID, _Date, _Time);            
+            END IF;
+        ELSE
+			#CLEAR PREVIOUS INPUT
+            IF(_PrevCheckID = 1)THEN
+				UPDATE dtr_records SET am_in = null WHERE am_in = _Time AND id = _DtrRecordID;
+			ELSEIF(_PrevCheckID = 2)THEN
+				UPDATE dtr_records SET am_out = null WHERE  am_out = _Time AND  id = _DtrRecordID;
+            ELSEIF(_PrevCheckID = 3)THEN
+				UPDATE dtr_records SET pm_in = null WHERE  pm_in = _Time AND  id = _DtrRecordID;
+            ELSEIF(_PrevCheckID = 4)THEN
+				UPDATE dtr_records SET pm_out = null WHERE  pm_out = _Time AND id = _DtrRecordID;
+            END IF;
+        
+			IF(_CheckID = 1)THEN
+				UPDATE dtr_records SET am_in = _Time WHERE id = _DtrRecordID;
+            ELSEIF( _CheckID = 2)THEN
+				UPDATE dtr_records SET am_out = _Time WHERE id = _DtrRecordID;
+			ELSEIF( _CheckID = 3)THEN
+				UPDATE dtr_records SET pm_in = _Time WHERE id = _DtrRecordID;
+            ELSEIF( _CheckID = 4)THEN
+				UPDATE dtr_records SET pm_out = _Time WHERE id = _DtrRecordID;           
+            END IF;
+        END IF;
+        
+        
+        
+        
+    END IF;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -472,4 +646,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-09-18  2:52:24
+-- Dump completed on 2022-09-18 22:31:25
