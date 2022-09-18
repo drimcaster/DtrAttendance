@@ -42,6 +42,8 @@
             this.txt_hired_date = new System.Windows.Forms.TextBox();
             this.chk_is_active = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label2
@@ -152,19 +154,46 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(133, 204);
+            this.button1.Location = new System.Drawing.Point(133, 233);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(154, 42);
+            this.button1.Size = new System.Drawing.Size(154, 27);
             this.button1.TabIndex = 15;
             this.button1.Text = "Save";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(38, 209);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(55, 13);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "Schedule:";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "AM-IN",
+            "AM-OUT",
+            "PM-IN",
+            "PM-OUT"});
+            this.comboBox2.Location = new System.Drawing.Point(99, 206);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(248, 21);
+            this.comboBox2.TabIndex = 16;
             // 
             // AddEditEmployee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(359, 258);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.chk_is_active);
             this.Controls.Add(this.txt_hired_date);
@@ -206,5 +235,7 @@
         private System.Windows.Forms.TextBox txt_hired_date;
         private System.Windows.Forms.CheckBox chk_is_active;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox comboBox2;
     }
 }

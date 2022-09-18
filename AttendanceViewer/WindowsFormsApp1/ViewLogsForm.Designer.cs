@@ -40,6 +40,10 @@
             this.button2 = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.modifyCheckInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sETAMINToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sETAMOUTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sETPMINToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sETPMOUTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -66,6 +70,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(461, 427);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseUp);
             this.dataGridView1.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridView1_UserDeletingRow);
             // 
             // Column1
@@ -73,6 +78,7 @@
             this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Column1.HeaderText = "#";
             this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
             this.Column1.Width = 39;
             // 
             // Column2
@@ -80,6 +86,7 @@
             this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Column2.HeaderText = "DateTime";
             this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
             this.Column2.Width = 78;
             // 
             // Column3
@@ -87,6 +94,7 @@
             this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Column3.HeaderText = "Check";
             this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
             this.Column3.Width = 63;
             // 
             // Column4
@@ -94,6 +102,7 @@
             this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Column4.HeaderText = "Schedule";
             this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
             this.Column4.Width = 77;
             // 
             // Column5
@@ -101,12 +110,14 @@
             this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Column5.HeaderText = "Device";
             this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
             // 
             // Column6
             // 
             this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Column6.HeaderText = "Action";
             this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
             this.Column6.Width = 62;
             // 
             // button1
@@ -134,16 +145,45 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.modifyCheckInToolStripMenuItem});
+            this.modifyCheckInToolStripMenuItem,
+            this.sETAMINToolStripMenuItem,
+            this.sETAMOUTToolStripMenuItem,
+            this.sETPMINToolStripMenuItem,
+            this.sETPMOUTToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(162, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(162, 114);
             // 
             // modifyCheckInToolStripMenuItem
             // 
+            this.modifyCheckInToolStripMenuItem.Enabled = false;
             this.modifyCheckInToolStripMenuItem.Name = "modifyCheckInToolStripMenuItem";
             this.modifyCheckInToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.modifyCheckInToolStripMenuItem.Text = "Modify Check In";
             this.modifyCheckInToolStripMenuItem.Click += new System.EventHandler(this.modifyCheckInToolStripMenuItem_Click);
+            // 
+            // sETAMINToolStripMenuItem
+            // 
+            this.sETAMINToolStripMenuItem.Name = "sETAMINToolStripMenuItem";
+            this.sETAMINToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.sETAMINToolStripMenuItem.Text = "SET AM IN";
+            // 
+            // sETAMOUTToolStripMenuItem
+            // 
+            this.sETAMOUTToolStripMenuItem.Name = "sETAMOUTToolStripMenuItem";
+            this.sETAMOUTToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.sETAMOUTToolStripMenuItem.Text = "SET AM OUT";
+            // 
+            // sETPMINToolStripMenuItem
+            // 
+            this.sETPMINToolStripMenuItem.Name = "sETPMINToolStripMenuItem";
+            this.sETPMINToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.sETPMINToolStripMenuItem.Text = "SET PM IN";
+            // 
+            // sETPMOUTToolStripMenuItem
+            // 
+            this.sETPMOUTToolStripMenuItem.Name = "sETPMOUTToolStripMenuItem";
+            this.sETPMOUTToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.sETPMOUTToolStripMenuItem.Text = "SET PM OUT";
             // 
             // ViewLogsForm
             // 
@@ -175,5 +215,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.ToolStripMenuItem sETAMINToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sETAMOUTToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sETPMINToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sETPMOUTToolStripMenuItem;
     }
 }

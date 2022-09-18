@@ -17,6 +17,11 @@ namespace DTRAttendance.Employees
         {
             InitializeComponent();
 
+
+            comboBox2.DataSource = Helpers.ServiceHelper.global_schedules;
+            comboBox2.DisplayMember = "name";
+
+
             if (_emp == null)  
                 Emp = new Employee();
             else

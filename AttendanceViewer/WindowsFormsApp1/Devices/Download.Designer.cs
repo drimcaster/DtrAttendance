@@ -38,6 +38,7 @@
             this.Col_LogsCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Col_Added = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Col_Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Col_RetryButton = new System.Windows.Forms.DataGridViewButtonColumn();
             this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -89,7 +90,8 @@
             this.Col_Device_Name,
             this.Col_LogsCount,
             this.Col_Added,
-            this.Col_Status});
+            this.Col_Status,
+            this.Col_RetryButton});
             this.dataGridView1.Location = new System.Drawing.Point(15, 38);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
@@ -97,13 +99,14 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(685, 258);
             this.dataGridView1.TabIndex = 4;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
             // 
             // Col_Is_Download
             // 
             this.Col_Is_Download.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Col_Is_Download.HeaderText = "Download";
             this.Col_Is_Download.Name = "Col_Is_Download";
-            this.Col_Is_Download.ReadOnly = true;
             this.Col_Is_Download.Width = 61;
             // 
             // Col_Device_Name
@@ -136,6 +139,16 @@
             this.Col_Status.HeaderText = "Status";
             this.Col_Status.Name = "Col_Status";
             this.Col_Status.ReadOnly = true;
+            // 
+            // Col_RetryButton
+            // 
+            this.Col_RetryButton.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Col_RetryButton.HeaderText = "Action";
+            this.Col_RetryButton.Name = "Col_RetryButton";
+            this.Col_RetryButton.ReadOnly = true;
+            this.Col_RetryButton.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Col_RetryButton.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Col_RetryButton.Width = 62;
             // 
             // button1
             // 
@@ -185,5 +198,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Col_LogsCount;
         private System.Windows.Forms.DataGridViewTextBoxColumn Col_Added;
         private System.Windows.Forms.DataGridViewTextBoxColumn Col_Status;
+        private System.Windows.Forms.DataGridViewButtonColumn Col_RetryButton;
     }
 }

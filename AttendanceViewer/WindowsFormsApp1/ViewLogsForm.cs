@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DTRAttendance.StaticClasses;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,9 +20,9 @@ namespace DTRAttendance
             InitializeComponent();
             _Employee = employee;
             _focusDate = date_time;
-
             load_data(date_time);
         }
+
 
         public void load_data(DateTime date_time)
         {
@@ -41,7 +42,7 @@ namespace DTRAttendance
                 DataGridViewRow dgvr = dataGridView1.Rows[i];
                 var log = dgvr.Tag as Models.Attendance_Log;
                 string chk_type = "";
-                dgvr.SetValues(i+1, log.date_time, chk_type, log.att_sched_id, log.device_id, log.is_manual == 1 ? "Manual": "Log");
+                dgvr.SetValues(i+1, log.date_time.ToString("MM/dd/yyyy hh:mm:ss tt"), chk_type, log.att_sched_id, log.device_id, log.is_manual == 1 ? "Manual": "Log");
             }
 
         }
@@ -53,7 +54,7 @@ namespace DTRAttendance
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new Change_Schedule_in_Logs().ShowDialog();
+            new Change_Schedule_in_Logs(_focusDate.Month, _focusDate.Year).ShowDialog();
         }
 
         private void modifyCheckInToolStripMenuItem_Click(object sender, EventArgs e)
@@ -69,6 +70,18 @@ namespace DTRAttendance
                 if (MessageBox.Show("Would you like to delete this log", "Deleting log", MessageBoxButtons.YesNo) != DialogResult.Yes)
                     e.Cancel = true;
             }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dataGridView1.Rows[e.RowIndex].Selected = true;
+            //dataGridView1.Rows[e.RowIndex].
+        }
+
+        private void dataGridView1_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            dataGridView1.Rows[e.RowIndex].Selected = true;
+            contextMenuStrip1.Tag = dataGridView1.Rows[e.RowIndex].Tag;
         }
     }
 }

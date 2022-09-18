@@ -161,6 +161,13 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\MySQLHelper.cs" />
+    <Compile Include="Helpers\ServiceHelper.cs" />
+    <Compile Include="Management\ScheduleListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Management\ScheduleListForm.Designer.cs">
+      <DependentUpon>ScheduleListForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\Attendance_Log.cs" />
     <Compile Include="Models\Device.cs" />
@@ -169,6 +176,7 @@
     <Compile Include="Models\Log.cs" />
     <Compile Include="Models\MySQLEvents.cs" />
     <Compile Include="Models\MySQLProcess.cs" />
+    <Compile Include="Models\Schedule.cs" />
     <Compile Include="Modify Check In.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -188,6 +196,7 @@
     <Compile Include="StaticClasses\Devices.cs" />
     <Compile Include="StaticClasses\DtrAnalysis.cs" />
     <Compile Include="StaticClasses\Employees.cs" />
+    <Compile Include="StaticClasses\Schedules.cs" />
     <Compile Include="ViewLogsForm.cs">
       <SubType>Form</SubType>
     </Compile>

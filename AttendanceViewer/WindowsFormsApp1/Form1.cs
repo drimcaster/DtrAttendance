@@ -24,7 +24,7 @@ namespace DTRAttendance
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            StaticClasses.DtrAnalysis.checkSystemDefaults();
+            Helpers.ServiceHelper.LoadDataAndServices();
 
             this.reportViewer1.RefreshReport();
 
@@ -135,6 +135,11 @@ namespace DTRAttendance
             Models.Employee sel = dataGridView1.SelectedRows[0]?.Tag as Models.Employee;
             if (sel != null)
                 new ViewLogsForm(sel, dateTimePicker1.Value).ShowDialog();
+        }
+
+        private void reloadDataAndServicesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Helpers.ServiceHelper.LoadDataAndServices();
         }
     }
 }

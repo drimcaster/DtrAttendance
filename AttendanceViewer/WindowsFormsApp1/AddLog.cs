@@ -21,6 +21,10 @@ namespace DTRAttendance
             dateTimePicker1.MinDate = DateTime.Parse(year + "-" + month + "-1");//.MinValue;
             dateTimePicker1.MaxDate = DateTime.Parse(year + "-" + month + "-" + maxday);
 
+            comboBox2.DataSource = Helpers.ServiceHelper.global_schedules;
+            comboBox2.DisplayMember = "name";
+           
+
 
         }
     }

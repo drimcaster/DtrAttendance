@@ -53,20 +53,40 @@ namespace DTRAttendance.Models
             return StaticClasses.Devices.delete_device(this);
         }
 
+        public bool IsSaving = false;
         public bool SaveDataCompleted = false;
-        public bool ErrorResult = false;
-        public int Existed = 0;
-        public int Added = 0;
+        private bool ErrorResult = false;
+        private int Existed = 0;
+        private int Added = 0;
+        public int LogsCount
+        {
+            get
+            {
+                if (device_logs == null)
+                    return 0;
+
+                return device_logs.Count;
+
+            }
+        }
+        public int SavedCount
+        {
+            get
+            {
+                if (device_logs == null)
+                    return 0;
+
+                return device_logs.Where(a => a.IsSaved).Count();
+
+            }
+        }
         public void SaveDataLogs()
         {
-            if (device_logs != null && device_logs.Count > 0)
+            if (LogsCount > 0)
             {
                 BackgroundWorker bgworker = new BackgroundWorker();
                 bgworker.DoWork += Bgworker_DoWork;
                 bgworker.RunWorkerAsync();
-
-
-
             }
             else
             {
@@ -84,10 +104,16 @@ namespace DTRAttendance.Models
             Existed = 0;
             Added = 0;
         }
+        public void RetrySavingData()
+        {
+            ErrorResult = false;
+            SaveDataCompleted = false;
+            SaveDataLogs();
+        }
         private void Bgworker_DoWork(object sender, DoWorkEventArgs e)
         {
             //throw new NotImplementedException();
-
+            System.Threading.Thread.Sleep(100);
             try
             {
                 var list_5 = device_logs.Where(x => x.IsSaved == false).Take(5);

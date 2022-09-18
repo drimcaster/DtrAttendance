@@ -1,5 +1,6 @@
 ﻿using DTRAttendance.Helpers;
 using DTRAttendance.Models;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using zkemkeeper;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace DTRAttendance.Devices
 {
@@ -81,6 +83,17 @@ namespace DTRAttendance.Devices
             //TESTING PURPOSE TO return;
             device.device_logs = new List<Log>();
             device.device_logs.Add(new Log() { bio_id = "1", device_id = device.id, in_out = 1, IsSaved = false, sign_time = "2022-01-01 10:11:12" });
+            device.device_logs.Add(new Log() { bio_id = "1", device_id = device.id, in_out = 1, IsSaved = false, sign_time = "2022-01-01 10:11:12" });
+            device.device_logs.Add(new Log() { bio_id = "1", device_id = device.id, in_out = 1, IsSaved = false, sign_time = "2022-01-01 10:11:12" });
+            device.device_logs.Add(new Log() { bio_id = "1", device_id = device.id, in_out = 1, IsSaved = false, sign_time = "2022-01-01 10:11:12" });
+            device.device_logs.Add(new Log() { bio_id = "1", device_id = device.id, in_out = 1, IsSaved = false, sign_time = "2022-01-01 10:11:11" });
+            device.device_logs.Add(new Log() { bio_id = "1", device_id = device.id, in_out = 1, IsSaved = false, sign_time = "2022-01-01 10:11:13" });
+            device.device_logs.Add(new Log() { bio_id = "1", device_id = device.id, in_out = 1, IsSaved = false, sign_time = "2022-01-01 10:11:14" });
+            device.device_logs.Add(new Log() { bio_id = "1", device_id = device.id, in_out = 1, IsSaved = false, sign_time = "2022-01-01 10:11:15" });
+            device.device_logs.Add(new Log() { bio_id = "1", device_id = device.id, in_out = 1, IsSaved = false, sign_time = "2022-01-01 10:11:16" });
+            device.device_logs.Add(new Log() { bio_id = "1", device_id = device.id, in_out = 1, IsSaved = false, sign_time = "2022-01-01 10:11:17" });
+            device.device_logs.Add(new Log() { bio_id = "1", device_id = device.id, in_out = 1, IsSaved = false, sign_time = "2022-01-01 10:11:18" });
+            device.device_logs.Add(new Log() { bio_id = "1", device_id = device.id, in_out = 1, IsSaved = false, sign_time = "2022-01-01 10:11:10" });
             device.SaveDataLogs();
 
             return;
@@ -134,7 +147,7 @@ namespace DTRAttendance.Devices
                                     sign_time = DateTime.Parse(strTime).ToString("yyyy-MM-dd HH:mm:ss"),
                                     device_id = device.id,
                                     in_out = inOutMode
-                                   
+
                                 });
 
                             }
@@ -196,7 +209,7 @@ namespace DTRAttendance.Devices
                     return;
                 }
 
-                if (device.device_logs  == null || device.device_logs.Count <= 0)
+                if (device.device_logs == null || device.device_logs.Count <= 0)
                 {
                     Invoke(new Action(() =>
                     {
@@ -246,7 +259,7 @@ namespace DTRAttendance.Devices
             //Load Active Devices
             DeviceList = StaticClasses.Devices.load_active_devices();
 
-            foreach(Models.Device device in DeviceList)
+            foreach (Models.Device device in DeviceList)
             {
                 device.SavingResult += Device_SavingResult;
                 DataGridViewRow row = new DataGridViewRow();
@@ -254,43 +267,123 @@ namespace DTRAttendance.Devices
                 device.bindRow = row;
                 dataGridView1.Rows.Add(row);
             }
-            foreach(DataGridViewRow row in dataGridView1.Rows)
+            foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 Models.Device device = row.Tag as Models.Device;
-                row.SetValues(true, device.name, 0, 0, "Pending");
+                row.SetValues(false, device.name, 0, 0, "Pending", "");
                 device.bindRow = row;
+
+                DataGridViewCell dgvc = new DataGridViewTextBoxCell();
+                row.Cells[Col_RetryButton.Index] = dgvc;
+                dgvc.ReadOnly = true;
+
+
             }
         }
 
         private void Device_SavingResult(Device device, bool is_completed, bool is_error, int added, int existed)
         {
             //throw new NotImplementedException();
-            Invoke(new Action(() =>
+            try
             {
-                int logsCount = 0;
-                if (device.device_logs != null)
-                    logsCount = device.device_logs.Count;
+                Invoke(new Action(() =>
+                {
 
-                device.bindRow.Cells[Col_Status.Index].Value = (is_completed ? "Completed: " : "") + "Added(" + added + "), Existed(" + existed + ") from Data(" + logsCount + ")";
-            }));
+                    device.bindRow.Cells[Col_LogsCount.Index].Value = device.LogsCount;
+                    device.bindRow.Cells[Col_Added.Index].Value = added;
+                    device.bindRow.Cells[Col_Status.Index].Value = (is_completed ? "Completed: " : "") + " Existed(" + existed + ")  Saving Progress( " + device.SavedCount + "  / " + device.LogsCount + " )";
+                    if (is_error)
+                    {
+                        //device.bindRow.Cells[Col_RetryButton.Index].Visible = false;
+                        //Datagridview
+                        device.bindRow.Cells[Col_Status.Index].Value = "Stopped on Error: " + " Existed(" + existed + ")  Saving Progress( " + device.SavedCount + "  / " + device.LogsCount + " )";
+                        device.bindRow.Cells[Col_Status.Index].Style.ForeColor = Color.Red;
+                        var but = new DataGridViewButtonCell();
+                        device.bindRow.Cells[Col_RetryButton.Index] = but;
+                        but.Value = "Retry";
+                    }
+                    else if (is_completed)
+                    {
+                        device.bindRow.Cells[Col_Status.Index].Style.ForeColor = Color.Green;
+                        device.IsSaving = false;
+                    }
+                    else
+                    {
+                        device.bindRow.Cells[Col_Status.Index].Style.ForeColor = Color.Black;
+                    }
+
+                }));
+            }
+            catch
+            {
+                //Due to download disposal and this still being called.
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            foreach(DataGridViewRow row in dataGridView1.Rows)
+            int count = 0;
+            foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                Models.Device device = row.Tag as Models.Device;
-                if (device != null)
+                var is_check = (bool)((DataGridViewCheckBoxCell)row.Cells[Col_Is_Download.Index]).Value;
+                if (is_check)
                 {
-                    device.ResetSavingData();
-                    BackgroundWorker bgw = new BackgroundWorker();
-                    bgw.DoWork += (b, g) => { 
+                    count++;
+
+                    row.Cells[Col_Is_Download.Index].Value = false;
+                    Models.Device device = row.Tag as Models.Device;
+                    if (device != null)
+                    {
+                        device.ResetSavingData();
+                        device.IsSaving = true;
+                        BackgroundWorker bgw = new BackgroundWorker();
+                        bgw.DoWork += (b, g) =>
+                        {
                             download_bio(device);
-                    };
-                    bgw.RunWorkerAsync();
+                        };
+                        bgw.RunWorkerAsync();
+                    }
+                }
+            }
+            if (count == 0)
+                MessageBox.Show("Please select a device to download", "Required");
+
+        }
+
+        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.ColumnIndex == Col_Is_Download.Index && dataGridView1.Rows.Count > 0)
+            {
+                if ( dataGridView1.Rows[e.RowIndex].Tag != null)
+                {
+                    bool is_checked = (bool)dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                    if (is_checked)
+                    {
+                        Models.Device device = dataGridView1.Rows[e.RowIndex].Tag as Models.Device;
+                        if (device.IsSaving)
+                        {
+                            dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = false;
+                            MessageBox.Show("Device is currently busy. Click retry if error, or try again once status completed.", device.name+" is Busy", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                    }
                 }
             }
         }
 
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == Col_RetryButton.Index && dataGridView1.Rows.Count > 0)
+            {
+                if (dataGridView1.Rows[e.RowIndex].Tag != null)
+                {
+                    if (dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() == "Retry")
+                    {
+                        dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex] = new DataGridViewTextBoxCell();
+                        Models.Device device = dataGridView1.Rows[e.RowIndex].Tag as Models.Device;
+                        device.RetrySavingData();
+                    }
+                }
+            }
+        }
     }
 }

@@ -143,7 +143,7 @@ namespace DTRAttendance.Devices
             foreach(DataGridViewRow row in dataGridView1.Rows)
             {
                 Models.Device device = row.Tag as Models.Device;
-                row.SetValues(device.name, device.is_active);
+                row.SetValues( device.id,device.name, device.is_active);
             }
 
         }

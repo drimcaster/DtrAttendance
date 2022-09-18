@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.managementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logSchedulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.employeesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addNewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.devicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,6 +49,7 @@
             this.employee_details = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.button2 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.reloadDataAndServicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -54,6 +57,7 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.managementToolStripMenuItem,
             this.employeesToolStripMenuItem,
             this.devicesToolStripMenuItem,
             this.downloadToolStripMenuItem,
@@ -63,6 +67,21 @@
             this.menuStrip1.Size = new System.Drawing.Size(1057, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // managementToolStripMenuItem
+            // 
+            this.managementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.logSchedulesToolStripMenuItem,
+            this.reloadDataAndServicesToolStripMenuItem});
+            this.managementToolStripMenuItem.Name = "managementToolStripMenuItem";
+            this.managementToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
+            this.managementToolStripMenuItem.Text = "Management";
+            // 
+            // logSchedulesToolStripMenuItem
+            // 
+            this.logSchedulesToolStripMenuItem.Name = "logSchedulesToolStripMenuItem";
+            this.logSchedulesToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.logSchedulesToolStripMenuItem.Text = "Log Schedules";
             // 
             // employeesToolStripMenuItem
             // 
@@ -218,6 +237,13 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(90, 20);
             this.dateTimePicker1.TabIndex = 8;
             // 
+            // reloadDataAndServicesToolStripMenuItem
+            // 
+            this.reloadDataAndServicesToolStripMenuItem.Name = "reloadDataAndServicesToolStripMenuItem";
+            this.reloadDataAndServicesToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.reloadDataAndServicesToolStripMenuItem.Text = "Reload Data and Services";
+            this.reloadDataAndServicesToolStripMenuItem.Click += new System.EventHandler(this.reloadDataAndServicesToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -233,7 +259,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Form1";
+            this.Text = "DTR ATTENDANCE";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -263,6 +289,9 @@
         private System.Windows.Forms.ContextMenuStrip employee_details;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.ToolStripMenuItem managementToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem logSchedulesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reloadDataAndServicesToolStripMenuItem;
     }
 }
 
