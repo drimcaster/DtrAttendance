@@ -27,7 +27,7 @@ namespace DTRAttendance.Models
             }
 
             throw new Exception("No update yet");
-            return 0;
+            //return 0;
 
 
         }

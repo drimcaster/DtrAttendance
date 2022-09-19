@@ -1,10 +1,14 @@
-﻿using DTRAttendance.Models;
+﻿using DTRAttendance.Helpers;
+using DTRAttendance.Models;
+using Microsoft.Reporting.WinForms;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 
@@ -26,7 +30,7 @@ namespace DTRAttendance
 
             Helpers.ServiceHelper.LoadDataAndServices();
 
-            this.reportViewer1.RefreshReport();
+            //this.reportViewer1.RefreshReport();
 
             this.load_table();
 
@@ -181,8 +185,123 @@ namespace DTRAttendance
         {
             if (dataGridView1.SelectedRows.Count <= 0) return;
             var employee = dataGridView1.SelectedRows[0].Tag as Models.Employee;
+            load_report(employee, dateTimePicker1.Value.Year, dateTimePicker1.Value.Month);
+
+        }
+
+        private void load_report(Models.Employee emp, int year, int month)
+        {
+            //reportViewer1.ProcessingMode = ProcessingMode.Local;
+            //reportViewer1.LocalReport.ReportPath = "~/DtrReport.rdlc";
+            //ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Report.rdlc");
+            //Customers dsCustomers = GetData("select top 20 * from customers");
+            reportViewer1.Reset();
+            reportViewer1.LocalReport.DataSources.Clear();
+
+            if (checkBox2.Checked == false)
+                DtrReport1(emp, year, month);
+            else
+                DtrReport2(emp, year, month);
 
 
+
+            reportViewer1.RefreshReport();
+
+
+        }
+
+        public void DtrReport1(Models.Employee emp, int year, int month)
+        {
+            reportViewer1.LocalReport.ReportEmbeddedResource = "DTRAttendance.DtrReport.rdlc";
+
+            var table = load_dtr_data(emp, year, month, DateTime.DaysInMonth(year, month));
+            ReportDataSource datasource = new ReportDataSource("DataSet1", table);
+
+            ReportParameter[] rpars = new ReportParameter[2];
+            rpars[0] = new ReportParameter("full_name", emp.getFullName());
+            rpars[1] = new ReportParameter("month_year", DateTime.Parse(year + "-" + month + "-1").ToString("MMMM yyyy"));
+
+            reportViewer1.LocalReport.DataSources.Add(datasource);
+            reportViewer1.LocalReport.SetParameters(rpars);
+
+        }
+        public void DtrReport2(Models.Employee emp, int year, int month)
+        {
+            int month2 = month % 2 == 0 ? month : month + 1;
+            month = month2 - 1;
+            //month = month % 2 == 1 ? 
+
+            reportViewer1.LocalReport.ReportEmbeddedResource = "DTRAttendance.DtrReport2.rdlc";
+
+            var table = load_dtr_data(emp, year, month, DateTime.DaysInMonth(year, month));
+            ReportDataSource datasource = new ReportDataSource("DataSet1", table);
+
+            //int month2 = month % 2 == 1 ? month + 1 : month - 1; 
+
+            var table2 = load_dtr_data(emp, year, month2, DateTime.DaysInMonth(year, month2));
+            ReportDataSource datasource2 = new ReportDataSource("DataSet2", table2);
+
+            ReportParameter[] rpars = new ReportParameter[3];
+            rpars[0] = new ReportParameter("full_name", emp.getFullName());
+            rpars[1] = new ReportParameter("month_year", DateTime.Parse(year + "-" + month + "-1").ToString("MMMM yyyy"));
+            rpars[2] = new ReportParameter("month_year2", DateTime.Parse(year + "-" + month2 + "-1").ToString("MMMM yyyy"));
+
+            reportViewer1.LocalReport.DataSources.Add(datasource);
+            reportViewer1.LocalReport.DataSources.Add(datasource2);
+            reportViewer1.LocalReport.SetParameters(rpars);
+
+        }
+
+        public DataTable load_dtr_data(Models.Employee employee, int year, int month, int max_day)
+        {
+
+            MySqlParameter[] pars = new MySqlParameter[4];
+            pars[0] = new MySqlParameter("@emp_id", employee.id);
+            pars[1] = new MySqlParameter("@year", year);
+            pars[2] = new MySqlParameter("@month", month);
+            pars[3] = new MySqlParameter("@maxday", DateTime.DaysInMonth(year, month));
+            DataTable dt = SSH_MySQL_Lib.MySqlQuery.QueryResult("CALL spDtrReport(@emp_id, @year, @month, @maxday)", pars);
+
+            foreach(DataRow dr in dt.Rows)
+            {
+                dr["am_in"] = dr["am_in"].ToString() == string.Empty ? "--:--:--" : DateTime.Parse( dr["am_in"].ToString() ).ToString("hh:mm tt");
+                dr["am_out"] = dr["am_out"].ToString() == string.Empty ? "--:--:--": DateTime.Parse(dr["am_out"].ToString()).ToString("hh:mm tt");
+                
+                //Sunday and Saturday marker
+                if(dr["am_in"].ToString() == "--:--:--" && dr["am_out"].ToString() == "--:--:--")
+                {
+                    string am_day_in_week = DateTime.Parse(dr["date"].ToString()).ToString("dddd");
+
+                    if (am_day_in_week == "Sunday" || am_day_in_week == "Saturday")
+                        dr["am_in"] = dr["am_out"] = am_day_in_week;
+                }
+                
+                dr["pm_in"] = dr["pm_in"].ToString() == string.Empty ? "--:--:--": DateTime.Parse(dr["pm_in"].ToString()).ToString("hh:mm tt");
+                dr["pm_out"] = dr["pm_out"].ToString() == string.Empty ? "--:--:--" : DateTime.Parse(dr["pm_out"].ToString()).ToString("hh:mm tt");
+
+                ////Sunday and Saturday marker
+                if (dr["pm_in"].ToString() == "--:--:--" && dr["pm_out"].ToString() == "--:--:--")
+                {
+                    string pm_day_in_week = DateTime.Parse(dr["date"].ToString()).ToString("dddd");
+                    if (pm_day_in_week == "Sunday" || pm_day_in_week == "Saturday")
+                        dr["pm_in"] = dr["pm_out"] = pm_day_in_week;
+
+                }
+
+
+            }
+
+            return dt;
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            dataGridView1_SelectionChanged(null, null);
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            dataGridView1_SelectionChanged(null, null);
         }
     }
 }
