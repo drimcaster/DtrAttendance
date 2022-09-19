@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTRAttendance", "Attendance
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSH MySQL Lib", "..\WinLib-MySQL-SSH\SSH MySQL Lib\SSH MySQL Lib.csproj", "{E3251AEC-DE5D-4191-9EA1-D0E477BA83AD}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "DTRAttendanceSetup", "DTRAttendanceSetup\DTRAttendanceSetup.vdproj", "{09559E9C-B60E-4FCD-BAE9-5B376F483162}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,12 @@ Global
 		{E3251AEC-DE5D-4191-9EA1-D0E477BA83AD}.Release|x64.Build.0 = Release|Any CPU
 		{E3251AEC-DE5D-4191-9EA1-D0E477BA83AD}.Release|x86.ActiveCfg = Release|Any CPU
 		{E3251AEC-DE5D-4191-9EA1-D0E477BA83AD}.Release|x86.Build.0 = Release|Any CPU
+		{09559E9C-B60E-4FCD-BAE9-5B376F483162}.Debug|Any CPU.ActiveCfg = Debug
+		{09559E9C-B60E-4FCD-BAE9-5B376F483162}.Debug|x64.ActiveCfg = Debug
+		{09559E9C-B60E-4FCD-BAE9-5B376F483162}.Debug|x86.ActiveCfg = Debug
+		{09559E9C-B60E-4FCD-BAE9-5B376F483162}.Release|Any CPU.ActiveCfg = Release
+		{09559E9C-B60E-4FCD-BAE9-5B376F483162}.Release|x64.ActiveCfg = Release
+		{09559E9C-B60E-4FCD-BAE9-5B376F483162}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
