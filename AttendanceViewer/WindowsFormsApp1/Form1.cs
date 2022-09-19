@@ -306,10 +306,11 @@ namespace DTRAttendance
 
         private void databaseSetupToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(new SSH_MySQL_Lib.SetUp().ShowDialog() == DialogResult.OK)
-            {
-                Application.Restart();
-            }
+            if(MessageBox.Show("Will restart this application once you successfully setup your database", "Application Restart", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                if(new SSH_MySQL_Lib.SetUp().ShowDialog() == DialogResult.OK)
+                {
+                    Application.Restart();
+                }
         }
     }
 }

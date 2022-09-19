@@ -2236,6 +2236,12 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_E6CBAF8E2F2609C2982B0CA7EB60890A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_FF23D41E4725725C5BF43F0C3C4A9D2C"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2267,12 +2273,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_EC721FC8AC8BD499B9636503652CB7EA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E6CBAF8E2F2609C2982B0CA7EB60890A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -3040,6 +3040,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -4354,7 +4362,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:SSH MySQL Lib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:SSH MySQL Lib, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_5B2280D4A4832E734C6FBFF54983E065"
@@ -7143,15 +7151,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:DTRAttendanceSetup"
-        "ProductCode" = "8:{A4181A79-E66D-4BE2-88AA-85A03C355342}"
-        "PackageCode" = "8:{C94AA4BE-D904-4CB7-B23E-C617A57009DF}"
+        "ProductCode" = "8:{9CB0D04C-C0A3-421B-9A3E-B4AB787572A5}"
+        "PackageCode" = "8:{A715ACC5-5C79-4773-A114-8B7211DA35B5}"
         "UpgradeCode" = "8:{9B841234-54A3-40EC-BE55-0FB1DA6BE7DA}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.0.6"
         "Manufacturer" = "8:Dreamaster"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

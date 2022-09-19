@@ -34,7 +34,6 @@ namespace DTRAttendance
             else
             {
                 this.Hide();
-                MySQLHelper.ExecuteNonQuery("SET names utf8mb4;", new List<MySqlParameter>());
                 new Form1().ShowDialog();
                 this.Close();
             }
