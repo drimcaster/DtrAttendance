@@ -303,5 +303,13 @@ namespace DTRAttendance
         {
             dataGridView1_SelectionChanged(null, null);
         }
+
+        private void databaseSetupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(new SSH_MySQL_Lib.SetUp().ShowDialog() == DialogResult.OK)
+            {
+                Application.Restart();
+            }
+        }
     }
 }

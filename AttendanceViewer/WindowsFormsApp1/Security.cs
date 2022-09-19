@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DTRAttendance.Helpers;
+using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -32,6 +34,7 @@ namespace DTRAttendance
             else
             {
                 this.Hide();
+                MySQLHelper.ExecuteNonQuery("SET names utf8mb4;", new List<MySqlParameter>());
                 new Form1().ShowDialog();
                 this.Close();
             }

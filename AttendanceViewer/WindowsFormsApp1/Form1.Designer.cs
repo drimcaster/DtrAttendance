@@ -52,6 +52,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.databaseSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.employee_details.SuspendLayout();
@@ -75,7 +76,8 @@
             // 
             this.managementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.logSchedulesToolStripMenuItem,
-            this.reloadDataAndServicesToolStripMenuItem});
+            this.reloadDataAndServicesToolStripMenuItem,
+            this.databaseSetupToolStripMenuItem});
             this.managementToolStripMenuItem.Name = "managementToolStripMenuItem";
             this.managementToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
             this.managementToolStripMenuItem.Text = "Management";
@@ -272,6 +274,13 @@
             this.checkBox2.UseVisualStyleBackColor = true;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
+            // databaseSetupToolStripMenuItem
+            // 
+            this.databaseSetupToolStripMenuItem.Name = "databaseSetupToolStripMenuItem";
+            this.databaseSetupToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.databaseSetupToolStripMenuItem.Text = "Database Setup";
+            this.databaseSetupToolStripMenuItem.Click += new System.EventHandler(this.databaseSetupToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -324,6 +333,7 @@
         private System.Windows.Forms.ToolStripMenuItem reloadDataAndServicesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modifyEmployeeToolStripMenuItem;
         private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.ToolStripMenuItem databaseSetupToolStripMenuItem;
     }
 }
 
