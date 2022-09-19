@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace DTRAttendance.Models
 {
@@ -116,7 +117,8 @@ namespace DTRAttendance.Models
             System.Threading.Thread.Sleep(100);
             try
             {
-                var list_5 = device_logs.Where(x => x.IsSaved == false).Take(5);
+                int rand = new Random().Next(10, 20);
+                var list_5 = device_logs.Where(x => x.IsSaved == false).Take(rand + 5);
                 if (list_5.Count() >= 1)
                 {
                     MySqlParameter[] pars = new MySqlParameter[4];

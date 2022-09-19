@@ -20,8 +20,20 @@ namespace DTRAttendance.Devices
         public Download(DateTime dt)
         {
             InitializeComponent();
-            dateTimePicker1.Value = DateTime.Parse(dt.Year + "-" + dt.Month + "-" + 1);
-            dateTimePicker2.Value = DateTime.Parse(dt.Year + "-" + dt.Month + "-" + DateTime.DaysInMonth(dt.Year, dt.Month));
+
+            DateTime min_date = DateTime.Parse(dt.Year + "-" + dt.Month + "-" + 1);
+            DateTime max_date = DateTime.Parse(dt.Year + "-" + dt.Month + "-" + DateTime.DaysInMonth(dt.Year, dt.Month));
+            
+            dateTimePicker1.MinDate = min_date;
+            dateTimePicker1.MaxDate = max_date;
+            dateTimePicker1.Value = min_date;
+
+            dateTimePicker2.MinDate = min_date;
+            dateTimePicker2.MaxDate = max_date;
+            dateTimePicker2.Value = max_date;
+
+            //dateTimePicker1.Value = DateTime.Parse(dt.Year + "-" + dt.Month + "-" + 1);
+            //dateTimePicker2.Value = DateTime.Parse(dt.Year + "-" + dt.Month + "-" + DateTime.DaysInMonth(dt.Year, dt.Month));
 
 
         }

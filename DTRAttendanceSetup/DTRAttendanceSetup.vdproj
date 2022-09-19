@@ -2236,12 +2236,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E6CBAF8E2F2609C2982B0CA7EB60890A"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_FF23D41E4725725C5BF43F0C3C4A9D2C"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2273,6 +2267,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_EC721FC8AC8BD499B9636503652CB7EA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_E6CBAF8E2F2609C2982B0CA7EB60890A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -7151,15 +7151,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:DTRAttendanceSetup"
-        "ProductCode" = "8:{9CB0D04C-C0A3-421B-9A3E-B4AB787572A5}"
-        "PackageCode" = "8:{A715ACC5-5C79-4773-A114-8B7211DA35B5}"
+        "ProductCode" = "8:{EAFC45DE-9087-4948-ACDE-53B4AFAC1B9B}"
+        "PackageCode" = "8:{47BB2C79-2F90-466E-B9C4-DEBABFB47CA4}"
         "UpgradeCode" = "8:{9B841234-54A3-40EC-BE55-0FB1DA6BE7DA}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.6"
+        "ProductVersion" = "8:1.0.7"
         "Manufacturer" = "8:Dreamaster"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
