@@ -1,0 +1,343 @@
+﻿
+###version-update 1.0.0.7
+DELIMITER ;
+
+ALTER TABLE `dtr_attendance`.`dtr_records` 
+ADD COLUMN `updated_at` DATETIME NULL;
+
+DELIMITER ;
+
+###version-update 1.0.0.7
+
+DELIMITER ;
+
+DROP procedure IF EXISTS `spEVT_ATT_RAW_PROCESS`;
+
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `spEVT_ATT_RAW_PROCESS`()
+EVENT_LEAVE:
+BEGIN
+		
+		DECLARE _BioID VARCHAR(50);
+        DECLARE _RawID INT;
+        DECLARE _DateTime DATETIME;
+        
+        #EMPLOYEE
+        DECLARE _EmpID INT;
+        DECLARE _CheckDtrID VARCHAR(20);
+        DECLARE _AttSchedID INT;
+        
+        DECLARE _IsManual INT; # IF MANUAL MEANS FORCE UPDATE
+        
+        
+        #DTR DATE
+        DECLARE _DtrDateID INT;
+        
+        
+        SELECT 
+			id, bio_id, date_time, employee_id, check_dtr_id,is_manual INTO  _RawID, _BioID, _DateTime, _EmpID, _CheckDtrID,_IsManual 
+		FROM attendance_raws WHERE is_processed = 0  order by date_time ASC LIMIT 1;
+		IF(_RawID IS NULL)THEN
+			IF EXISTS(SELECT * FROM information_schema.EVENTS WHERE EVENT_NAME='EVT_ATT_RAW_PROCESS' AND EVENT_SCHEMA='dtr_attendance')THEN
+				ALTER EVENT EVT_ATT_RAW_PROCESS DISABLE;
+            END IF;
+			LEAVE EVENT_LEAVE;
+        END IF;
+        
+        SELECT IFNULL(_EmpID, id), IFNULL(att_sched_id,1)  INTO _EmpID, _AttSchedID FROM employees WHERE bio_id = _BioID LIMIT 1;
+        
+        IF(_EmpID IS NULL)THEN
+			#CREATE EMPTY EMPLOYEE
+            INSERT INTO employees(bio_id, att_sched_id, is_active, employee_id, first_name, middle_name, last_name, hired_date, created_at)
+				VALUES(_BioID, 1, 1,'', '', '', '', '', NOW() );
+            SET _EmpID = last_insert_id();
+            SET _AttSchedID = 1;
+        END IF;
+        
+        IF(_CheckDtrID IS NULL)THEN
+			SET _CheckDtrID = checkDTR(_EmpID, _DateTime,_AttSchedID);
+        END IF;
+        
+        #ADDING LOGIN DATE IF NOT EXISTS
+        SELECT id INTO _DtrDateID FROM dtr_records WHERE employee_id = _EmpID AND DATE(`date`) = DATE(_DateTime) LIMIT 1;
+        IF(_DtrDateID IS NULL)THEN
+			INSERT INTO dtr_records(employee_id, `date`) VALUES(_EmpID, DATE(_DateTime));
+            SET _DtrDateID = last_insert_id();
+        END IF;
+        
+        IF(_IsManual = 1)THEN
+			#AM-IN
+			IF(_CheckDtrID = 1)THEN
+				UPDATE dtr_records SET am_in = TIME(_DateTime) WHERE id = _DtrDateID;
+			#AM-OUT
+			ELSEIF(_CheckDtrID = 2)THEN
+				UPDATE dtr_records SET am_out = TIME(_DateTime) WHERE id = _DtrDateID;        
+			#PM-IN
+			ELSEIF(_CheckDtrID = 3)THEN
+				UPDATE dtr_records SET pm_in = TIME(_DateTime) WHERE id = _DtrDateID;        
+			#PM-OUT
+			ELSEIF(_CheckDtrID = 4)THEN
+				UPDATE dtr_records SET pm_out = TIME(_DateTime) WHERE id = _DtrDateID;        
+			END IF;
+        ELSE
+        
+			#AM-IN
+			IF(_CheckDtrID = 1)THEN
+				#CASE CHOOSES THE EARLY
+                UPDATE dtr_records SET am_in = CASE WHEN am_in IS NULL OR TIME(am_in) > TIME(_DateTime) THEN TIME(_DateTime) ELSE am_in END  WHERE id = _DtrDateID;
+			#AM-OUT
+			ELSEIF(_CheckDtrID = 2)THEN
+				#CASE CHOOSES THE LATE
+				UPDATE dtr_records SET am_out = CASE WHEN am_out IS NULL OR TIME(am_out) < TIME(_DateTime) THEN TIME(_DateTime) ELSE am_out END WHERE id = _DtrDateID;        
+			#PM-IN
+			ELSEIF(_CheckDtrID = 3)THEN
+				UPDATE dtr_records SET pm_in = CASE WHEN pm_in IS NULL OR TIME(pm_in) > TIME(_DateTime) THEN TIME(_DateTime) ELSE pm_in END WHERE id = _DtrDateID;        
+			#PM-OUT
+			ELSEIF(_CheckDtrID = 4)THEN
+				UPDATE dtr_records SET pm_out = CASE WHEN pm_out IS NULL OR TIME(pm_out) < TIME(_DateTime) THEN TIME(_DateTime) ELSE pm_out END WHERE id = _DtrDateID;        
+			END IF;
+			
+        END IF;
+        
+        UPDATE 
+			attendance_raws 
+        SET 
+			is_processed = 1,
+            employee_id=_EmpID, 
+            att_sched_id = _AttSchedID,
+            check_dtr_id = _CheckDtrID
+        WHERE id = _RawID;
+        
+
+END$$
+
+DELIMITER ;
+
+
+###version-update 1.0.0.8
+
+DELIMITER ;
+DROP procedure IF EXISTS `spEVT_ATT_RAW_PROCESS`;
+;
+
+DELIMITER $$
+CREATE PROCEDURE `spEVT_ATT_RAW_PROCESS`()
+EVENT_LEAVE:
+BEGIN
+		
+		DECLARE _BioID VARCHAR(50);
+        DECLARE _RawID INT;
+        DECLARE _DateTime DATETIME;
+        
+        #EMPLOYEE
+        DECLARE _EmpID INT;
+        DECLARE _CheckDtrID VARCHAR(20);
+        DECLARE _AttSchedID INT;
+        
+        DECLARE _IsManual INT; # IF MANUAL MEANS FORCE UPDATE
+        
+        
+        #DTR DATE
+        DECLARE _DtrDateID INT;
+        
+        
+        SELECT 
+			id, bio_id, date_time, employee_id, check_dtr_id,is_manual INTO  _RawID, _BioID, _DateTime, _EmpID, _CheckDtrID,_IsManual 
+		FROM attendance_raws WHERE is_processed = 0  order by date_time ASC LIMIT 1;
+		IF(_RawID IS NULL)THEN
+			IF EXISTS(SELECT * FROM information_schema.EVENTS WHERE EVENT_NAME='EVT_ATT_RAW_PROCESS' AND EVENT_SCHEMA='dtr_attendance')THEN
+				ALTER EVENT EVT_ATT_RAW_PROCESS DISABLE;
+            END IF;
+			LEAVE EVENT_LEAVE;
+        END IF;
+        
+        SELECT IFNULL(_EmpID, id), IFNULL(att_sched_id,1)  INTO _EmpID, _AttSchedID FROM employees WHERE bio_id = _BioID LIMIT 1;
+        
+        IF(_EmpID IS NULL)THEN
+			#CREATE EMPTY EMPLOYEE
+            INSERT INTO employees(bio_id, att_sched_id, is_active, employee_id, first_name, middle_name, last_name, hired_date, created_at)
+				VALUES(_BioID, 1, 1,'', '', '', '', '', NOW() );
+            SET _EmpID = last_insert_id();
+            SET _AttSchedID = 1;
+        END IF;
+        
+        IF(_CheckDtrID IS NULL)THEN
+			SET _CheckDtrID = checkDTR(_EmpID, _DateTime,_AttSchedID);
+        END IF;
+        
+        #ADDING LOGIN DATE IF NOT EXISTS
+        SELECT id INTO _DtrDateID FROM dtr_records WHERE employee_id = _EmpID AND DATE(`date`) = DATE(_DateTime) LIMIT 1;
+        IF(_DtrDateID IS NULL)THEN
+			INSERT INTO dtr_records(employee_id, `date`) VALUES(_EmpID, DATE(_DateTime));
+            SET _DtrDateID = last_insert_id();
+        END IF;
+        
+        IF(_IsManual = 1)THEN
+			#AM-IN
+			IF(_CheckDtrID = 1)THEN
+				UPDATE dtr_records SET updated_at = NOW(), am_in = TIME(_DateTime) WHERE id = _DtrDateID;
+			#AM-OUT
+			ELSEIF(_CheckDtrID = 2)THEN
+				UPDATE dtr_records SET updated_at = NOW(), am_out = TIME(_DateTime) WHERE id = _DtrDateID;        
+			#PM-IN
+			ELSEIF(_CheckDtrID = 3)THEN
+				UPDATE dtr_records SET updated_at = NOW(), pm_in = TIME(_DateTime) WHERE id = _DtrDateID;        
+			#PM-OUT
+			ELSEIF(_CheckDtrID = 4)THEN
+				UPDATE dtr_records SET updated_at = NOW(), pm_out = TIME(_DateTime) WHERE id = _DtrDateID;        
+			END IF;
+        ELSE
+        
+			#AM-IN
+			IF(_CheckDtrID = 1)THEN
+				#CASE CHOOSES THE EARLY
+                UPDATE dtr_records SET updated_at = NOW(), am_in = CASE WHEN am_in IS NULL OR TIME(am_in) > TIME(_DateTime) THEN TIME(_DateTime) ELSE am_in END  WHERE id = _DtrDateID;
+			#AM-OUT
+			ELSEIF(_CheckDtrID = 2)THEN
+				#CASE CHOOSES THE LATE
+				UPDATE dtr_records SET updated_at = NOW(), am_out = CASE WHEN am_out IS NULL OR TIME(am_out) < TIME(_DateTime) THEN TIME(_DateTime) ELSE am_out END WHERE id = _DtrDateID;        
+			#PM-IN
+			ELSEIF(_CheckDtrID = 3)THEN
+				UPDATE dtr_records SET updated_at = NOW(), pm_in = CASE WHEN pm_in IS NULL OR TIME(pm_in) > TIME(_DateTime) THEN TIME(_DateTime) ELSE pm_in END WHERE id = _DtrDateID;        
+			#PM-OUT
+			ELSEIF(_CheckDtrID = 4)THEN
+				UPDATE dtr_records SET updated_at = NOW(), pm_out = CASE WHEN pm_out IS NULL OR TIME(pm_out) < TIME(_DateTime) THEN TIME(_DateTime) ELSE pm_out END WHERE id = _DtrDateID;        
+			END IF;
+			
+        END IF;
+        
+        UPDATE 
+			attendance_raws 
+        SET 
+			is_processed = 1,
+            employee_id=_EmpID, 
+            att_sched_id = _AttSchedID,
+            check_dtr_id = _CheckDtrID
+        WHERE id = _RawID;
+        
+
+END$$
+
+DELIMITER ;
+
+DROP function IF EXISTS fnGetEmpLatestDtrDateTimeUpdate;
+;
+
+DELIMITER $$
+CREATE FUNCTION fnGetEmpLatestDtrDateTimeUpdate(_EmpID INT, _Month INT, _Year INT) RETURNS datetime
+BEGIN
+	DECLARE _UPDATE DATETIME DEFAULT NULL;
+    
+    SELECT MAX(updated_at) INTO _UPDATE FROM dtr_records WHERE employee_id = _EmpID  AND YEAR(`date`) = _YEAR AND _Month = MONTH( `date`);
+
+	RETURN _UPDATE;
+END$$
+
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `spSetAttRawCheck`;
+;
+
+DELIMITER $$
+CREATE PROCEDURE `spSetAttRawCheck`( _AttendanceRawID INT, _CheckID INT )
+_PROCLEAVE:
+BEGIN
+	#DECLARE _DateTime DATETIME;
+    DECLARE _Date DATE;
+    DECLARE _Time TIME;
+    DECLARE _EmployeeID INT;
+    DECLARE _DtrRecordID INT;
+	DECLARE _PrevCheckID INT;
+
+	#
+	#UPDATE attendance_raws SET check_dtr_id = _CheckID WHERE id = _AttendanceRawID;
+    
+    SELECT  check_dtr_id, employee_id, DATE(date_time), TIME(date_time)  INTO  _PrevCheckID, _EmployeeID, _Date, _Time FROM attendance_raws WHERE id = _AttendanceRawID LIMIT 1;
+    UPDATE attendance_raws SET check_dtr_id = _CheckID WHERE id = _AttendanceRawID;
+    IF(_Date IS NOT NULL)THEN
+		SELECT id INTO _DtrRecordID FROM dtr_records WHERE employee_id = _EmployeeID AND _Date = `date` LIMIT 1;
+	    
+		IF( _DtrRecordID IS NULL)THEN
+			IF(_CheckID = 1)THEN
+				INSERT INTO dtr_records(employee_id, `date`, am_in, updated_at ) VALUES( _EmployeeID, _Date, _Time, NOW());
+            ELSEIF( _CheckID = 2)THEN
+				INSERT INTO dtr_records(employee_id, `date`, am_out, updated_at) VALUES( _EmployeeID, _Date, _Time, NOW());
+			ELSEIF( _CheckID = 3)THEN
+				INSERT INTO dtr_records(employee_id, `date`, pm_in, updated_at) VALUES( _EmployeeID, _Date, _Time, NOW());
+            ELSEIF( _CheckID = 4)THEN
+				INSERT INTO dtr_records(employee_id, `date`, pm_out, updated_at) VALUES( _EmployeeID, _Date, _Time, NOW());            
+            END IF;
+        ELSE
+			#CLEAR PREVIOUS INPUT
+            IF(_PrevCheckID = 1)THEN
+				UPDATE dtr_records SET updated_at = NOW(), am_in = null WHERE am_in = _Time AND id = _DtrRecordID;
+			ELSEIF(_PrevCheckID = 2)THEN
+				UPDATE dtr_records SET updated_at = NOW(), am_out = null WHERE  am_out = _Time AND  id = _DtrRecordID;
+            ELSEIF(_PrevCheckID = 3)THEN
+				UPDATE dtr_records SET updated_at = NOW(), pm_in = null WHERE  pm_in = _Time AND  id = _DtrRecordID;
+            ELSEIF(_PrevCheckID = 4)THEN
+				UPDATE dtr_records SET updated_at = NOW(), pm_out = null WHERE  pm_out = _Time AND id = _DtrRecordID;
+            END IF;
+        
+			IF(_CheckID = 1)THEN
+				UPDATE dtr_records SET updated_at = NOW(), am_in = _Time WHERE id = _DtrRecordID;
+            ELSEIF( _CheckID = 2)THEN
+				UPDATE dtr_records SET updated_at = NOW(), am_out = _Time WHERE id = _DtrRecordID;
+			ELSEIF( _CheckID = 3)THEN
+				UPDATE dtr_records SET updated_at = NOW(), pm_in = _Time WHERE id = _DtrRecordID;
+            ELSEIF( _CheckID = 4)THEN
+				UPDATE dtr_records SET updated_at = NOW(), pm_out = _Time WHERE id = _DtrRecordID;           
+            END IF;
+        END IF;
+        
+        
+        
+        
+    END IF;
+END$$
+
+DELIMITER ;
+
+DROP procedure IF EXISTS `dtr_attendance`.`spAddManualLog`;
+;
+
+DELIMITER $$
+CREATE PROCEDURE `spAddManualLog`(_EmployeeID INT, _DateTime DATE, _ScheduleID INT, _CheckID INT)
+BEGIN
+
+	DECLARE _BioID VARCHAR(50);
+    DECLARE _DtrID INT;
+
+	SELECT bio_id INTO _BioID FROM employees WHERE id = _EmployeeID;
+    IF(_BioID IS NOT NULL) THEN
+		INSERT INTO attendance_raws( is_manual, bio_id, date_time, employee_id, is_processed, check_dtr_id, att_sched_id)
+					VALUES(1, _BioID, _DateTime, _EmployeeID, 1, _CheckID, _ScheduleID);
+		
+        SELECT id INTO _DtrID FROM dtr_records WHERE DATE(_DateTime) = `date` AND employee_id = _EmployeeID;
+        
+        #ADDING DTR RECORD IF NOT EXISTS
+        IF(_DtrID IS NULL)THEN
+			INSERT INTO dtr_records(employee_id, `date`) VALUES( _EmployeeID, DATE(_DateTime));
+            SET _DtrID = last_insert_id();
+        END IF;
+		IF( _CheckID = 1 )THEN
+			UPDATE dtr_records SET am_in = TIME(_DateTime), updated_at = NOW() WHERE id = _DtrID;
+        ELSEIF( _CheckID = 2 )THEN
+			UPDATE dtr_records SET am_out = TIME(_DateTime), updated_at = NOW() WHERE id = _DtrID;
+        ELSEIF( _CheckID =3 )THEN
+			UPDATE dtr_records SET pm_in = TIME(_DateTime), updated_at = NOW() WHERE id = _DtrID;
+        ELSEIF(_CheckID = 4)THEN			
+			UPDATE dtr_records SET pm_out = TIME(_DateTime), updated_at = NOW() WHERE id = _DtrID;
+        END IF;
+    END IF;
+
+
+
+	#insert into attendance_raw
+
+END$$
+
+DELIMITER ;

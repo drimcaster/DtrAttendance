@@ -16,6 +16,8 @@ namespace DTRAttendance.Helpers
 
             StaticClasses.DtrAnalysis.checkSystemDefaults();
 
+            //Check DB
+            DBVersion.checkDB();
         }
 
 

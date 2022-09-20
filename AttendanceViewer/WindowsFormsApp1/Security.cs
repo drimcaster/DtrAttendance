@@ -30,10 +30,15 @@ namespace DTRAttendance
             {
                 if (new SSH_MySQL_Lib.SetUp().ShowDialog() == DialogResult.OK)
                     button1.PerformClick();
+                else
+                    this.Close();
             }
             else
             {
                 this.Hide();
+                //Check DB Version
+                Helpers.ServiceHelper.LoadDataAndServices();
+
                 new Form1().ShowDialog();
                 this.Close();
             }

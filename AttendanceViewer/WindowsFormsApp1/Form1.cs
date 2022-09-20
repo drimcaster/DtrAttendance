@@ -28,15 +28,65 @@ namespace DTRAttendance
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            Helpers.ServiceHelper.LoadDataAndServices();
-
             //this.reportViewer1.RefreshReport();
 
             this.load_table();
-
-
+            dtr_check_updates.Tick += Dtr_check_updates_Tick;
+            dtr_check_updates.Enabled = true;
 
         }
+
+        private void Dtr_check_updates_Tick(object sender, EventArgs e)
+        {
+            dtr_check_updates.Enabled = false;
+            //throw new NotImplementedException();
+            BackgroundWorker dtr_check_bgWorker = new BackgroundWorker();
+            dtr_check_bgWorker.DoWork += Dtr_check_bgWorker_DoWork;
+            dtr_check_bgWorker.RunWorkerAsync();
+        }
+
+        public DateTime? _CheckTime = null;
+        private void Dtr_check_bgWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            MySqlParameter[] pars = new MySqlParameter[3];
+            Models.Employee emp = null;
+            Invoke(new Action(() => {
+                if(dataGridView1.SelectedRows.Count >0 )
+                {
+                    emp = dataGridView1.SelectedRows[0].Tag as Models.Employee;
+                }
+                if (emp != null) {
+                    pars[0] = new MySqlParameter("@emp_id", emp.id);
+                    pars[1] = new MySqlParameter("@month", dateTimePicker1.Value.Month);
+                    pars[2] = new MySqlParameter("@year", dateTimePicker1.Value.Year);
+                }
+            
+            
+            }));
+            if (emp != null)
+            {
+                string ss = (SSH_MySQL_Lib.MySqlQuery.QueryResult("SELECT fnGetEmpLatestDtrDateTimeUpdate(10,9,2022) as updated_time;", pars).Rows[0]["updated_time"] ?? "").ToString();
+                if (ss == "")
+                {
+                    _CheckTime = null;
+                }
+                else
+                {
+                    if ( _CheckTime != DateTime.Parse(ss))
+                    {
+                        _CheckTime = DateTime.Parse(ss);
+                        Invoke(new Action(() =>
+                        {
+                            dataGridView1_SelectionChanged(null, null);
+                        }));
+                    }
+                }
+            }
+            Invoke(new Action(() => {
+                dtr_check_updates.Enabled = true;
+            }));
+        }
+
         public void load_table()
         {
             dataGridView1.Rows.Clear();

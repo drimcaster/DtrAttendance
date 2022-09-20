@@ -33,6 +33,7 @@
             this.managementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logSchedulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reloadDataAndServicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.databaseSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.employeesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addNewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.devicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,7 +53,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.databaseSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dtr_check_updates = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.employee_details.SuspendLayout();
@@ -95,6 +96,13 @@
             this.reloadDataAndServicesToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
             this.reloadDataAndServicesToolStripMenuItem.Text = "Reload Data and Services";
             this.reloadDataAndServicesToolStripMenuItem.Click += new System.EventHandler(this.reloadDataAndServicesToolStripMenuItem_Click);
+            // 
+            // databaseSetupToolStripMenuItem
+            // 
+            this.databaseSetupToolStripMenuItem.Name = "databaseSetupToolStripMenuItem";
+            this.databaseSetupToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.databaseSetupToolStripMenuItem.Text = "Database Setup";
+            this.databaseSetupToolStripMenuItem.Click += new System.EventHandler(this.databaseSetupToolStripMenuItem_Click);
             // 
             // employeesToolStripMenuItem
             // 
@@ -274,12 +282,9 @@
             this.checkBox2.UseVisualStyleBackColor = true;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
-            // databaseSetupToolStripMenuItem
+            // dtr_check_updates
             // 
-            this.databaseSetupToolStripMenuItem.Name = "databaseSetupToolStripMenuItem";
-            this.databaseSetupToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
-            this.databaseSetupToolStripMenuItem.Text = "Database Setup";
-            this.databaseSetupToolStripMenuItem.Click += new System.EventHandler(this.databaseSetupToolStripMenuItem_Click);
+            this.dtr_check_updates.Interval = 1000;
             // 
             // Form1
             // 
@@ -334,6 +339,7 @@
         private System.Windows.Forms.ToolStripMenuItem modifyEmployeeToolStripMenuItem;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.ToolStripMenuItem databaseSetupToolStripMenuItem;
+        private System.Windows.Forms.Timer dtr_check_updates;
     }
 }
 
