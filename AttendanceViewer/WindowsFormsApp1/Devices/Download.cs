@@ -93,25 +93,15 @@ namespace DTRAttendance.Devices
 
 
             //TESTING PURPOSE TO return;
-            /*
+            
             device.device_logs = new List<Log>();
-            device.device_logs.Add(new Log() { bio_id = "1", device_id = device.id, in_out = 1, IsSaved = false, sign_time = "2022-01-01 10:11:12" });
-            device.device_logs.Add(new Log() { bio_id = "1", device_id = device.id, in_out = 1, IsSaved = false, sign_time = "2022-01-01 10:11:12" });
-            device.device_logs.Add(new Log() { bio_id = "1", device_id = device.id, in_out = 1, IsSaved = false, sign_time = "2022-01-01 10:11:12" });
-            device.device_logs.Add(new Log() { bio_id = "1", device_id = device.id, in_out = 1, IsSaved = false, sign_time = "2022-01-01 10:11:12" });
-            device.device_logs.Add(new Log() { bio_id = "1", device_id = device.id, in_out = 1, IsSaved = false, sign_time = "2022-01-01 10:11:11" });
-            device.device_logs.Add(new Log() { bio_id = "1", device_id = device.id, in_out = 1, IsSaved = false, sign_time = "2022-01-01 10:11:13" });
-            device.device_logs.Add(new Log() { bio_id = "1", device_id = device.id, in_out = 1, IsSaved = false, sign_time = "2022-01-01 10:11:14" });
-            device.device_logs.Add(new Log() { bio_id = "1", device_id = device.id, in_out = 1, IsSaved = false, sign_time = "2022-01-01 10:11:15" });
-            device.device_logs.Add(new Log() { bio_id = "1", device_id = device.id, in_out = 1, IsSaved = false, sign_time = "2022-01-01 10:11:16" });
-            device.device_logs.Add(new Log() { bio_id = "1", device_id = device.id, in_out = 1, IsSaved = false, sign_time = "2022-01-01 10:11:17" });
-            device.device_logs.Add(new Log() { bio_id = "1", device_id = device.id, in_out = 1, IsSaved = false, sign_time = "2022-01-01 10:11:18" });
-            device.device_logs.Add(new Log() { bio_id = "1", device_id = device.id, in_out = 1, IsSaved = false, sign_time = "2022-01-01 10:11:10" });
+            device.device_logs.Add(new Log() { bio_id = "070967106", device_id = device.id, in_out = 1, IsSaved = false, sign_time = "2022-01-02 10:11:12" });
             device.SaveDataLogs();
             
 
             return;
-            */
+            /**/
+            
             if (zk.Connect_Net(device.ip_address, device.port))//4370
             {
                 Invoke(new Action(() =>

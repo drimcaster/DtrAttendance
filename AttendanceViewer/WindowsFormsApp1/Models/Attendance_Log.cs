@@ -9,7 +9,7 @@ namespace DTRAttendance.Models
 {
     internal class Attendance_Log
     {
-        public int id { get; set; }
+        public int? id { get; set; }
         public string bio_id { get; set; }
         public DateTime date_time { get; set; }
         public int? employee_id { get; set; }

@@ -8,13 +8,13 @@ namespace DTRAttendance.Models
 {
     public class MySQLProcess
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public string User { get; set; }
         public string db { get; set; }
 
         public string Command { get; set; }
 
-        public int Time { get; set; }
+        public int? Time { get; set; }
 
         public string State { get; set; }
 
