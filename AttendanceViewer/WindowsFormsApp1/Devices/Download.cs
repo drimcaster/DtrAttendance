@@ -94,12 +94,12 @@ namespace DTRAttendance.Devices
 
             //TESTING PURPOSE TO return;
             
-            device.device_logs = new List<Log>();
-            device.device_logs.Add(new Log() { bio_id = "070967106", device_id = device.id, in_out = 1, IsSaved = false, sign_time = "2022-01-02 10:11:12" });
-            device.SaveDataLogs();
+            //device.device_logs = new List<Log>();
+            //device.device_logs.Add(new Log() { bio_id = "070967106", device_id = device.id, in_out = 1, IsSaved = false, sign_time = "2022-01-02 10:11:12" });
+            //device.SaveDataLogs();
             
 
-            return;
+            //return;
             /**/
             
             if (zk.Connect_Net(device.ip_address, device.port))//4370

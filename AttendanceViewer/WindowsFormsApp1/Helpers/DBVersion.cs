@@ -147,6 +147,7 @@ namespace DTRAttendance.Helpers
                 if (record_found && results != "")
                 {
                     //Script execution here.
+                    SSH_MySQL_Lib.MySqlQuery.createScript("SET global log_bin_trust_function_creators = 1;");
                     SSH_MySQL_Lib.MySqlQuery.createScript("use `"+SSH_MySQL_Lib.Properties.Settings.Default.DB_Schema+"`;\r\n" +results); 
                 }
 

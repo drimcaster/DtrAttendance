@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlTypes;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -314,6 +315,22 @@ namespace DTRAttendance
 
             foreach(DataRow dr in dt.Rows)
             {
+
+                ///// AM
+                int am_undertime_min = 0;
+
+                if (dr["am_in"].ToString() != string.Empty && dr["am_out"].ToString() != string.Empty)
+                {
+                    int am_in_min = TotalMinutesSubtract(dr["am_in"].ToString(), dr["sched_am_in"].ToString());
+                    if (am_in_min > 0)
+                        am_undertime_min += am_in_min;
+                    int am_out_min = TotalMinutesSubtract(dr["sched_am_out"].ToString(), dr["am_out"].ToString());
+                    if (am_out_min > 0)
+                        am_undertime_min += am_out_min;
+                    //int _AMOUT_UNDERTIME = null;
+
+                }
+
                 dr["am_in"] = dr["am_in"].ToString() == string.Empty ? "--:--:--" : DateTime.Parse( dr["am_in"].ToString() ).ToString("hh:mm tt");
                 dr["am_out"] = dr["am_out"].ToString() == string.Empty ? "--:--:--": DateTime.Parse(dr["am_out"].ToString()).ToString("hh:mm tt");
                 
@@ -325,7 +342,24 @@ namespace DTRAttendance
                     if (am_day_in_week == "Sunday" || am_day_in_week == "Saturday")
                         dr["am_in"] = dr["am_out"] = am_day_in_week;
                 }
-                
+
+
+                ///// PM
+                int pm_undertime_min = 0;
+
+                if (dr["pm_in"].ToString() != string.Empty && dr["pm_out"].ToString() != string.Empty)
+                {
+                    int pm_in_min = TotalMinutesSubtract(dr["pm_in"].ToString(), dr["sched_pm_in"].ToString());
+                    if (pm_in_min > 0)
+                        pm_undertime_min += pm_in_min;
+                    int pm_out_min = TotalMinutesSubtract(dr["sched_pm_out"].ToString(), dr["pm_out"].ToString());
+                    if (pm_out_min > 0)
+                        pm_undertime_min += pm_out_min;
+                    //int _AMOUT_UNDERTIME = null;
+
+                }
+
+
                 dr["pm_in"] = dr["pm_in"].ToString() == string.Empty ? "--:--:--": DateTime.Parse(dr["pm_in"].ToString()).ToString("hh:mm tt");
                 dr["pm_out"] = dr["pm_out"].ToString() == string.Empty ? "--:--:--" : DateTime.Parse(dr["pm_out"].ToString()).ToString("hh:mm tt");
 
@@ -338,11 +372,26 @@ namespace DTRAttendance
 
                 }
 
+                int total_min_undertime = am_undertime_min + pm_undertime_min;
+                int cv_under_hour = total_min_undertime / 60;
+                int cv_under_min = total_min_undertime % 60;
+                
+                dr["under_hour"] = cv_under_hour;
+                dr["under_min"] = cv_under_min;
 
             }
 
             return dt;
         }
+
+        public int TotalMinutesSubtract(string _from, string _to)
+        {
+            DateTime _fromDate = DateTime.Parse(_from);// DateTime.Now;
+            DateTime _toDate = DateTime.Parse(_to);
+            return (int)_fromDate.Subtract(new DateTime(_toDate.Year, _toDate.Month, _toDate.Day, _toDate.Hour, _toDate.Minute, 00)).TotalMinutes;
+
+        }
+
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {

@@ -36,7 +36,8 @@ namespace DTRAttendance.StaticClasses
         {
             List<MySqlParameter> pars = new List<MySqlParameter>();
             pars.Add(new MySqlParameter("@employee_id", employee.id));
-            pars.Add(new MySqlParameter("@date_time", date_time));
+            string date_str = date_time.ToString("yyyy-MM-dd HH:mm");
+            pars.Add(new MySqlParameter("@date_time", date_str));
             pars.Add(new MySqlParameter("@schedule_id", schedule_id));
             pars.Add(new MySqlParameter("@check_dtr_id", check_dtr_id));
             MySQLHelper.ExecuteNonQuery("CALL spAddManualLog(@employee_id,@date_time, @schedule_id, @check_dtr_id )", pars);
