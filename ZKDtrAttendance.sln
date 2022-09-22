@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTRAttendance", "Attendance
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "DTRAttendanceSetup", "DTRAttendanceSetup\DTRAttendanceSetup.vdproj", "{09559E9C-B60E-4FCD-BAE9-5B376F483162}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSH MySQL Lib", "..\WinLib-MySQL-SSH\SSH MySQL Lib\SSH MySQL Lib.csproj", "{E3251AEC-DE5D-4191-9EA1-D0E477BA83AD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSH MySQL Lib", "..\MySQL SSH\SSH MySQL Lib\SSH MySQL Lib.csproj", "{E3251AEC-DE5D-4191-9EA1-D0E477BA83AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
