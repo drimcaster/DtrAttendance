@@ -66,7 +66,7 @@ namespace DTRAttendance
             }));
             if (emp != null)
             {
-                string ss = (SSH_MySQL_Lib.MySqlQuery.QueryResult("SELECT fnGetEmpLatestDtrDateTimeUpdate(10,9,2022) as updated_time;", pars).Rows[0]["updated_time"] ?? "").ToString();
+                string ss = (SSH_MySQL_Lib.MySqlQuery.QueryResult("SELECT fnGetEmpLatestDtrDateTimeUpdate(@emp_id,@month,@year) as updated_time;", pars).Rows[0]["updated_time"] ?? "").ToString();
                 if (ss == "")
                 {
                     _CheckTime = null;
@@ -318,6 +318,8 @@ namespace DTRAttendance
 
                 ///// AM
                 int am_undertime_min = 0;
+                bool am_blank = false;
+                bool am_error = false;
 
                 if (dr["am_in"].ToString() != string.Empty && dr["am_out"].ToString() != string.Empty)
                 {
@@ -330,6 +332,13 @@ namespace DTRAttendance
                     //int _AMOUT_UNDERTIME = null;
 
                 }
+                else if (dr["am_in"].ToString() == string.Empty && dr["am_out"].ToString() == string.Empty)
+                {
+                    am_blank = true;
+                    am_undertime_min = TotalMinutesSubtract(dr["sched_am_out"].ToString(), dr["sched_am_in"].ToString());
+                }
+                else am_error = true;
+
 
                 dr["am_in"] = dr["am_in"].ToString() == string.Empty ? "--:--:--" : DateTime.Parse( dr["am_in"].ToString() ).ToString("hh:mm tt");
                 dr["am_out"] = dr["am_out"].ToString() == string.Empty ? "--:--:--": DateTime.Parse(dr["am_out"].ToString()).ToString("hh:mm tt");
@@ -346,6 +355,8 @@ namespace DTRAttendance
 
                 ///// PM
                 int pm_undertime_min = 0;
+                bool pm_blank = false;
+                bool pm_error = false;
 
                 if (dr["pm_in"].ToString() != string.Empty && dr["pm_out"].ToString() != string.Empty)
                 {
@@ -358,6 +369,12 @@ namespace DTRAttendance
                     //int _AMOUT_UNDERTIME = null;
 
                 }
+                else if (dr["pm_in"].ToString() == string.Empty && dr["pm_out"].ToString() == string.Empty)
+                {
+                    pm_blank = true;
+                    pm_undertime_min = TotalMinutesSubtract(dr["sched_pm_out"].ToString(), dr["sched_pm_in"].ToString());
+                }
+                else pm_error = true;
 
 
                 dr["pm_in"] = dr["pm_in"].ToString() == string.Empty ? "--:--:--": DateTime.Parse(dr["pm_in"].ToString()).ToString("hh:mm tt");
@@ -375,9 +392,23 @@ namespace DTRAttendance
                 int total_min_undertime = am_undertime_min + pm_undertime_min;
                 int cv_under_hour = total_min_undertime / 60;
                 int cv_under_min = total_min_undertime % 60;
-                
-                dr["under_hour"] = cv_under_hour;
-                dr["under_min"] = cv_under_min;
+
+                //IF ALL IS ABSENT SHOULD SHOW EMPTY
+                if (am_blank && pm_blank)
+                {
+                    dr["under_hour"] = "--";
+                    dr["under_min"] = "--";
+                }
+                else if (am_error || pm_error)
+                {
+                    dr["under_hour"] = "N/A";
+                    dr["under_min"] = "N/A";
+                }
+                else
+                {
+                    dr["under_hour"] = cv_under_hour;
+                    dr["under_min"] = cv_under_min;
+                }
 
             }
 
