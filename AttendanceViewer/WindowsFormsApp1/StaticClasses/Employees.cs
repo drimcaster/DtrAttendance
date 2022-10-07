@@ -22,7 +22,7 @@ namespace DTRAttendance.StaticClasses
             pars.Add(new MySqlParameter("@hired_date", employee.hired_date));
             pars.Add(new MySqlParameter("att_sched_id", employee.att_sched_id));
 
-            if (Helpers.MySQLHelper.countRowQuery("select * from employees where bio_id=@biod_id", pars.ToArray()) > 0)
+            if (Helpers.MySQLHelper.countRowQuery("select * from employees where bio_id=@bio_id", pars.ToArray()) > 0)
                 return 0;
 
             return Helpers.MySQLHelper.ExecuteNonQuery("INSERT INTO employees(employee_id, bio_id, first_name, middle_name, last_name, hired_date, is_active, created_at, att_sched_id) VALUES(@employee_id, @bio_id, @first_name, @middle_name, @last_name, @hired_date, @is_active, NOW(), @att_sched_id)", pars);
