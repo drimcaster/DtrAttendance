@@ -34,8 +34,12 @@ namespace DTRAttendance.Helpers
             var dt = SSH_MySQL_Lib.MySqlQuery.QueryResult(q, pars);
             if (dt == null)
                 return 0;
-            return dt.Rows.Count;
+            int count = dt.Rows.Count;
+            dt.Dispose();
+            return count;
         }
+
+
         public static T Query<T>(string q, MySqlParameter[] pars)
         {
             return SSH_MySQL_Lib.MySqlQuery.Query<T>(q, pars);

@@ -11,6 +11,7 @@ using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace DTRAttendance
@@ -19,9 +20,14 @@ namespace DTRAttendance
     {
 
         public bool isAnalyze = false;
+        public int TotalItems = 0;
+        public int TotalPages = 0;
         public Form1()
         {
             InitializeComponent();
+            item_per_page.Text = "20";
+            item_per_page.SelectedIndexChanged += item_per_page_SelectedIndexChanged;
+            textBox2.Text = "1";
         }
 
         List<DTRAttendance.Models.Employee> employees;
@@ -92,7 +98,10 @@ namespace DTRAttendance
         {
             dataGridView1.Rows.Clear();
 
-            employees = checkBox1.Checked ? DTRAttendance.StaticClasses.Employees.get_active_employees(textBox1.Text) : DTRAttendance.StaticClasses.Employees.get_all_employees(textBox1.Text);
+            int page = int.Parse(textBox2.Text);
+            int itemperpage = int.Parse(item_per_page.Text);
+            
+            (TotalItems, TotalPages , employees) = checkBox1.Checked ? DTRAttendance.StaticClasses.Employees.get_active_employees(textBox1.Text, page, itemperpage) : DTRAttendance.StaticClasses.Employees.get_all_employees(textBox1.Text, page, itemperpage);
 
             foreach(var employee in employees)
             {
@@ -101,14 +110,15 @@ namespace DTRAttendance
                 row.ContextMenuStrip = employee_details;
                 dataGridView1.Rows.Add(row);
             }
-
+            int count = (page - 1) * itemperpage;
             foreach(DataGridViewRow row in dataGridView1.Rows)
             {
                 var emp = row.Tag as Models.Employee;
                 emp.row = row;
-                row.SetValues(emp.employee_id, emp.bio_id, emp.getFullName(), emp.is_active);
+                row.SetValues( ++count, emp.employee_id, emp.bio_id, emp.getFullName(), emp.is_active);
             }
-
+            label4.Text = "Total Items: " + TotalItems;
+            label3.Text = "/ " + TotalPages;
         }
 
         private void addNewToolStripMenuItem_Click(object sender, EventArgs e)
@@ -203,9 +213,10 @@ namespace DTRAttendance
         {
             if (e.RowIndex < 0) return;
 
-            dataGridView1.Rows[e.RowIndex].Selected = true;
+            //dataGridView1.Rows[e.RowIndex].Selected = true;
             var employee = dataGridView1.Rows[e.RowIndex].Tag as Models.Employee;
             modifyEmployeeToolStripMenuItem.Tag = employee;
+
         }
 
         private void modifyEmployeeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -232,12 +243,40 @@ namespace DTRAttendance
             new Management.ScheduleListForm().ShowDialog();
         }
 
+
+        bool is_loading = false;
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count <= 0) return;
-            var employee = dataGridView1.SelectedRows[0].Tag as Models.Employee;
-            load_report(employee, dateTimePicker1.Value.Year, dateTimePicker1.Value.Month);
 
+
+
+            if (is_loading == false)
+            {
+                is_loading = true;
+                BackgroundWorker backgroundWorker = new BackgroundWorker();
+
+                backgroundWorker.DoWork += (se, d) =>
+                {
+
+                    this.Invoke(new Action(() =>
+                    {
+                        var employee = dataGridView1.SelectedRows[0].Tag as Models.Employee;
+                        load_report(employee, dateTimePicker1.Value.Year, dateTimePicker1.Value.Month);
+                        is_loading = false;
+
+                    }));
+
+                };
+                Thread.Sleep(700);
+                backgroundWorker.RunWorkerAsync();
+            }
+            
+        }
+
+        private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void load_report(Models.Employee emp, int year, int month)
@@ -441,6 +480,39 @@ namespace DTRAttendance
                 {
                     Application.Restart();
                 }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int txB2 = int.Parse(textBox2.Text);
+            if(txB2 > 1)
+            {
+                textBox2.Text = (txB2 - 1).ToString();
+            }
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            load_table();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            int txB2 = int.Parse(textBox2.Text);
+            if (txB2 < TotalPages)
+            {
+                textBox2.Text = (txB2 + 1).ToString();
+            }
+        }
+
+        private void item_per_page_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            load_table();
         }
     }
 }

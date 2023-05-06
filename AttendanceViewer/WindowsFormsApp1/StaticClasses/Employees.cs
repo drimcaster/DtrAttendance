@@ -49,20 +49,44 @@ namespace DTRAttendance.StaticClasses
             return 1;
         }
 
-        public static List<Models.Employee> get_active_employees(string search="")
+        public static ( int, int,   List<Models.Employee>) get_active_employees(string search="", int page = 1, int itemperpage=20 )
         {
 
             List<MySqlParameter> pars = new List<MySqlParameter>();
             pars.Add(new MySqlParameter("@search", search));
 
-            return Helpers.MySQLHelper.Query<List<Models.Employee>>(" select * from employees where deleted_at IS NULL AND is_active=1 AND CONCAT(IFNULL(employee_id,''), bio_id, first_name, middle_name, last_name) like CONCAT('%', @search ,'%')", pars);
+            int count = Helpers.MySQLHelper.countRowQuery(" select * from employees where deleted_at IS NULL AND is_active=1 AND CONCAT(IFNULL(employee_id,''), bio_id, first_name, middle_name, last_name) like CONCAT('%', @search ,'%')", pars.ToArray());
+
+            int startcount = (page - 1) * itemperpage;
+
+            int total_page = 1;
+            if(count > 0)
+            {
+                total_page = count / itemperpage;
+                if (count % itemperpage != 0)
+                    total_page++;
+            }
+
+
+            return ( count, total_page, Helpers.MySQLHelper.Query<List<Models.Employee>>(" select * from employees where deleted_at IS NULL AND is_active=1 AND CONCAT(IFNULL(employee_id,''), bio_id, first_name, middle_name, last_name) like CONCAT('%', @search ,'%') LIMIT " + startcount + "," + itemperpage, pars));
         }
 
-        public static List<Models.Employee> get_all_employees(string search="")
+        public static (int, int, List<Models.Employee>) get_all_employees(string search="", int page = 1, int itemperpage = 20)
         {
             List<MySqlParameter> pars = new List<MySqlParameter>();
             pars.Add(new MySqlParameter("@search", search));
-            return Helpers.MySQLHelper.Query<List<Models.Employee>>(" select * from employees where deleted_at IS NULL AND CONCAT(IFNULL(employee_id,''), bio_id, first_name, middle_name, last_name) like CONCAT('%', @search ,'%')", pars);
+
+            int count = Helpers.MySQLHelper.countRowQuery(" select * from employees where deleted_at IS NULL AND CONCAT(IFNULL(employee_id,''), bio_id, first_name, middle_name, last_name) like CONCAT('%', @search ,'%')", pars.ToArray());
+            
+            int total_page = 1;
+            if (count > 0)
+            {
+                total_page = count / itemperpage;
+                if (count % itemperpage != 0)
+                    total_page++;
+            }
+            int startcount = (page - 1) * itemperpage;
+            return (count,total_page, Helpers.MySQLHelper.Query<List<Models.Employee>>(" select * from employees where deleted_at IS NULL AND CONCAT(IFNULL(employee_id,''), bio_id, first_name, middle_name, last_name) like CONCAT('%', @search ,'%') LIMIT "+startcount+","+itemperpage, pars));
         }
     }
     

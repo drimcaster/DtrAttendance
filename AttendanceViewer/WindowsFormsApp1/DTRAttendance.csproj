@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>DTRAttendance</RootNamespace>
     <AssemblyName>DTRAttendance</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
@@ -333,7 +333,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\MySQL SSH\SSH MySQL Lib\SSH MySQL Lib.csproj">
+    <ProjectReference Include="..\..\..\WinLib-MySQL-SSH\SSH MySQL Lib\SSH MySQL Lib.csproj">
       <Project>{e3251aec-de5d-4191-9ea1-d0e477ba83ad}</Project>
       <Name>SSH MySQL Lib</Name>
     </ProjectReference>
