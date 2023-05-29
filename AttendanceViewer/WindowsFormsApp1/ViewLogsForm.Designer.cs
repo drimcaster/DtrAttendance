@@ -30,6 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -38,12 +44,6 @@
             this.sETAMOUTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sETPMINToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sETPMOUTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -72,75 +72,6 @@
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseUp);
             this.dataGridView1.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridView1_UserDeletingRow);
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Location = new System.Drawing.Point(12, 468);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(170, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Change Schedule in logs";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button2.Location = new System.Drawing.Point(12, 497);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(170, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Add Log";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.modifyCheckInToolStripMenuItem,
-            this.sETAMINToolStripMenuItem,
-            this.sETAMOUTToolStripMenuItem,
-            this.sETPMINToolStripMenuItem,
-            this.sETPMOUTToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(162, 114);
-            // 
-            // modifyCheckInToolStripMenuItem
-            // 
-            this.modifyCheckInToolStripMenuItem.Enabled = false;
-            this.modifyCheckInToolStripMenuItem.Name = "modifyCheckInToolStripMenuItem";
-            this.modifyCheckInToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.modifyCheckInToolStripMenuItem.Text = "Modify Check In";
-            this.modifyCheckInToolStripMenuItem.Click += new System.EventHandler(this.modifyCheckInToolStripMenuItem_Click);
-            // 
-            // sETAMINToolStripMenuItem
-            // 
-            this.sETAMINToolStripMenuItem.Name = "sETAMINToolStripMenuItem";
-            this.sETAMINToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.sETAMINToolStripMenuItem.Text = "SET AM IN";
-            this.sETAMINToolStripMenuItem.Click += new System.EventHandler(this.sETAMINToolStripMenuItem_Click);
-            // 
-            // sETAMOUTToolStripMenuItem
-            // 
-            this.sETAMOUTToolStripMenuItem.Name = "sETAMOUTToolStripMenuItem";
-            this.sETAMOUTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.sETAMOUTToolStripMenuItem.Text = "SET AM OUT";
-            this.sETAMOUTToolStripMenuItem.Click += new System.EventHandler(this.sETAMOUTToolStripMenuItem_Click);
-            // 
-            // sETPMINToolStripMenuItem
-            // 
-            this.sETPMINToolStripMenuItem.Name = "sETPMINToolStripMenuItem";
-            this.sETPMINToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.sETPMINToolStripMenuItem.Text = "SET PM IN";
-            this.sETPMINToolStripMenuItem.Click += new System.EventHandler(this.sETPMINToolStripMenuItem_Click);
-            // 
-            // sETPMOUTToolStripMenuItem
-            // 
-            this.sETPMOUTToolStripMenuItem.Name = "sETPMOUTToolStripMenuItem";
-            this.sETPMOUTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.sETPMOUTToolStripMenuItem.Text = "SET PM OUT";
-            this.sETPMOUTToolStripMenuItem.Click += new System.EventHandler(this.sETPMOUTToolStripMenuItem_Click);
             // 
             // Column1
             // 
@@ -188,6 +119,76 @@
             this.Column6.Name = "Column6";
             this.Column6.ReadOnly = true;
             this.Column6.Width = 62;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button1.Location = new System.Drawing.Point(12, 468);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(170, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Change Schedule in logs";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button2.Location = new System.Drawing.Point(12, 497);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(170, 23);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "Add Log";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.modifyCheckInToolStripMenuItem,
+            this.sETAMINToolStripMenuItem,
+            this.sETAMOUTToolStripMenuItem,
+            this.sETPMINToolStripMenuItem,
+            this.sETPMOUTToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 136);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            // 
+            // modifyCheckInToolStripMenuItem
+            // 
+            this.modifyCheckInToolStripMenuItem.Enabled = false;
+            this.modifyCheckInToolStripMenuItem.Name = "modifyCheckInToolStripMenuItem";
+            this.modifyCheckInToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.modifyCheckInToolStripMenuItem.Text = "Modify Check In";
+            this.modifyCheckInToolStripMenuItem.Click += new System.EventHandler(this.modifyCheckInToolStripMenuItem_Click);
+            // 
+            // sETAMINToolStripMenuItem
+            // 
+            this.sETAMINToolStripMenuItem.Name = "sETAMINToolStripMenuItem";
+            this.sETAMINToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sETAMINToolStripMenuItem.Text = "SET AM IN";
+            this.sETAMINToolStripMenuItem.Click += new System.EventHandler(this.sETAMINToolStripMenuItem_Click);
+            // 
+            // sETAMOUTToolStripMenuItem
+            // 
+            this.sETAMOUTToolStripMenuItem.Name = "sETAMOUTToolStripMenuItem";
+            this.sETAMOUTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sETAMOUTToolStripMenuItem.Text = "SET AM OUT";
+            this.sETAMOUTToolStripMenuItem.Click += new System.EventHandler(this.sETAMOUTToolStripMenuItem_Click);
+            // 
+            // sETPMINToolStripMenuItem
+            // 
+            this.sETPMINToolStripMenuItem.Name = "sETPMINToolStripMenuItem";
+            this.sETPMINToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sETPMINToolStripMenuItem.Text = "SET PM IN";
+            this.sETPMINToolStripMenuItem.Click += new System.EventHandler(this.sETPMINToolStripMenuItem_Click);
+            // 
+            // sETPMOUTToolStripMenuItem
+            // 
+            this.sETPMOUTToolStripMenuItem.Name = "sETPMOUTToolStripMenuItem";
+            this.sETPMOUTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sETPMOUTToolStripMenuItem.Text = "SET PM OUT";
+            this.sETPMOUTToolStripMenuItem.Click += new System.EventHandler(this.sETPMOUTToolStripMenuItem_Click);
             // 
             // ViewLogsForm
             // 

@@ -82,13 +82,13 @@
         "Entry"
         {
         "MsmKey" = "8:_7BF5D5161852A1B7438F2D3BB5CB3E03"
-        "OwnerKey" = "8:_356A4F03F3D00AFAEC8219538A3CFC37"
+        "OwnerKey" = "8:_B2447128579140DE9712A23E0456A1A9"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_7BF5D5161852A1B7438F2D3BB5CB3E03"
-        "OwnerKey" = "8:_B2447128579140DE9712A23E0456A1A9"
+        "OwnerKey" = "8:_356A4F03F3D00AFAEC8219538A3CFC37"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -190,6 +190,18 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_7BF5D5161852A1B7438F2D3BB5CB3E03"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_1481FF5865BA41ADA3CF4BD2FA163910"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_E406CCCE6FF3E8F00B9C561D2FE90259"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -197,12 +209,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_44881ABDDFF28099E6F7D2F7E7B03B0C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_1481FF5865BA41ADA3CF4BD2FA163910"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -263,12 +269,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_356A4F03F3D00AFAEC8219538A3CFC37"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_7BF5D5161852A1B7438F2D3BB5CB3E03"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -896,15 +896,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:DTRAttendanceSetup"
-        "ProductCode" = "8:{2E0EFF6C-B309-4050-A274-066FA19D08DA}"
-        "PackageCode" = "8:{42F3E31C-7F6D-4767-986C-5EBD8EC2E645}"
+        "ProductCode" = "8:{76B41D26-9916-4C0A-B74B-7E2080212A20}"
+        "PackageCode" = "8:{3A08A46F-518B-4DE4-9E47-6A55180F6AC4}"
         "UpgradeCode" = "8:{9B841234-54A3-40EC-BE55-0FB1DA6BE7DA}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.15"
+        "ProductVersion" = "8:1.0.21"
         "Manufacturer" = "8:Dreamaster"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

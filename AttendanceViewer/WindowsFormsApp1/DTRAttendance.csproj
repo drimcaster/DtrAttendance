@@ -333,6 +333,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\AppService\WindowsFormsApp1\AppService.csproj">
+      <Project>{2295730b-173b-4d96-9697-14b99542bdda}</Project>
+      <Name>AppService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\WinLib-MySQL-SSH\SSH MySQL Lib\SSH MySQL Lib.csproj">
       <Project>{e3251aec-de5d-4191-9ea1-d0e477ba83ad}</Project>
       <Name>SSH MySQL Lib</Name>

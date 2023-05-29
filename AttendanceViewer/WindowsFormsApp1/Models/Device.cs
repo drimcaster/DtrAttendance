@@ -15,7 +15,7 @@ namespace DTRAttendance.Models
     public class Device : ICloneable
     {
 
-        public delegate void SavingResultDelegate(Device device, bool is_completed, bool is_error, int added, int existed);
+        public delegate void SavingResultDelegate(Device device, bool is_completed, bool is_error, int added, int existed, Exception error = null);
 
         public event SavingResultDelegate SavingResult;
         public object Clone()
@@ -114,13 +114,14 @@ namespace DTRAttendance.Models
         private void Bgworker_DoWork(object sender, DoWorkEventArgs e)
         {
             //throw new NotImplementedException();
-            System.Threading.Thread.Sleep(100);
+            System.Threading.Thread.Sleep(400);
             try
             {
-                int rand = new Random().Next(10, 20);
-                var list_5 = device_logs.Where(x => x.IsSaved == false).Take(rand + 5);
+                int rand = new Random().Next(5, 10);
+                var list_5 = device_logs.Where(x => x.IsSaved == false).Take(rand);
                 if (list_5.Count() >= 1)
                 {
+                    //throw new Exception(JsonConvert.SerializeObject(list_5));
                     MySqlParameter[] pars = new MySqlParameter[4];
                     pars[0] = new MySqlParameter("@name", "AttendanceRaws");
                     pars[1] = new MySqlParameter("@login_id", 0);
@@ -148,14 +149,14 @@ namespace DTRAttendance.Models
                         SavingResult(this, SaveDataCompleted, ErrorResult, Added, Existed);
                 }
             }
-            catch
+            catch(Exception ex)
             {
-
                 ErrorResult = true;
 
                 if (SavingResult != null)
-                    SavingResult(this, SaveDataCompleted, ErrorResult, Added, Existed);
+                    SavingResult(this, SaveDataCompleted, ErrorResult, Added, Existed, ex);
 
+                //throw new Exception(ex.Message);
             }
         }
     }

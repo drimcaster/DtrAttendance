@@ -9,6 +9,8 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "DTRAttendanceSetup", "DTRAt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSH MySQL Lib", "..\WinLib-MySQL-SSH\SSH MySQL Lib\SSH MySQL Lib.csproj", "{E3251AEC-DE5D-4191-9EA1-D0E477BA83AD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppService", "..\AppService\WindowsFormsApp1\AppService.csproj", "{2295730B-173B-4D96-9697-14B99542BDDA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,18 @@ Global
 		{E3251AEC-DE5D-4191-9EA1-D0E477BA83AD}.Release|x64.Build.0 = Release|Any CPU
 		{E3251AEC-DE5D-4191-9EA1-D0E477BA83AD}.Release|x86.ActiveCfg = Release|Any CPU
 		{E3251AEC-DE5D-4191-9EA1-D0E477BA83AD}.Release|x86.Build.0 = Release|Any CPU
+		{2295730B-173B-4D96-9697-14B99542BDDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2295730B-173B-4D96-9697-14B99542BDDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2295730B-173B-4D96-9697-14B99542BDDA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2295730B-173B-4D96-9697-14B99542BDDA}.Debug|x64.Build.0 = Debug|Any CPU
+		{2295730B-173B-4D96-9697-14B99542BDDA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2295730B-173B-4D96-9697-14B99542BDDA}.Debug|x86.Build.0 = Debug|Any CPU
+		{2295730B-173B-4D96-9697-14B99542BDDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2295730B-173B-4D96-9697-14B99542BDDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2295730B-173B-4D96-9697-14B99542BDDA}.Release|x64.ActiveCfg = Release|Any CPU
+		{2295730B-173B-4D96-9697-14B99542BDDA}.Release|x64.Build.0 = Release|Any CPU
+		{2295730B-173B-4D96-9697-14B99542BDDA}.Release|x86.ActiveCfg = Release|Any CPU
+		{2295730B-173B-4D96-9697-14B99542BDDA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

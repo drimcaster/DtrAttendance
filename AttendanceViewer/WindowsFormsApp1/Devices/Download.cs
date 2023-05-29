@@ -286,7 +286,7 @@ namespace DTRAttendance.Devices
             }
         }
 
-        private void Device_SavingResult(Device device, bool is_completed, bool is_error, int added, int existed)
+        private void Device_SavingResult(Device device, bool is_completed, bool is_error, int added, int existed, Exception ex)
         {
             //throw new NotImplementedException();
             try
@@ -306,6 +306,7 @@ namespace DTRAttendance.Devices
                         var but = new DataGridViewButtonCell();
                         device.bindRow.Cells[Col_RetryButton.Index] = but;
                         but.Value = "Retry";
+                        MessageBox.Show(ex.Message);
                     }
                     else if (is_completed)
                     {

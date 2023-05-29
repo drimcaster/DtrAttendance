@@ -22,12 +22,23 @@ namespace DTRAttendance
         public bool isAnalyze = false;
         public int TotalItems = 0;
         public int TotalPages = 0;
+
+        public static AppServ.Models.ValidationInfo LicenseInfo = null;
+
         public Form1()
         {
             InitializeComponent();
             item_per_page.Text = "20";
             item_per_page.SelectedIndexChanged += item_per_page_SelectedIndexChanged;
             textBox2.Text = "1";
+            if (LicenseInfo != null)
+            {
+                if (LicenseInfo.license_info.is_trial == 1)
+                {
+                    this.Text += " - Trial (" + AppServ.GetStaticProperties.getRemainingTrialDays() + ") days left";
+                }
+            }
+
         }
 
         List<DTRAttendance.Models.Employee> employees;
@@ -201,7 +212,15 @@ namespace DTRAttendance
         {
             Models.Employee sel = dataGridView1.SelectedRows[0]?.Tag as Models.Employee;
             if (sel != null)
-                new ViewLogsForm(sel, dateTimePicker1.Value).ShowDialog();
+            {
+               var viewlogs = new ViewLogsForm(sel, dateTimePicker1.Value);
+                viewlogs.ManualTrigger = () =>
+                {
+                    selectedRow = -1;
+                    dataGridView1_SelectionChanged(null, null);
+                };
+                viewlogs.ShowDialog();
+            }
         }
 
         private void reloadDataAndServicesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -243,34 +262,27 @@ namespace DTRAttendance
             new Management.ScheduleListForm().ShowDialog();
         }
 
-
-        bool is_loading = false;
+        int selectedRow = -1;
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count <= 0) return;
+            if (dataGridView1.SelectedRows.Count <= 0 || dataGridView1.SelectedRows[0].Index == selectedRow) return;
 
-
-
-            if (is_loading == false)
+            selectedRow = dataGridView1.SelectedRows[0].Index;
+             
+            BackgroundWorker backgroundWorker = new BackgroundWorker();
+            backgroundWorker.DoWork += (se, d) =>
             {
-                is_loading = true;
-                BackgroundWorker backgroundWorker = new BackgroundWorker();
 
-                backgroundWorker.DoWork += (se, d) =>
+                this.Invoke(new Action(() =>
                 {
+                    var employee = dataGridView1.SelectedRows[0].Tag as Models.Employee;
+                    load_report(employee, dateTimePicker1.Value.Year, dateTimePicker1.Value.Month);
+                        
+                }));
 
-                    this.Invoke(new Action(() =>
-                    {
-                        var employee = dataGridView1.SelectedRows[0].Tag as Models.Employee;
-                        load_report(employee, dateTimePicker1.Value.Year, dateTimePicker1.Value.Month);
-                        is_loading = false;
-
-                    }));
-
-                };
-                Thread.Sleep(700);
-                backgroundWorker.RunWorkerAsync();
-            }
+            };
+            backgroundWorker.RunWorkerAsync();
+            
             
         }
 
@@ -285,15 +297,13 @@ namespace DTRAttendance
             //reportViewer1.LocalReport.ReportPath = "~/DtrReport.rdlc";
             //ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Report.rdlc");
             //Customers dsCustomers = GetData("select top 20 * from customers");
-            reportViewer1.Reset();
+            //reportViewer1.Reset();
             reportViewer1.LocalReport.DataSources.Clear();
 
             if (checkBox2.Checked == false)
                 DtrReport1(emp, year, month);
             else
                 DtrReport2(emp, year, month);
-
-
 
             reportViewer1.RefreshReport();
 
@@ -513,6 +523,21 @@ namespace DTRAttendance
         private void item_per_page_SelectedIndexChanged(object sender, EventArgs e)
         {
             load_table();
+        }
+
+        private void cleanupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MySqlParameter[] pars = new MySqlParameter[0];
+            SSH_MySQL_Lib.MySqlQuery.ExecuteNonQuery(@"DELETE FROM attendance_raws WHERE date(date_time) < ( SELECT DATE(CONCAT(YEAR(`date`),'-', MONTH(`date`),'-01')) as PrevDate FROM  (SELECT date_add(NOW(), INTERVAL -3 MONTH) as `date`) AS A ) AND id > 0 AND is_processed <> 0", pars);
+            MessageBox.Show("Old data Cleared!");
+        }
+
+        private void viewLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AppServ.Product_Key prodKey = new AppServ.Product_Key();
+            prodKey.create_view_account_label.Visible = false;
+
+            prodKey.ShowDialog();
         }
     }
 }

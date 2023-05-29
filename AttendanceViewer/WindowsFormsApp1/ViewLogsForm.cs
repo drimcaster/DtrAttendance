@@ -16,6 +16,8 @@ namespace DTRAttendance
     {
         public Models.Employee _Employee;
         public DateTime _focusDate;
+        public delegate void UpdateTrigger();
+        public UpdateTrigger ManualTrigger;
         public ViewLogsForm(Models.Employee employee, DateTime date_time)
         {
             InitializeComponent();
@@ -109,6 +111,10 @@ namespace DTRAttendance
             StaticClasses.AttLogs.SetTimeCheck(log, 1);
             log.check_dtr_id = 1;
             log.row.Cells[2].Value = getCheckType(1);
+            if(ManualTrigger != null)
+            {
+                ManualTrigger();
+            }
         }
 
         private void sETAMOUTToolStripMenuItem_Click(object sender, EventArgs e)
@@ -117,6 +123,10 @@ namespace DTRAttendance
             StaticClasses.AttLogs.SetTimeCheck(log, 2);
             log.check_dtr_id = 2;
             log.row.Cells[2].Value = getCheckType(2);
+            if (ManualTrigger != null)
+            {
+                ManualTrigger();
+            }
         }
 
         private void sETPMINToolStripMenuItem_Click(object sender, EventArgs e)
@@ -126,6 +136,10 @@ namespace DTRAttendance
 
             log.check_dtr_id = 3;
             log.row.Cells[2].Value = getCheckType(3);
+            if (ManualTrigger != null)
+            {
+                ManualTrigger();
+            }
 
         }
 
@@ -137,6 +151,15 @@ namespace DTRAttendance
             log.check_dtr_id = 4;
             log.row.Cells[2].Value = getCheckType(4);
             //log.row.SetValues(i + 1, log.date_time.ToString("MM/dd/yyyy hh:mm:ss tt"), chk_type, log.att_sched_id, log.device_id, log.is_manual == 1 ? "Manual" : "Log");
+
+            if (ManualTrigger != null)
+            {
+                ManualTrigger();
+            }
+        }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
 
         }
     }
