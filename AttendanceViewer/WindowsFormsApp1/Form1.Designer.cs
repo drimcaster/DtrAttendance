@@ -65,7 +65,12 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.item_per_page = new System.Windows.Forms.ComboBox();
-            this.viewLicenseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createTicketToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.applicationManualsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewLicenseToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.myTicketsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.employee_details.SuspendLayout();
@@ -79,6 +84,7 @@
             this.employeesToolStripMenuItem,
             this.devicesToolStripMenuItem,
             this.downloadToolStripMenuItem,
+            this.helpToolStripMenuItem,
             this.analyzeRawToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -92,8 +98,7 @@
             this.logSchedulesToolStripMenuItem,
             this.reloadDataAndServicesToolStripMenuItem,
             this.databaseSetupToolStripMenuItem,
-            this.cleanupToolStripMenuItem,
-            this.viewLicenseToolStripMenuItem});
+            this.cleanupToolStripMenuItem});
             this.managementToolStripMenuItem.Name = "managementToolStripMenuItem";
             this.managementToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
             this.managementToolStripMenuItem.Text = "Management";
@@ -416,12 +421,54 @@
             this.item_per_page.Size = new System.Drawing.Size(47, 21);
             this.item_per_page.TabIndex = 2;
             // 
-            // viewLicenseToolStripMenuItem
+            // helpToolStripMenuItem
             // 
-            this.viewLicenseToolStripMenuItem.Name = "viewLicenseToolStripMenuItem";
-            this.viewLicenseToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
-            this.viewLicenseToolStripMenuItem.Text = "View License";
-            this.viewLicenseToolStripMenuItem.Click += new System.EventHandler(this.viewLicenseToolStripMenuItem_Click);
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.createTicketToolStripMenuItem,
+            this.createUserToolStripMenuItem,
+            this.applicationManualsToolStripMenuItem,
+            this.viewLicenseToolStripMenuItem1,
+            this.myTicketsToolStripMenuItem});
+            this.helpToolStripMenuItem.ForeColor = System.Drawing.Color.Blue;
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // createTicketToolStripMenuItem
+            // 
+            this.createTicketToolStripMenuItem.Name = "createTicketToolStripMenuItem";
+            this.createTicketToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.createTicketToolStripMenuItem.Text = "Create Ticket";
+            this.createTicketToolStripMenuItem.Click += new System.EventHandler(this.createTicketToolStripMenuItem_Click);
+            // 
+            // createUserToolStripMenuItem
+            // 
+            this.createUserToolStripMenuItem.Name = "createUserToolStripMenuItem";
+            this.createUserToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.createUserToolStripMenuItem.Text = "Create/Register User";
+            this.createUserToolStripMenuItem.Click += new System.EventHandler(this.createUserToolStripMenuItem_Click);
+            // 
+            // applicationManualsToolStripMenuItem
+            // 
+            this.applicationManualsToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
+            this.applicationManualsToolStripMenuItem.Name = "applicationManualsToolStripMenuItem";
+            this.applicationManualsToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.applicationManualsToolStripMenuItem.Text = "Application Manuals";
+            this.applicationManualsToolStripMenuItem.Click += new System.EventHandler(this.applicationManualsToolStripMenuItem_Click);
+            // 
+            // viewLicenseToolStripMenuItem1
+            // 
+            this.viewLicenseToolStripMenuItem1.Name = "viewLicenseToolStripMenuItem1";
+            this.viewLicenseToolStripMenuItem1.Size = new System.Drawing.Size(183, 22);
+            this.viewLicenseToolStripMenuItem1.Text = "View License";
+            this.viewLicenseToolStripMenuItem1.Click += new System.EventHandler(this.viewLicenseToolStripMenuItem1_Click);
+            // 
+            // myTicketsToolStripMenuItem
+            // 
+            this.myTicketsToolStripMenuItem.Name = "myTicketsToolStripMenuItem";
+            this.myTicketsToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.myTicketsToolStripMenuItem.Text = "My Tickets";
+            this.myTicketsToolStripMenuItem.Click += new System.EventHandler(this.myTicketsToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -491,7 +538,12 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripMenuItem cleanupToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem viewLicenseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createTicketToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createUserToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem applicationManualsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewLicenseToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem myTicketsToolStripMenuItem;
     }
 }
 

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlTypes;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -31,6 +32,7 @@ namespace DTRAttendance
             item_per_page.Text = "20";
             item_per_page.SelectedIndexChanged += item_per_page_SelectedIndexChanged;
             textBox2.Text = "1";
+            this.Text += " [" + fileVersion() + "]";
             if (LicenseInfo != null)
             {
                 if (LicenseInfo.license_info.is_trial == 1)
@@ -52,6 +54,15 @@ namespace DTRAttendance
             dtr_check_updates.Tick += Dtr_check_updates_Tick;
             dtr_check_updates.Enabled = true;
 
+        }
+
+        private string fileVersion()
+        {
+
+            string appFilePath = Process.GetCurrentProcess().MainModule.FileName;
+            FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(appFilePath);
+            string fileVersion = fileVersionInfo.FileVersion;
+            return fileVersion;
         }
 
         private void Dtr_check_updates_Tick(object sender, EventArgs e)
@@ -532,12 +543,34 @@ namespace DTRAttendance
             MessageBox.Show("Old data Cleared!");
         }
 
-        private void viewLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void createTicketToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            AppServ.AppDirectoriesLinks.createTicketStart(this.fileVersion());
+        }
+
+        private void createUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AppServ.AppDirectoriesLinks.createUserStart();
+        }
+
+        private void applicationManualsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AppServ.AppDirectoriesLinks.applicationManualStart();
+        }
+
+        private void viewLicenseToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
             AppServ.Product_Key prodKey = new AppServ.Product_Key();
             prodKey.create_view_account_label.Visible = false;
 
             prodKey.ShowDialog();
+        }
+
+        private void myTicketsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AppServ.AppDirectoriesLinks.myTicketsStart(this.fileVersion());
         }
     }
 }
