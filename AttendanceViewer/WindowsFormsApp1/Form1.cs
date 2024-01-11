@@ -546,17 +546,17 @@ namespace DTRAttendance
 
         private void createTicketToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AppServ.AppDirectoriesLinks.createTicketStart(this.fileVersion());
+            AppServ.AppDirectoryLinks.createTicketStart(this.fileVersion());
         }
 
         private void createUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AppServ.AppDirectoriesLinks.createUserStart();
+            AppServ.AppDirectoryLinks.createUserStart();
         }
 
         private void applicationManualsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AppServ.AppDirectoriesLinks.applicationManualStart();
+            AppServ.AppDirectoryLinks.applicationManualStart();
         }
 
         private void viewLicenseToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -570,7 +570,7 @@ namespace DTRAttendance
 
         private void myTicketsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AppServ.AppDirectoriesLinks.myTicketsStart(this.fileVersion());
+            AppServ.AppDirectoryLinks.myTicketsStart(this.fileVersion());
         }
     }
 }
